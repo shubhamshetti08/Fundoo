@@ -1,0 +1,267 @@
+/* .login {
+  margin-top: 50px;
+  padding-left: 100;
+  margin-left: 200;
+  text-align: center
+}
+.createButton{
+  color: blue;
+} */
+
+.service-button{
+  width: 100%;
+display: flex;
+justify-content: space-around
+}
+@media only screen and (min-width: 601px) {
+  .loginCard {
+    height: 500px;
+    width: 440px;
+    border: 2px solid burlywood;
+    margin-top: 85px;
+    margin-left: 420px;
+  }
+
+  .fundoo {
+    text-align: center;
+  }
+
+  .loginEmail {
+    text-align: center;
+  }
+
+  .loginPassword {
+    text-align: center;
+  }
+
+  .loginButton {
+    margin-left: 300px;
+    color: blue;
+    padding-top: 30px;
+  }
+
+  .createAccountButton {
+    margin-top: -30px;
+    margin-left: 60px;
+  }
+
+  .resetPsswordButton {
+    padding-top: 30px;
+    margin-left: 60px;
+  }
+
+  /*----------------------------------------login---------------------------------------*/
+  .head {
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  .upperCard1 {
+    margin-left: 224px;
+    width: 240px;
+    /* z-index: 10; */
+    height: 260px;
+    margin-top: -316px;
+
+  }
+
+  .lowerCard1 {
+    width: 240px;
+    height: 260px;
+    margin-top: 135px;
+    /* padding: 99% 0% 7% 15%; */
+    margin-left: 256px;
+    background-color: #acacac;
+    /* flex-direction: row;
+    box-sizing: border-box;
+    display:flex; */
+  }
+
+  .upperCard2 {
+    margin-left: 591px;
+    width: 240px;
+    /* z-index: 10; */
+    height: 260px;
+    margin-top: -316px;
+  }
+
+  .lowerCard2 {
+    width: 240px;
+    height: 260px;
+    margin-top: -203px;
+    /* padding: 99% 0% 7% 15%; */
+    margin-left: 622px;
+    background-color: #acacac;
+    /* flex-direction: row;
+    box-sizing: border-box;
+    display:flex; */
+  }
+
+  .signIn {
+    margin-top: 90px;
+    margin-left: 500px;
+}
+}
+/*----------------------------------------card---------------------------------------*/
+@media only screen and (min-width: 320px) and (max-width: 375px), only screen and (min-width: 425px) and (max-width:768px), only screen and (min-width: 600px) {
+  .main{
+    width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+  }
+  /* .allCard{
+    display: flex;
+    justify-content:center;
+    margin-top: 150px;
+  }
+  .upperCard{
+    height: 280px;
+    width:250px;
+    margin-left:-287px;
+    
+     */
+  /* }
+  .lowerCard{
+    height: 280px;
+    width:250px;
+    margin-top: 50px;
+    background-color: #acacac;
+}
+.addCartMsg{
+  padding-top: 70px;
+} */
+}
+/*----------------------------------------serviceCard---------------------------------------*/
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.allCard {
+  display: flex;
+  width: 100%;
+  line-height: 2rem;
+  justify-content: center;
+
+}
+.upperCard {
+  width: 97%;
+  margin-left: -13%;
+  margin-top: -22%;
+  height: 105%;
+}
+.lowerCard {
+  width: 42%;
+  height: 111%;
+}
+.serviceCard_main {
+  /* width: 83%; */
+  display: flex;
+  margin-top: 9%;
+  width: 100%;
+  justify-content: center;
+  /* text-shadow: 0 0 black; */
+}
+.fundooNotes{
+  margin-left: 80px;
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: normal;
+}
+.serviceLogin{
+  color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+}
+.register-servicecard{
+  display: flex;
+  justify-content:space-around;
+  flex-direction:column;
+line-height: 1rem;
+}
+/*---------------------------------------------serviceCard--------------------------------------------------*/
+.registerPage{
+  width: 100%;
+  height: 100vh; 
+  display: flex;
+  
+    justify-content: center;
+    align-items: center;
+}
+.registerCard{
+  width: 35%;
+  height: 90vh;
+  display: flex;
+  padding: 3% 3% 3% 3%;
+  flex-direction: column;
+}
+.register-fundoo{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.register-names{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.register-h1{
+  width: 100%;
+  display: flex ;
+  justify-content:center;
+}
+.register-h2{
+  display: flex;
+  justify-content: center;
+
+}
+.register-email{
+  padding-left: 10px;
+}
+.register-password{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+/* .register-cardtag{
+  width: 90%;
+  height: 56%;
+  flex-direction: row;
+} */
+/*---------------------------------------------register--------------------------------------------------*/
+
+.forgotpass-page{
+  width: 100%;
+  height: 100vh; 
+  display: flex;
+  
+    justify-content: center;
+    align-items: center;
+}
+.forgotpass-card{
+  width: 38%;
+  height: 45vh;
+  display: flex;
+  padding: 1% 1% 1% 1%;
+  flex-direction: column;
+}
+.forgotpass-fundoo{
+  display: flex;
+  width: 100%;
+  justify-content:center;
+}
+.forgotpass-h2{
+   padding-left: 82px; 
+}
+.forgot-email{
+  padding-left: 40px;
+}
+.forgotpass-button{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+
+/*---------------------------------------------forgotpass--------------------------------------------------*/
