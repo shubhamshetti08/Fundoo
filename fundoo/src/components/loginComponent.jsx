@@ -2,21 +2,36 @@ import React from 'react';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
 import { Card } from '@material-ui/core';
+import { userLogin } from '../services/userService';
+import ServiceCard from './serviceCardComponent';
 //import { blue } from '@material-ui/core/colors';
-export default class login extends React.Component {
+import {withRouter} from 'react-router-dom';
+class login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
             snackbarOpen: false,
-            snackbarMsg: ''
+            // snackbarMsg: ''
         }
     }
-    snackbarClose = (e) => {
-        this.setState({ snackbarOpen: false });
+    onChangeEmail = (e) => {
+        var email = e.target.value;
+        this.setState({
+          email: email
+        })
       }
-      handleClick = () => {
+      onChangePassword = (e) => {
+        var password = e.target.value;
+        this.setState({
+          password:password
+        })
+      }
+    // snackbarClose = (e) => {
+    //     this.setState({ snackbarOpen: false });
+    //   }
+      handleLogin = () => {
         // console.log(this.state.email.length)
         // console.log(this.state.password)
         // if (this.state.email === "") {
@@ -28,9 +43,37 @@ export default class login extends React.Component {
         //   this.setState({ snackbarOpen: true, snackbarMsg: "login successfull" })
         // this.props.history.push('/dashboard');
         // }
-      }
+        var loginDetails = {
+            'service': this.props.location.state.cartName,
+            'email': this.state.email,
+            'password': this.state.password,
+            'cartId': this.props.location.state.idCart
+        }
+
+    userLogin(loginDetails).then((res) => {
+        console.log('res from backend', res)
+        // this.setState({
+        //     openSnackBar: true,
+        //     SnackBarMessage: 'Registration Successfull'
+        // })
+        // localStorage.setItem('id',res.data.id);
+        // localStorage.setItem('firstName',res.data.firstName);
+        // localStorage.setItem('lastName',res.data.lastName);
+        // localStorage.setItem('email',res.data.email);
+        this.props.history.push('/dashboard')
+    }).catch((err) => {
+        console.log('errr', err);
+    })
+    }
     render() {
+        var changeColor = "",  productId = "", cart = "", status = "";
+        if (this.props.location.state !== 'undefined') {
+            changeColor = "orange"
+             productId = this.props.location.state.productIdCart
+            status = "Selected"
+        }
         return (
+            <div className='loginPage'>
             <Card className="loginCard">
                 <div className='fundoo'><h1><span style={{ color: "#2196f3" }}>f</span>
                     <span style={{ color: "#b71c1c" }}>u</span>
@@ -38,6 +81,7 @@ export default class login extends React.Component {
                     <span style={{ color: "#1976d2" }}>d</span>
                     <span style={{ color: "#43a047" }}>o</span>
                     <span style={{ color: "#b71c1c" }}>o</span></h1></div>
+                    <div className='login-h2'><h2>Login with fundoo account</h2></div>
                 <div className='loginEmail'>
                     <TextField
                         required
@@ -66,12 +110,12 @@ export default class login extends React.Component {
                     />
                 </div>
                 <div className='loginButton'>
-                    <Button onClick={this.handleClick} variant="contained">
+                    <Button color='primary' onClick={this.handleLogin(changeColor, productId, cart, status)} variant="contained">
                         Login
                     </Button>
                 </div>
                 <div className='createAccountButton'>
-                    <Button onClick={this.handleCreateAccClick}>
+                    <Button color='primary' onClick={this.handleCreateAccClick}>
                         Create Account
                     </Button >
                 </div>
@@ -82,6 +126,16 @@ export default class login extends React.Component {
                 </div>
 
             </Card>
+            {(this.props.location.state !== 'undefined')?
+            <Card style={{backgroundColor:"gray"}} className="login-importcard">
+            <ServiceCard cardProps={true}
+                 productId={productId}
+                status={status}
+                changeColor={changeColor}
+            />
+        </Card>:null}
+        </div>
         );
     }
 }
+export default withRouter(login);

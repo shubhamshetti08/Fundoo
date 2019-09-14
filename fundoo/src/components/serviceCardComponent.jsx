@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { service, addToCart } from '../services/shopingService';
-import { Card} from '@material-ui/core';
+import { Card } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 // import Typography from '@material-ui/core/Typography';
 // import Dialog from '@material-ui/core/Dialog';
 // import DialogActions from '@material-ui/core/DialogActions';
@@ -29,15 +29,15 @@ const theme = createMuiTheme({
                 overflow: "visible",
             }
         }, MuiDialogContent: {
-            root: {               
-                padding: "0px" ,
+            root: {
+                padding: "0px",
                 "root:first": {
                     child: {
-                        paddingTop: "0px"   
+                        paddingTop: "0px"
+                    }
+                }
             }
         }
-    }
-}
     }
 })
 class ServiceCard extends Component {
@@ -48,11 +48,11 @@ class ServiceCard extends Component {
             open: false,
             price: 0,
             value: 0,
-            mouseEnter:false,
-            cartId:'',
-            cart:'',
-            productId:'',
-            id:''
+            mouseEnter: false,
+            cartId: '',
+            cart: '',
+            productId: '',
+            id: ''
         }
     }
     componentWillMount() {
@@ -80,58 +80,61 @@ class ServiceCard extends Component {
     // handleChange = (event, value) => {
     //     this.setState({ value });
     // };
-    handleMouseEntry=(id)=>{
+    handleMouseEntry = (id) => {
         this.setState({
-            mouseEnter:true,
-            cartId:id
+            mouseEnter: true,
+            cartId: id
         })
     }
-    handleMouseExit=()=>{
+    handleMouseExit = () => {
         this.setState({
-            mouseEnter:false,
-           
+            mouseEnter: false,
+
         })
     }
     postRegId(cart) {
         var data = {
             productId: cart
         }
-         addToCart(data)
-         .then((res) => {
-            console.log("response after add to cart ",res);
-            this.setState({
-                productId: res.data.data.details.productId,
-                name: res.data.data.details.product.name,
-                id: res.data.data.details.id
-            })
-            console.log("service name",this.state.name);
-            
-            var cartData = {
-                productIdCart: this.state.productId,
-                cartName: this.state.name,
-                idCart: this.state.id
-            }
-            console.log("service data before sending to register",cartData);
-            
-            this.props.history.push("/register", cartData);
+        addToCart(data)
+            .then((res) => {
+                console.log("response after add to cart ", res);
+                this.setState({
+                    productId: res.data.data.details.productId,
+                    name: res.data.data.details.product.name,
+                    id: res.data.data.details.id
+                })
+                console.log("service name", this.state.name);
 
-        }).catch((err) => {
-            console.log(err);
-        })      
+                var cartData = {
+                    productIdCart: this.state.productId,
+                    cartName: this.state.name,
+                    idCart: this.state.id
+                }
+                console.log("service data before sending to register", cartData);
+
+                this.props.history.push("/register", cartData);
+
+            }).catch((err) => {
+                console.log(err);
+            })
     }
     render() {
         // const { value } = this.state;
-        const cardColor=this.state.mouseEnter ? "orange":"gray";
+        const cardColor = this.state.mouseEnter ? "orange" : "gray";
         const serviceArr = this.state.serviceData.map(key => {
             return (
                 <div className='allCard' >
                     <MuiThemeProvider theme={theme}>
-                        <Card className='lowerCard' 
-                         style={{backgroundColor:(this.state.cartId===key.id)? cardColor:"gray"}} >
-                            <Card className='upperCard' onClick={()=>this.postRegId(key.id)}
-                            onMouseEnter={()=>this.handleMouseEntry(key.id)} onMouseLeave={this.handleMouseExit}>                              
+                        <Card className='lowerCard' id={cardColor}
+                            style={{
+                                backgroundColor: (this.state.cartId === key.id) ? cardColor : "gray" &&
+                                    (this.props.productId === key.id) ? this.props.changeColor : "grey"
+                            }}>
+                            <Card className='upperCard' onClick={() => this.postRegId(key.id)}
+                                onMouseEnter={(this.props.cardProps) ? null : () => this.handleMouseEntry(key.id)} onMouseLeave={(this.props.cardProps) ? null : this.handleMouseExit}>
                                 <p ><b>Price : ${key.price} per month</b>
-                                <div style={{ marginLeft: "20px", color: "blue" }}><b>{key.name}</b></div>
+                                    <div style={{ marginLeft: "20px", color: "blue" }}><b>{key.name}</b></div>
                                     <ul >
                                         <li>
                                             ${key.price}/month
@@ -142,8 +145,11 @@ class ServiceCard extends Component {
                                     </ul>
                                 </p>
                             </Card>
-                            ADD TO CART
-                    </Card>
+                            {
+                                (key.id === this.props.productId) ? this.props.status : "ADD TO CART"
+                            }
+
+                        </Card>
                     </MuiThemeProvider>
                     {/* <div>
                         <Dialog position="static"
@@ -187,36 +193,35 @@ class ServiceCard extends Component {
             )
         })
         return (
-            (this.props.cardProps)?
-            <div className="register-servicecard">
+            (this.props.cardProps) ?
+                <div className="register-servicecard">
                     {serviceArr}
                 </div>
-            :
-            <div className="main">
-                <div>
-                    <MuiThemeProvider theme={theme}>
-                        <AppBar position="static" color="primary">
-                            {/* <h2 className='fundooNotes'>fundoo notes</h2> */}
-                            <h2 className='fundooNotes'>    <span style={{ color: "#2196f3" }}>f</span>
-                                <span style={{ color: "#b71c1c" }}>u</span>
-                                <span style={{ color: "#4a148c" }}>n</span>
-                                <span style={{ color: "#1976d2" }}>d</span>
-                                <span style={{ color: "#43a047" }}>o</span>
-                                <span style={{ color: "#b71c1c" }}>o</span> notes</h2>
-                        </AppBar>
-                    </MuiThemeProvider>
-                </div>
-                <div className="head">
-                    <h2>
-                        fundooNotes offered. Choose below service to Register.
+                :
+                <div className="main">
+                    <div>
+                        <MuiThemeProvider theme={theme}>
+                            <AppBar position="static" color="primary">
+                                {/* <h2 className='fundooNotes'>fundoo notes</h2> */}
+                                <h2 className='fundooNotes'>    <span style={{ color: "#2196f3" }}>f</span>
+                                    <span style={{ color: "#b71c1c" }}>u</span>
+                                    <span style={{ color: "#4a148c" }}>n</span>
+                                    <span style={{ color: "#1976d2" }}>d</span>
+                                    <span style={{ color: "#43a047" }}>o</span>
+                                    <span style={{ color: "#b71c1c" }}>o</span> notes</h2>
+                            </AppBar>
+                        </MuiThemeProvider>
+                    </div>
+                    <div className="head">
+                        <h2>
+                            fundooNotes offered. Choose below service to Register.
                         </h2>
+                    </div>
+                    <div className="serviceCard_main">
+                        {serviceArr}
+                    </div>
+                    <p className="serviceLogin" onClick={this.handleSignIn}>Sign in instead</p>
                 </div>
-
-                <div className="serviceCard_main">
-                    {serviceArr}
-                </div>
-                <p className="serviceLogin" onClick={this.handleSignIn}>Sign in insted</p>
-            </div>
         )
     }
 }

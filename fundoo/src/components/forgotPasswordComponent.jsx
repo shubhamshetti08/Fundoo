@@ -19,6 +19,7 @@ export default class ForgotPassword extends Component {
                     <TextField
                         required
                         fullWidth
+                        variant="outlined"
                         id="email-input"
                         label="Enter Email"
                         type="email"
