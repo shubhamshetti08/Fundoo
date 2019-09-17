@@ -6,3 +6,11 @@ export function userRegister(regDetails){
 export function userLogin(loginDetails){
     return axios.post(baseURL+'/user/login',loginDetails)
 }
+export function addNotes(data) {
+    return axios.post(baseURL + '/notes/addNotes', data,
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+}

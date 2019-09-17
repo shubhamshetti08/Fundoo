@@ -8,28 +8,32 @@
   color: blue;
 } */
 
-.service-button{
+.service-button {
   width: 100%;
-display: flex;
-justify-content: space-around
+  display: flex;
+  justify-content: space-around
 }
-.loginPage{
+
+.loginPage {
   display: flex;
   width: 100%;
   height: 500px;
 }
+
 .loginCard {
   height: 500px;
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   background-color: grey;
 }
-.login-h2{
+
+.login-h2 {
   display: flex;
   justify-content: center;
 }
+
 @media only screen and (min-width: 601px) {
 
   /* .loginCard {
@@ -57,7 +61,7 @@ justify-content: space-around
   .loginButton {
     /* margin-left: 300px; */
     display: flex;
-    justify-content:center;
+    justify-content: center;
     margin-top: 20px;
     margin-right: -317px;
     /* float: right; */
@@ -74,6 +78,7 @@ justify-content: space-around
     /* margin-left: 60px; */
     float: left;
   }
+
   .login-importedcard {
     height: 500px;
     width: 440px;
@@ -132,15 +137,19 @@ justify-content: space-around
   .signIn {
     margin-top: 90px;
     margin-left: 500px;
-}
-}
-/*----------------------------------------card---------------------------------------*/
-@media only screen and (min-width: 320px) and (max-width: 375px), only screen and (min-width: 425px) and (max-width:768px), only screen and (min-width: 600px) {
-  .main{
-    width: 100%;
-      display: flex;
-      justify-content: space-evenly;
   }
+}
+
+/*----------------------------------------card---------------------------------------*/
+@media only screen and (min-width: 320px) and (max-width: 375px),
+only screen and (min-width: 425px) and (max-width:768px),
+only screen and (min-width: 600px) {
+  .main {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
   /* .allCard{
     display: flex;
     justify-content:center;
@@ -163,14 +172,16 @@ justify-content: space-around
   padding-top: 70px;
 } */
 }
+
 /*----------------------------------------serviceCard---------------------------------------*/
-  .main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
 }
+
 /* .allCard {
   width: 38%;
   display: -ms-flexbox;
@@ -185,16 +196,19 @@ justify-content: space-around
   height: 196px;
   justify-content: center;
 }
+
 .upperCard {
   width: 97%;
   margin-left: -13%;
   margin-top: -22%;
   height: 105%;
 }
+
 .lowerCard {
   width: 42%;
   height: 111%;
 }
+
 .serviceCard_main {
   /* width: 83%; */
   width: 100%;
@@ -202,19 +216,22 @@ justify-content: space-around
   justify-content: center;
   margin-top: 5%;
 }
-.fundooNotes{
+
+.fundooNotes {
   margin-left: 80px;
   font-size: 30px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: normal;
 }
-.serviceLogin{
+
+.serviceLogin {
   color: blue;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 15vh;
 }
+
 .register-servicecard {
   display: -ms-flexbox;
   display: flex;
@@ -224,22 +241,26 @@ justify-content: space-around
   width: 100%;
   margin-top: 5%;
 }
-#orange{
+
+#orange {
   background-color: orange;
 
 }
-#orange:hover{
-  transition:
+
+#orange:hover {
+  /* transition: */
 }
+
 /*---------------------------------------------serviceCard--------------------------------------------------*/
-.registerPage{
+.registerPage {
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   display: flex;
-  
-    justify-content: center;
-    align-items: center;
+
+  justify-content: center;
+  align-items: center;
 }
+
 .registerCard {
   width: 68%;
   height: auto;
@@ -249,78 +270,264 @@ justify-content: space-around
   /* -ms-flex-direction: column; */
   flex-direction: column;
 }
-.register-fundoo{
+
+.register-fundoo {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-.register-names{
+
+.register-names {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-.register-h1{
+
+.register-h1 {
   width: 100%;
-  display: flex ;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 }
-.register-h2{
+
+.register-h2 {
   display: flex;
   justify-content: center;
 
 }
-.register-email{
+
+.register-email {
   padding-left: 10px;
-      padding-left: 100px;
-    padding-right: 100px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
-.register-password{
+
+.register-password {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
+
 /* .register-cardtag{
   width: 965px;
   display: flex;
 } */
-.register-submitButton{
+.register-submitButton {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   margin-top: 63px;
 }
+
 /*---------------------------------------------register--------------------------------------------------*/
 
-.forgotpass-page{
+.forgotpass-page {
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   display: flex;
-  
-    justify-content: center;
-    align-items: center;
+
+  justify-content: center;
+  align-items: center;
 }
-.forgotpass-card{
+
+.forgotpass-card {
   width: 38%;
   height: 45vh;
   display: flex;
   padding: 1% 1% 1% 1%;
   flex-direction: column;
 }
-.forgotpass-fundoo{
+
+.forgotpass-fundoo {
   display: flex;
   width: 100%;
-  justify-content:center;
+  justify-content: center;
 }
-.forgotpass-h2{
-   padding-left: 82px; 
+
+.forgotpass-h2 {
+  padding-left: 82px;
 }
-.forgot-email{
+
+.forgot-email {
   padding-left: 40px;
 }
-.forgotpass-button{
+
+.forgotpass-button {
   display: flex;
   justify-content: space-between;
   padding-top: 30px;
 }
 
 /*---------------------------------------------forgotpass--------------------------------------------------*/
+.dashboard-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.dashboard-maincard {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.dashboard-appbar {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+}
+
+.dashboard-menuIcon {
+  padding-left: 10px;
+}
+
+.dashboard-imageandfundoo {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-fundooname {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 22px;
+  line-height: 24px;
+  font-family: 'Product Sans', Arial, sans-serif;
+  position: relative;
+  vertical-align: middle;
+  top: -1.5px;
+  color: #5f6368;
+  /* padding:0px,0px,0px,4px; */
+  padding-left: 10px;
+  padding-right: 70px;
+}
+
+.dashboard-searchbar {
+  background: none;
+  padding: 10px 0;
+  background-color: #f1f3f4;
+  width: 100%;
+}
+
+.searchicon {
+  /* padding:8px; */
+  background-color: #f1f3f4;
+  color: #5f6368;
+  /* background: none; */
+}
+
+.searchdiv {
+  height: 52px;
+  width: 133px;
+  background-color: #f1f3f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.cleardiv {
+  height: 52px;
+  width: 133px;
+  background-color: #f1f3f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.clearicon {
+  padding: 8px;
+  background-color: #f1f3f4;
+  color: #5f6368;
+}
+
+/* .settingicon{
+  color: #5f6368;
+  position: absolute;
+
+} */
+.refreshicon {
+  color: #5f6368;
+  /* padding-left: 80px; */
+  /* position: absolute; */
+  /* right: 150px; */
+}
+
+.refreshdiv {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.avatar {
+  position: absolute;
+  display: flex;
+  padding-right: 10px;
+}
+
+/*---------------------------------------------dashboard--------------------------------------------------*/
+.createNotes-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.createNotes-card1 {
+  height: 22px;
+  width: 600px;
+  display: flex;
+  padding-left: 30px;
+  border-color: #e0e0e0;
+  align-content: center;
+  padding: 12px 16px 12px 16px;
+  color: #5f6368;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: Roboto, Arial, sans-serif;
+  /* margin-top: 20%; */
+  position: absolute;
+  top: 100px;
+}
+
+.createNotes-card2 {
+  /* height: 136px; */
+  height: auto;
+  width: 600px;
+  display: flex;
+  /* justify-content: center; */
+  border-color: #e0e0e0;
+  /* margin-top: 20%; */
+  position: absolute;
+  top: 100px;
+  flex-direction: column;
+}
+
+.createNotes-card2-div2 {
+  border-radius: 30px 30px 30px 30px;
+}
+
+.notes-icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding: 6px 6px 6px 0px;
+}
+
+.notes-icon-div {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+.createNotes-input{
+  padding-top: 20px;
+    padding-left: 13px;
+}
+
+/*---------------------------------------------createNotes--------------------------------------------------*/

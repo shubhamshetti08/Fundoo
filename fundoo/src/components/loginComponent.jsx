@@ -31,6 +31,12 @@ class login extends React.Component {
     // snackbarClose = (e) => {
     //     this.setState({ snackbarOpen: false });
     //   }
+    handleCreateAccClick=()=>{
+        this.props.history.push('/serviceCard'); 
+    }
+    handleForgotClick=()=>{
+        this.props.history.push('/forgotpassword')
+    }
       handleLogin = () => {
         // console.log(this.state.email.length)
         // console.log(this.state.password)
@@ -44,10 +50,10 @@ class login extends React.Component {
         // this.props.history.push('/dashboard');
         // }
         var loginDetails = {
-            'service': this.props.location.state.cartName,
+            // 'service': this.props.location.state.cartName,
             'email': this.state.email,
-            'password': this.state.password,
-            'cartId': this.props.location.state.idCart
+            'password': this.state.password
+            // 'cartId': this.props.location.state.idCart
         }
 
     userLogin(loginDetails).then((res) => {
@@ -66,12 +72,13 @@ class login extends React.Component {
     })
     }
     render() {
-        var changeColor = "",  productId = "", cart = "", status = "";
-        if (this.props.location.state !== 'undefined') {
-            changeColor = "orange"
-             productId = this.props.location.state.productIdCart
-            status = "Selected"
-        }
+       // console.log('login-cartname', this.props.location.state.productIdCart);
+        // var changeColor = "",  productId = "", cart = "", status = "";
+        // if (this.props.location.state !== 'undefined') {
+        //     changeColor = "orange"
+        //      productId = this.props.location.state.productIdCart
+        //     status = "Selected"
+        // }
         return (
             <div className='loginPage'>
             <Card className="loginCard">
@@ -110,7 +117,7 @@ class login extends React.Component {
                     />
                 </div>
                 <div className='loginButton'>
-                    <Button color='primary' onClick={this.handleLogin(changeColor, productId, cart, status)} variant="contained">
+                    <Button color='primary' onClick={this.handleLogin} variant="contained">
                         Login
                     </Button>
                 </div>
@@ -127,13 +134,15 @@ class login extends React.Component {
 
             </Card>
             {(this.props.location.state !== 'undefined')?
-            <Card style={{backgroundColor:"gray"}} className="login-importcard">
+            <Card style={{backgroundColor:"lightGray"}} className="login-importcard">
             <ServiceCard cardProps={true}
-                 productId={productId}
-                status={status}
-                changeColor={changeColor}
+                 productId={this.props.location.state.productId}
+                status={this.props.location.state.status}
+                changeColor={this.props.location.state.changeColor}
             />
-        </Card>:null}
+        </Card>
+        :null
+        }
         </div>
         );
     }
