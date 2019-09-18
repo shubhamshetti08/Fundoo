@@ -7,7 +7,7 @@ import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
-import addNotes from '../services/userService'
+import {addNotes} from '../services/userService'
 // import { withRouter } from 'react-router-dom'
 const theme = createMuiTheme({
     overrides: {
@@ -42,10 +42,10 @@ class CreateNotesComponent extends Component {
             title: title
         })
     }
-    handleTitle = (e) => {
+    handleDescription = (e) => {
         var description = e.target.value;
         this.setState({
-           description:description
+            description: description
         })
     }
     handleClose = () => {
@@ -54,7 +54,7 @@ class CreateNotesComponent extends Component {
             title: this.state.title,
             description: this.state.description
         }
-        console.log(data)
+        console.log("jedfewh", data)
         addNotes(data).then((res) => {
             console.log(res);
         }).catch((err) => {
@@ -68,7 +68,7 @@ class CreateNotesComponent extends Component {
     }
     render() {
         return (
-            <div className="createNotes-page">
+            <div className="createNotes-page" >
                 {this.state.takeNote ? (
                     <Card className="createNotes-card2">
                         <div className="createNotes-card2-div1">
@@ -92,16 +92,16 @@ class CreateNotesComponent extends Component {
                                     fullWidth
                                     spellCheck={true}
                                     placeholder="Take a note...."
-                                value={this.state.description}
-                                onChange={this.handleDescription}
+                                    value={this.state.description}
+                                    onChange={this.handleDescription}
                                 >
                                 </InputBase>
                             </div>
                         </div>
                         <div className="notes-icons">
-                            <div className="notes-icon-div">
+                            <div className="notes-icon-div ">
                                 <Tooltip title="Remind me">
-                                    <AddAlertOutlinedIcon />
+                                    < AddAlertOutlinedIcon />
                                 </Tooltip>
                                 <Tooltip title="Collaborator">
                                     <PersonAddOutlinedIcon />
@@ -113,7 +113,7 @@ class CreateNotesComponent extends Component {
                                     <ImageOutlinedIcon />
                                 </Tooltip>
                                 <Tooltip title="Archive">
-                                    <ArchiveOutlinedIcon />
+                                    <ArchiveOutlinedIcon/>
                                 </Tooltip>
                                 <Tooltip title="More">
                                     <MoreVertOutlinedIcon />

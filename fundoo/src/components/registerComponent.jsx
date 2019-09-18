@@ -73,11 +73,10 @@ import {userRegister} from '../services/userService'
         console.log('errr', err);
     })
     }
-    signInInstead = (changeColor, productId, cart, status) => {
+    signInInstead = (changeColor, productId, status) => {
         var loginData = {
             changeColor: changeColor,
              productId: productId,
-            cart: cart,
             status: status
         }
         this.props.history.push('/login', loginData);
@@ -178,7 +177,7 @@ import {userRegister} from '../services/userService'
                     <Button onClick={this.handleSubmit} color='primary'variant="outlined" >
                         submit
                     </Button>
-                      <Button variant="contained" color="primary" id="regbutton" onClick={() => this.signInInstead(changeColor, productId, cart, status)}>
+                      <Button variant="contained" color="primary" id="regbutton" onClick={() => this.signInInstead(changeColor, productId, status)}>
                             sign in instead
                         </Button>
                 </div>

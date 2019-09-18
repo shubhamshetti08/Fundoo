@@ -8,6 +8,7 @@ import Register from './pages/registerPage';
 import ForgotPassword from './pages/forgotPasswordPage';
 import Dashboard from './pages/dashboardPage';
 import CreateNotesComponent from './components/createNotesComponent'
+import GetAllNoteComponent from './components/getAllNoteComponent';
 class App extends Component {
   render() {
     return (
@@ -20,6 +21,7 @@ class App extends Component {
       <Route path="/forgotpassword" component={ForgotPassword}></Route>
       <Route path="/dashboard" component={Dashboard}></Route>
       <Route path="/createNotes" component={CreateNotesComponent}></Route>
+      <Route path="/getAllNotes" component={GetAllNoteComponent}></Route>
     </Router>
     );
   }

@@ -58,27 +58,27 @@ class login extends React.Component {
 
     userLogin(loginDetails).then((res) => {
         console.log('res from backend', res)
-        // this.setState({
-        //     openSnackBar: true,
-        //     SnackBarMessage: 'Registration Successfull'
-        // })
-        // localStorage.setItem('id',res.data.id);
-        // localStorage.setItem('firstName',res.data.firstName);
-        // localStorage.setItem('lastName',res.data.lastName);
-        // localStorage.setItem('email',res.data.email);
+        this.setState({
+            openSnackBar: true,
+            SnackBarMessage: 'Registration Successfull'
+        })
+        localStorage.setItem('token',res.data.token);
+        localStorage.setItem('firstName',res.data.firstName);
+        localStorage.setItem('lastName',res.data.lastName);
+        localStorage.setItem('email',res.data.email);
         this.props.history.push('/dashboard')
     }).catch((err) => {
         console.log('errr', err);
     })
     }
     render() {
-       // console.log('login-cartname', this.props.location.state.productIdCart);
-        // var changeColor = "",  productId = "", cart = "", status = "";
-        // if (this.props.location.state !== 'undefined') {
-        //     changeColor = "orange"
-        //      productId = this.props.location.state.productIdCart
-        //     status = "Selected"
-        // }
+    //    console.log('login-cartname', this.props.location.state.productIdCart);
+    //     var changeColor = "",  productId = "", cart = "", status = "";
+    //     if (this.props.location.state !== 'undefined') {
+    //         changeColor = "orange"
+    //          productId = this.props.location.state.productIdCart
+    //         status = "Selected"
+    //     }
         return (
             <div className='loginPage'>
             <Card className="loginCard">
@@ -133,8 +133,8 @@ class login extends React.Component {
                 </div>
 
             </Card>
-            {(this.props.location.state !== 'undefined')?
-            <Card style={{backgroundColor:"lightGray"}} className="login-importcard">
+            {(this.props.location.state !== undefined)?
+            <Card style={{backgroundColor:"lightGrey"}} className="login-importcard">
             <ServiceCard cardProps={true}
                  productId={this.props.location.state.productId}
                 status={this.props.location.state.status}

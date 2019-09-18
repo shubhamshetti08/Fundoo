@@ -18,11 +18,15 @@
   display: flex;
   width: 100%;
   height: 500px;
+  /* justify-content: center; */
+ 
 }
 
 .loginCard {
-  height: 500px;
-  width: 100%;
+  /* height:auto; */
+  height: 100vh; 
+   width: 100%;
+  /* width:auto; */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -71,12 +75,15 @@
     margin-top: -30px;
     /* margin-left: 60px; */
     float: left;
+    padding-left: 384px;
   }
+
 
   .resetPsswordButton {
     padding-top: 30px;
     /* margin-left: 60px; */
     float: left;
+    padding-left: 384px;
   }
 
   .login-importedcard {
@@ -247,9 +254,11 @@ only screen and (min-width: 600px) {
 
 }
 
-#orange:hover {
-  /* transition: */
-}
+/* #orange:hover {
+   transition:width 1s;
+   transition: height 1s;
+   box-shadow: 15px 15px orange;
+} */
 
 /*---------------------------------------------serviceCard--------------------------------------------------*/
 .registerPage {
@@ -358,6 +367,13 @@ only screen and (min-width: 600px) {
 }
 
 /*---------------------------------------------forgotpass--------------------------------------------------*/
+.dashboardpage-maindiv {
+  width: 100%;
+  /* display: flex; */
+  height: auto;
+  /* justify-content: center; */
+}
+
 .dashboard-page {
   display: flex;
   justify-content: center;
@@ -373,15 +389,16 @@ only screen and (min-width: 600px) {
 }
 
 .dashboard-appbar {
+  position: fixed;
   padding: 8px;
   display: flex;
   justify-content: center;
   /* flex-direction: column; */
 }
 
-.dashboard-menuIcon {
+/* .dashboard-menuIcon {
   padding-left: 10px;
-}
+} */
 
 .dashboard-imageandfundoo {
   display: flex;
@@ -463,11 +480,11 @@ only screen and (min-width: 600px) {
   align-items: center;
 }
 
-.avatar {
+/* .avatar {
   position: absolute;
   display: flex;
   padding-right: 10px;
-}
+} */
 
 /*---------------------------------------------dashboard--------------------------------------------------*/
 .createNotes-page {
@@ -490,8 +507,8 @@ only screen and (min-width: 600px) {
   font-weight: 400;
   font-family: Roboto, Arial, sans-serif;
   /* margin-top: 20%; */
-  position: absolute;
-  top: 100px;
+  /* position: absolute; */
+  margin-top: 10%;
 }
 
 .createNotes-card2 {
@@ -502,8 +519,8 @@ only screen and (min-width: 600px) {
   /* justify-content: center; */
   border-color: #e0e0e0;
   /* margin-top: 20%; */
-  position: absolute;
-  top: 100px;
+  /* position: absolute; */
+  margin-top: 10%;
   flex-direction: column;
 }
 
@@ -525,9 +542,57 @@ only screen and (min-width: 600px) {
   justify-content: space-between;
   padding-left: 20px;
 }
-.createNotes-input{
+
+.createNotes-input {
   padding-top: 20px;
-    padding-left: 13px;
+  padding-left: 13px;
+}
+
+.createNotes-iconsize {
+  width: 4%;
 }
 
 /*---------------------------------------------createNotes--------------------------------------------------*/
+.get-card1 {
+  min-width: auto;
+  min-height: auto;
+  border: 1px solid whitesmoke;
+  border-radius: 1em;
+}
+
+.get-in1 {
+  width: auto;
+}
+
+.get-in2 {
+  width: auto;
+}
+
+.get-page {
+  width: 100%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+}
+
+.get-container {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+}
+
+.get-contents {
+  padding-bottom: 3%;
+}
+
+.dashboardpage-allnotes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+/*---------------------------------------------getAllNotes--------------------------------------------------*/

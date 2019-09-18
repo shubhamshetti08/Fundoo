@@ -25,6 +25,63 @@ const theme = createMuiTheme({
 })
 
 export default class DashboardComponent extends Component {
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //         notes: '',
+    //         title: '',
+    //         noteOpen: false,
+    //         bgColor: '',
+    //         searchText: '',
+    //         clr: false,
+    //         menu: false
+    //     }
+    // }
+    // handleNotes = (e) => {
+    //     const notes = e.target.value;
+    //     this.setState({
+    //         notes: notes
+    //     })
+    // }
+
+    // handleTitle = (e) => {
+    //     const title = e.target.value;
+    //     this.setState({
+    //         title: title
+    //     })
+    // }
+    // handleNoteClick = () => {
+    //     this.setState({
+    //         noteOpen: !this.state.noteOpen
+    //     })
+    // }
+    // handleSearchText = (e) => {
+    //     const searchText = e.target.value
+    //     console.log(searchText)
+    //     this.setState({
+    //         searchText: searchText
+    //     })
+    // }
+    // handleClearText = () => {
+    //     this.setState({
+    //         searchText: ''
+    //     })
+    // }
+    // handleKeyDown = () => {
+    //     this.setState({
+    //         clr: false
+    //     })
+    // }
+    // handleSearchClick = () => {
+    //     this.setState({
+    //         clr: true
+    //     })
+    // }
+    // handleMenu = () => {
+    //     this.setState({
+    //         menu: !this.state.menu
+    //     })
+    // }
     handleReload = () => {
         window.location.reload();
     }
@@ -33,7 +90,7 @@ export default class DashboardComponent extends Component {
             <div className="dashboard-page">
                 <div className='dashboard-maincard'>
                     <MuiThemeProvider theme={theme}>
-                        <AppBar className="dashboard-appbar" position="static" color="primary">
+                        <AppBar className="dashboard-appbar" position="fixed" color="primary">
                             <div className="dashboard-imageandfundoo">
                                 <IconButton
                                     edge="start"
@@ -61,7 +118,8 @@ export default class DashboardComponent extends Component {
                                 <RefreshIcon className="refreshicon" onClick={this.handleReload} />
                                 {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}
                                 </div>  
-                                <Avatar className="avatar" alt="Remy Sharp" src={require("../assets/images/keep.png")}/>                
+                                <Avatar className="avatar" alt="Remy Sharp" />                
+                                {/* src={require("../assets/images/keep.png")} */}
                                               
                             </div>
 
