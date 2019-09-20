@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card, InputBase, Tooltip, Button } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
@@ -9,19 +9,19 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import {addNotes} from '../services/userService'
 // import { withRouter } from 'react-router-dom'
-const theme = createMuiTheme({
-    overrides: {
-        MuiInputBase: {
-            multiline: {
-                padding: "0px 0 0px"
-            }
-        }, MuiPaper: {
-            rounded: {
-                borderRadius: "10px"
-            }
-        }
-    }
-})
+// const theme = createMuiTheme({
+//     overrides: {
+//         MuiInputBase: {
+//             multiline: {
+//                 padding: "0px 0 0px"
+//             }
+//         }, MuiPaper: {
+//             rounded: {
+//                 borderRadius: "10px"
+//             }
+//         }
+//     }
+// })
 class CreateNotesComponent extends Component {
     constructor(props) {
         super(props);
@@ -84,9 +84,9 @@ class CreateNotesComponent extends Component {
                                 >
                                 </InputBase>
                             </div>
-                            <div className="createNotes-card2-takeNotes">
+                            <div className="createNotes-card2-takeNotes" >
                                 <InputBase className="createNotes-input"
-                                    style={{ paddingLeft: "10px", paddingTop: "20px" }}
+                                    style={{ paddingLeft: "10px", paddingTop: "20px"}}
                                     type="text"
                                     multiline
                                     fullWidth
@@ -126,7 +126,7 @@ class CreateNotesComponent extends Component {
                         </div>
                     </Card>
                 ) : (
-                        <MuiThemeProvider theme={theme}>
+                        // <MuiThemeProvider theme={theme}>
                             <Card className="createNotes-card1" >
                                 <div className="createNotes-card1-div1">
                                     <div className="createNotes-card1-div2">
@@ -139,7 +139,7 @@ class CreateNotesComponent extends Component {
                                     </div>
                                 </div>
                             </Card>
-                        </MuiThemeProvider>
+                        // </MuiThemeProvider>
                     )
                 }
             </div>

@@ -9,6 +9,7 @@ import ForgotPassword from './pages/forgotPasswordPage';
 import Dashboard from './pages/dashboardPage';
 import CreateNotesComponent from './components/createNotesComponent'
 import GetAllNoteComponent from './components/getAllNoteComponent';
+import ColorPaletteComponent from './components/colorPaletteComponent';
 class App extends Component {
   render() {
     return (
@@ -22,6 +23,7 @@ class App extends Component {
       <Route path="/dashboard" component={Dashboard}></Route>
       <Route path="/createNotes" component={CreateNotesComponent}></Route>
       <Route path="/getAllNotes" component={GetAllNoteComponent}></Route>
+      <Route path="/color" component={ColorPaletteComponent}></Route>
     </Router>
     );
   }

@@ -82,10 +82,10 @@ import {userRegister} from '../services/userService'
         this.props.history.push('/login', loginData);
     }
     render() {
-        console.log('register-cartname', this.props.location.state.productIdCart);
+      //  console.log('register-cartname', this.props.location.state.productIdCart);
         
-        var changeColor = "",  productId = "", cart = "", status = "";
-        if (this.props.location.state !== 'undefined') {
+        var changeColor = "",  productId = "",  status = "";
+        if (this.props.location.state !== undefined) {
             changeColor = "orange"
              productId = this.props.location.state.productIdCart
             status = "Selected"
@@ -174,7 +174,7 @@ import {userRegister} from '../services/userService'
                         <ServiceCard cardProps={true}></ServiceCard>
                     </div> */}
                     <div className='register-submitButton'>
-                    <Button onClick={this.handleSubmit} color='primary'variant="outlined" >
+                    <Button onClick={this.handleSubmit} color='primary'variant="contained" >
                         submit
                     </Button>
                       <Button variant="contained" color="primary" id="regbutton" onClick={() => this.signInInstead(changeColor, productId, status)}>

@@ -10,15 +10,22 @@ export function addNotes(data) {
     return axios.post(baseURL + "/notes/addNotes", data,
         {
             headers: {
-                Authorization: localStorage.getItem("id")
+                Authorization: localStorage.getItem("token")
             }
         })
 }
-export function getAllNotes(data){
+export function getAllNotes(){
     return axios.get(baseURL+"/notes/getNotesList",
     {
         headers: {
-            Authorization: localStorage.getItem("id")
+            Authorization: localStorage.getItem("token")
         }
     })
 }
+// export  function colorChange(data) {
+//     return axios.post(baseURL + '/notes/changesColorNotes',data,{
+//         headers: {
+//             Authorization: localStorage.getItem('token')
+//         }
+//     })   
+// }

@@ -49,8 +49,7 @@ class login extends React.Component {
         //   this.setState({ snackbarOpen: true, snackbarMsg: "login successfull" })
         // this.props.history.push('/dashboard');
         // }
-        var loginDetails = {
-            // 'service': this.props.location.state.cartName,
+        var loginDetails = {          
             'email': this.state.email,
             'password': this.state.password
             // 'cartId': this.props.location.state.idCart
@@ -62,7 +61,7 @@ class login extends React.Component {
             openSnackBar: true,
             SnackBarMessage: 'Registration Successfull'
         })
-        localStorage.setItem('token',res.data.token);
+        localStorage.setItem('token',res.data.id);
         localStorage.setItem('firstName',res.data.firstName);
         localStorage.setItem('lastName',res.data.lastName);
         localStorage.setItem('email',res.data.email);
@@ -72,15 +71,23 @@ class login extends React.Component {
     })
     }
     render() {
-    //    console.log('login-cartname', this.props.location.state.productIdCart);
-    //     var changeColor = "",  productId = "", cart = "", status = "";
-    //     if (this.props.location.state !== 'undefined') {
-    //         changeColor = "orange"
-    //          productId = this.props.location.state.productIdCart
-    //         status = "Selected"
-    //     }
         return (
             <div className='loginPage'>
+                       {(this.props.location.state !== undefined)?
+            <Card style={{backgroundColor:"#e8eaf6",
+            width:"580px",
+            display: "flex",
+            height:"459px",
+            justifyContent:"center",
+            alignItems:"center"}} className="login-importcard">
+            <ServiceCard cardProps={true}
+                 productId={this.props.location.state.productId}
+                status={this.props.location.state.status}
+                changeColor={this.props.location.state.changeColor}
+            />
+        </Card>
+        :null
+        }
             <Card className="loginCard">
                 <div className='fundoo'><h1><span style={{ color: "#2196f3" }}>f</span>
                     <span style={{ color: "#b71c1c" }}>u</span>
@@ -92,6 +99,7 @@ class login extends React.Component {
                 <div className='loginEmail'>
                     <TextField
                         required
+                        fullWidth
                         id="outlined-email-input"
                         label="Enter Email"
                         type="email"
@@ -106,6 +114,7 @@ class login extends React.Component {
                 <div className='loginPassword'>
                     <TextField
                         required
+                        fullWidth
                         id="outlined-pass-input"
                         label="Password"
                         type="password"
@@ -117,32 +126,21 @@ class login extends React.Component {
                     />
                 </div>
                 <div className='loginButton'>
-                    <Button color='primary' onClick={this.handleLogin} variant="contained">
+                    <Button color='primary' onClick={this.handleLogin} variant="contained" fullWidth>
                         Login
                     </Button>
                 </div>
-                <div className='createAccountButton'>
+                <div className="login-buttons">
                     <Button color='primary' onClick={this.handleCreateAccClick}>
                         Create Account
                     </Button >
-                </div>
-                <div className='resetPsswordButton'>
                     <Button onClick={this.handleForgotClick} color='secondary' >
                         Reset Password??
                     </Button>
                 </div>
 
             </Card>
-            {(this.props.location.state !== undefined)?
-            <Card style={{backgroundColor:"lightGrey"}} className="login-importcard">
-            <ServiceCard cardProps={true}
-                 productId={this.props.location.state.productId}
-                status={this.props.location.state.status}
-                changeColor={this.props.location.state.changeColor}
-            />
-        </Card>
-        :null
-        }
+     
         </div>
         );
     }

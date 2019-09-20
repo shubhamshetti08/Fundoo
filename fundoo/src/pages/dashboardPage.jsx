@@ -9,7 +9,7 @@ class DashboardPage extends Component {
 
                <div><DashboardComponent props={this.props}/></div> 
                <div><CreateNotesComponent props={this.props}/></div> 
-               <div className="dashboardpage-allnotes"><GetAllNoteComponent props={this.props}/></div>
+               <div className="dashboardpage-allnotes"><GetAllNoteComponent /></div>
             </div>
             
         )

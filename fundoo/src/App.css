@@ -17,25 +17,33 @@
 .loginPage {
   display: flex;
   width: 100%;
-  height: 500px;
-  /* justify-content: center; */
- 
+  height: 100vh;
+  justify-content: center;
+ align-items: center;
+ /* flex-direction: column; */
 }
 
 .loginCard {
-  /* height:auto; */
-  height: 100vh; 
-   width: 100%;
-  /* width:auto; */
+  height:400px;
+  /* height: 100vh; 
+   width: 100%; */
+  width:350px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   background-color: grey;
+  padding: 30px;
 }
 
 .login-h2 {
   display: flex;
   justify-content: center;
+  font-style: italic;
+}
+.login-buttons{
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 601px) {
@@ -50,6 +58,10 @@
 
   .fundoo {
     text-align: center;
+    text-shadow: 1px 1px 2px #3e2723, 0 0 25px #d1c4e9, 0 0 5px #00bcd4;
+    /* text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; */
+    /* text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF; */
+    font-style: italic;
   }
 
   .loginEmail {
@@ -66,33 +78,21 @@
     /* margin-left: 300px; */
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    margin-right: -317px;
+    padding-top: 18px;
+    /* margin-top: 20px; */
+    align-items: center;
+    /* margin-right: -317px; */
     /* float: right; */
   }
-
-  .createAccountButton {
-    margin-top: -30px;
-    /* margin-left: 60px; */
-    float: left;
-    padding-left: 384px;
-  }
-
-
-  .resetPsswordButton {
-    padding-top: 30px;
-    /* margin-left: 60px; */
-    float: left;
-    padding-left: 384px;
-  }
-
-  .login-importedcard {
-    height: 500px;
-    width: 440px;
-    border: 2px solid burlywood;
-    margin-top: 85px;
-    margin-left: 420px;
-  }
+  /* .login-importedcard {
+    margin-left: 420px; 
+    background-color: lightgrey;
+    width: 688px;
+    display: flex;
+    height: 459px;
+    justify-content: center;
+    align-items: center;
+  } */
 
   /*----------------------------------------login---------------------------------------*/
   .head {
@@ -197,6 +197,9 @@ only screen and (min-width: 600px) {
   justify-content: center;
 } */
 .allCard {
+  /* width: 40%;
+  display: flex;
+  height: 190px; */
   width: 50%;
   display: flex;
   -ms-flex-pack: center;
@@ -284,6 +287,7 @@ only screen and (min-width: 600px) {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  text-shadow: 1px 1px 2px #3e2723, 0 0 25px #d1c4e9, 0 0 5px #827717;
 }
 
 .register-names {
@@ -551,13 +555,18 @@ only screen and (min-width: 600px) {
 .createNotes-iconsize {
   width: 4%;
 }
-
+/* .createNotes-card2-takeNotes{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+} */
 /*---------------------------------------------createNotes--------------------------------------------------*/
 .get-card1 {
   min-width: auto;
   min-height: auto;
-  border: 1px solid whitesmoke;
+  /* border: 1px solid whitesmoke; */
   border-radius: 1em;
+
 }
 
 .get-in1 {
@@ -568,6 +577,7 @@ only screen and (min-width: 600px) {
   width: auto;
 }
 
+
 .get-page {
   width: 100%;
   display: flex;
@@ -576,7 +586,7 @@ only screen and (min-width: 600px) {
 }
 
 .get-container {
-  width: 60%;
+  width: 70%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -586,6 +596,9 @@ only screen and (min-width: 600px) {
 
 .get-contents {
   padding-bottom: 3%;
+  height: auto;
+  width: 29%;
+  
 }
 
 .dashboardpage-allnotes {
@@ -596,3 +609,46 @@ only screen and (min-width: 600px) {
 }
 
 /*---------------------------------------------getAllNotes--------------------------------------------------*/
+.drawer-container{
+  display: flex;
+  align-items: center;
+  position: fixed;
+  /* width: 25% */
+}
+.drawer-names{
+  padding-left: 32px;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    color: #202124;
+}
+.drawer-div1{
+ width: 60%;
+}
+.gellAllNotes-icons{
+  display: flex;
+  justify-content: space-around;
+  color:white;
+}
+#gellAllNote-icons:hover{
+  color:black;
+}
+/*---------------------------------------------drawerComponent--------------------------------------------------*/
+.colorpalette-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: fixed;
+  width: 9%;
+  height: 10%;
+}
+.color-styles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/*---------------------------------------------colorPalette--------------------------------------------------*/
