@@ -22,10 +22,18 @@ export function getAllNotes(){
         }
     })
 }
-// export  function colorChange(data) {
-//     return axios.post(baseURL + '/notes/changesColorNotes',data,{
-//         headers: {
-//             Authorization: localStorage.getItem('token')
-//         }
-//     })   
-// }
+export  function colorChange(data) {
+    return axios.post(baseURL + '/notes/changesColorNotes',data,{
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })   
+}
+export function updateNotes(data){
+    return axios.post(baseURL+'/notes/updateNotes',data,{
+        headers:{
+            Authorization:localStorage.getItem('token')
+
+        }
+    })
+}

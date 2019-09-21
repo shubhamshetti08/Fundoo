@@ -546,7 +546,11 @@ only screen and (min-width: 600px) {
   justify-content: space-between;
   padding-left: 20px;
 }
-
+.notes-icon-div2{
+display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 .createNotes-input {
   padding-top: 20px;
   padding-left: 13px;
@@ -566,9 +570,7 @@ only screen and (min-width: 600px) {
   min-height: auto;
   /* border: 1px solid whitesmoke; */
   border-radius: 1em;
-
 }
-
 .get-in1 {
   width: auto;
 }
@@ -597,7 +599,7 @@ only screen and (min-width: 600px) {
 .get-contents {
   padding-bottom: 3%;
   height: auto;
-  width: 29%;
+  width: 31%;
   
 }
 
@@ -629,6 +631,7 @@ only screen and (min-width: 600px) {
   display: flex;
   justify-content: space-around;
   color:white;
+  padding-top: 10%;
 }
 #gellAllNote-icons:hover{
   color:black;
@@ -644,11 +647,17 @@ only screen and (min-width: 600px) {
   height: 10%;
 }
 .color-styles {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  flex-wrap: wrap;
+    width: 34%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 46px;
 }
 
 /*---------------------------------------------colorPalette--------------------------------------------------*/
