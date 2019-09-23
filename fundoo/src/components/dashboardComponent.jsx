@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { AppBar, MuiThemeProvider, createMuiTheme, IconButton, Tooltip } from '@material-ui/core';
+import { AppBar,MuiThemeProvider, createMuiTheme, IconButton, Tooltip } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
@@ -110,10 +110,9 @@ export default class DashboardComponent extends Component {
                                     placeholder="Search" onKeyPress={this.handleSearchClick}
                                     onChange={this.handleSearchText}
                                     value={this.state.searchText}
-
                                 // inputProps={{ 'aria-label': 'search' }}
                                 />
-                                {(this.state.clr) ? (
+                                {(this.state.searchText) ? (
                                     <div className="cleardiv">
                                         <ClearIcon className="clearicon" style={{ width: "24px", height: "24px" }}
                                             onClick={this.handleClearText} />

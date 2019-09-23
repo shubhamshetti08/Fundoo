@@ -9,6 +9,7 @@ import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ColorPaletteComponent from './colorPaletteComponent';
+import ArchiveComponent from './archiveComponent';
 // const themes = createMuiTheme({
 //     overrides: {
 //         MuiInputBase: {
@@ -28,19 +29,28 @@ const themes = createMuiTheme({
             root: {
                 fontSize: "1.2rem"
             }
+        },
+        MuiBackdrop:{
+            root:{
+                // backgroundColor: "transparent",
+                backgroundColor:"rgba(11,11,11,0.06)"
         }
-    }
-})
-const styles = createMuiTheme({
-MuiBackdrop:{
-    root:{
-        backgroundColor:"transparent",
-        webkitTapHighlightColor:"transparent"
-    }
-},MuiPaper:{ 
+    },MuiPaper:{ 
         boxShadow:"none"
 }
+    }
 })
+// const styles = createMuiTheme({
+// MuiBackdrop:{
+//     root:{
+//         // backgroundColor:"transparent",
+//         // webkitTapHighlightColor:"transparent"
+//         backgroundColor:"rgba(11,11,11,0.18)",
+//     }
+// },MuiPaper:{ 
+//         boxShadow:"none"
+// }
+// })
 class GetAllNoteComponent extends Component {
     constructor(props) {
         super(props);
@@ -136,125 +146,133 @@ class GetAllNoteComponent extends Component {
 
     render() {
         const allNotes = this.state.notes.map((key) => {
-            return (
-                <MuiThemeProvider theme={styles}>
-                <div className="get-contents">
-                    
-
-                    <Card className="get-card1" style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
-                    >
-                        <div style={{ paddingLeft: "20px", paddingTop: "20px" }} onClick={this.handleNoteClick}>
-                            <div className="input1">
-                                <InputBase className="get-in2"
-                                    multiline
-                                    placeholder="Title"
-                                    id="title"
-                                    value={key.title}
-                                    onClick={() => this.handleUpdate(key.id, key.title, key.description)}
-                                />
-                            </div>
-                            <div className="input2" >
-                                <InputBase className="get-in1"
-                                    multiline
-                                    placeholder="Take a note ...."
-                                    id="description"
-                                    value={key.description}
-                                    onClick={() => this.handleUpdate(key.id, key.title, key.description)}
-                                />
-                            </div>
-                        </div>
-                    
-                        <MuiThemeProvider theme={themes}>
-                            <div className="gellAllNotes-icons" id="gellAllNote-icons" >
-                                <Tooltip title="Remind me">
-                                    < AddAlertOutlinedIcon />
-                                </Tooltip>
-                                <Tooltip title="Collaborator">
-                                    <PersonAddOutlinedIcon />
-                                </Tooltip>
-                                <Tooltip title="Change color">
-                                    <ColorPaletteComponent
-                                        paletteProps={this.handleColor}
-                                        notesId={key.id}
-                                    />
-                                </Tooltip>
-                                <Tooltip title="add image">
-                                    <ImageOutlinedIcon />
-                                </Tooltip>
-                                <Tooltip title="Archive">
-                                    <ArchiveOutlinedIcon />
-                                </Tooltip>
-                                <Tooltip title="More">
-                                    <MoreVertOutlinedIcon />
-                                </Tooltip>
-                            </div>
-                        </MuiThemeProvider>
-                    </Card>
-                   
-                    <Dialog position="static"
-                        onClose={this.handleClose}
-                        open={this.state.open}
-                        // aria-labelledby="alert-dialog-title"
-                        // aria-describedby="alert-dialog-description"
-                    >
-                        <Card className="get-card2" style={{ backgroundColor: this.state.colorUpdated }}>
-                            <DialogTitle>
-                                Edit Notes
-                            </DialogTitle>
-                            <DialogContent >
+            console.log('is archived',key.isArchived);
+            if(key.isArchived===false){
+                return (
+              
+                    <div className="get-contents">
+                        
+    
+                        <Card className="get-card1" style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
+                        >
+                            <div style={{ paddingLeft: "20px", paddingTop: "20px" }} onClick={this.handleNoteClick}>
                                 <div className="input1">
                                     <InputBase className="get-in2"
                                         multiline
                                         placeholder="Title"
                                         id="title"
-                                        value={this.state.title}
-                                        onChange={this.handleUpdateTitle}
+                                        value={key.title}
+                                        onClick={() => this.handleUpdate(key.id, key.title, key.description)}
                                     />
                                 </div>
-                                <div className="input2">
+                                <div className="input2" >
                                     <InputBase className="get-in1"
                                         multiline
                                         placeholder="Take a note ...."
                                         id="description"
-                                        value={this.state.description}
-                                        onChange={this.handleUpdateDescription}
+                                        value={key.description}
+                                        onClick={() => this.handleUpdate(key.id, key.title, key.description)}
                                     />
                                 </div>
-
-                                <DialogActions>
-                                    <div className="notes-icon-div2">
-                                        <Tooltip title="Remind me">
-                                            <AddAlertOutlinedIcon />
-                                        </Tooltip>
-                                        <Tooltip title="collaborator">
-                                            <PersonAddOutlinedIcon />
-                                        </Tooltip>
-                                        <Tooltip title="Change color">
-                                            <ColorPaletteComponent
-                                                paletteProps={this.handleColor}
-                                                notesId={this.state.noteId} />
-                                        </Tooltip>
-                                        <Tooltip title="Add image">
-                                            <ImageOutlinedIcon />
-                                        </Tooltip>
-                                        <Tooltip title="Archive">
-                                            <ArchiveOutlinedIcon />
-                                        </Tooltip>
-                                        <Tooltip title="More">
-                                            <MoreVertOutlinedIcon />
-                                        </Tooltip>
-                                        <Button
-                                            onClick={() => this.handleUpdate(this.state.noteId, this.state.title, this.state.description, this.state.color)}>
-                                            close
-                                    </Button>
-                                    </div>
-                                </DialogActions>
-                            </DialogContent>
+                            </div>
+                        
+                            <MuiThemeProvider theme={themes}>
+                                <div className="gellAllNotes-icons" id="gellAllNote-icons" >
+                                    <Tooltip title="Remind me">
+                                        < AddAlertOutlinedIcon />
+                                    </Tooltip>
+                                    <Tooltip title="Collaborator">
+                                        <PersonAddOutlinedIcon />
+                                    </Tooltip>
+                                    <Tooltip title="Change color">
+                                        <ColorPaletteComponent
+                                            paletteProps={this.handleColor}
+                                            notesId={key.id}
+                                        />
+                                    </Tooltip>
+                                    <Tooltip title="add image">
+                                        <ImageOutlinedIcon />
+                                    </Tooltip>
+                                    <Tooltip title="Archive">
+                                        <ArchiveComponent
+                                        // {this.getNotes}
+                                         archiveNoteId={key.id} />
+                                    </Tooltip>
+                                    <Tooltip title="More">
+                                        <MoreVertOutlinedIcon />
+                                    </Tooltip>
+                                </div>
+                            </MuiThemeProvider>
                         </Card>
-                    </Dialog>
-                </div >
-                </MuiThemeProvider>
-            )
+                       <MuiThemeProvider theme={themes}>
+                        <Dialog position="static"
+                            onClose={this.handleClose}
+                            open={this.state.open}
+                            // aria-labelledby="alert-dialog-title"
+                            // aria-describedby="alert-dialog-description"
+                        >
+                            <Card className="get-card2" style={{ backgroundColor:this.state.colorUpdated  }}>
+                            {/* this.state.colorUpdated */}
+                                <DialogTitle>
+                                    Edit Notes
+                                </DialogTitle>
+                                <DialogContent >
+                                    <div className="input1">
+                                        <InputBase className="get-in2"
+                                            multiline
+                                            placeholder="Title"
+                                            id="title"
+                                            value={this.state.title}
+                                            onChange={this.handleUpdateTitle}
+                                        />
+                                    </div>
+                                    <div className="input2">
+                                        <InputBase className="get-in1"
+                                            multiline
+                                            placeholder="Take a note ...."
+                                            id="description"
+                                            value={this.state.description}
+                                            onChange={this.handleUpdateDescription}
+                                        />
+                                    </div>
+    
+                                    <DialogActions>
+                                        <div className="notes-icon-div2">
+                                            <Tooltip title="Remind me">
+                                                <AddAlertOutlinedIcon />
+                                            </Tooltip>
+                                            <Tooltip title="collaborator">
+                                                <PersonAddOutlinedIcon />
+                                            </Tooltip>
+                                            <Tooltip title="Change color">
+                                                <ColorPaletteComponent
+                                                    paletteProps={this.handleColor}
+                                                    notesId={this.state.noteId} />
+                                            </Tooltip>
+                                            <Tooltip title="Add image">
+                                                <ImageOutlinedIcon />
+                                            </Tooltip>
+                                            <Tooltip title="Archive">
+                                                <ArchiveOutlinedIcon 
+                                               archiveNoteId={key.id} />
+                                            </Tooltip>
+                                            <Tooltip title="More">
+                                                <MoreVertOutlinedIcon />
+                                            </Tooltip>
+                                            <Button
+                                                onClick={() => this.handleUpdate(this.state.noteId, this.state.title, this.state.description, this.state.color)}>
+                                                close
+                                        </Button>
+                                        </div>
+                                    </DialogActions>
+                                </DialogContent>
+                            </Card>
+                        </Dialog>
+                        </MuiThemeProvider>
+                    </div >
+                )
+            }  
+            return(null);
         })
         return (
             <div className="get-container">

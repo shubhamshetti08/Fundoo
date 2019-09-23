@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Card, InputBase, Tooltip, Button } from '@material-ui/core';
+import { Card, InputBase, Tooltip, Button, ClickAwayListener } from '@material-ui/core';
 // import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
-import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
+// import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
-import {addNotes} from '../services/userService'
+import { addNotes } from '../services/userService'
+import ColorPaletteComponent from './colorPaletteComponent';
+import {  colorChange} from '../services/userService'
 // import { withRouter } from 'react-router-dom'
 // const theme = createMuiTheme({
 //     overrides: {
@@ -30,6 +32,11 @@ class CreateNotesComponent extends Component {
             description: '',
             title: ''
         }
+    }
+    handleClickAway=()=>{
+        this.setState({
+            takeNote:false
+        })
     }
     handleNotes = () => {
         this.setState({
@@ -61,15 +68,31 @@ class CreateNotesComponent extends Component {
             console.log(err);
         })
         this.setState({
-            takeNote:false,
-            title:'',
-            description:''
+            takeNote: false,
+            title: '',
+            description: ''
         })
+    }
+    handleColor = (col, noteid) => {
+        var data = {
+            noteIdList: [noteid],
+            color: col
+        }
+        console.log('data in createnote', data);
+
+        colorChange(data)
+            .then((res) => {
+                console.log('color change createnote res', res);
+                this.getNotes();
+            }).catch((err) => {
+                console.log(err);
+            })
     }
     render() {
         return (
             <div className="createNotes-page" >
                 {this.state.takeNote ? (
+                    <ClickAwayListener onClickAway={this.handleClickAway}>
                     <Card className="createNotes-card2">
                         <div className="createNotes-card2-div1">
                             <div className="createNotes-card2-div2">
@@ -86,7 +109,7 @@ class CreateNotesComponent extends Component {
                             </div>
                             <div className="createNotes-card2-takeNotes" >
                                 <InputBase className="createNotes-input"
-                                    style={{ paddingLeft: "10px", paddingTop: "20px"}}
+                                    style={{ paddingLeft: "10px", paddingTop: "20px" }}
                                     type="text"
                                     multiline
                                     fullWidth
@@ -107,13 +130,15 @@ class CreateNotesComponent extends Component {
                                     <PersonAddOutlinedIcon />
                                 </Tooltip>
                                 <Tooltip title="Change color">
-                                    <ColorLensOutlinedIcon />
+                                    <ColorPaletteComponent
+                                        paletteProps={this.handleColor}
+                                        notesId={this.state.noteId} />
                                 </Tooltip>
                                 <Tooltip title="add image">
                                     <ImageOutlinedIcon />
                                 </Tooltip>
                                 <Tooltip title="Archive">
-                                    <ArchiveOutlinedIcon/>
+                                    <ArchiveOutlinedIcon />
                                 </Tooltip>
                                 <Tooltip title="More">
                                     <MoreVertOutlinedIcon />
@@ -125,20 +150,21 @@ class CreateNotesComponent extends Component {
                             </Button>
                         </div>
                     </Card>
+                    </ClickAwayListener>
                 ) : (
                         // <MuiThemeProvider theme={theme}>
-                            <Card className="createNotes-card1" >
-                                <div className="createNotes-card1-div1">
-                                    <div className="createNotes-card1-div2">
-                                        <InputBase className="createNotes-input"
-                                            multiline
-                                            spellCheck={true}
-                                            placeholder="Take a note...."
-                                            onClick={this.handleNotes}>
-                                        </InputBase>
-                                    </div>
+                        <Card className="createNotes-card1" >
+                            <div className="createNotes-card1-div1">
+                                <div className="createNotes-card1-div2">
+                                    <InputBase className="createNotes-input"
+                                        multiline
+                                        spellCheck={true}
+                                        placeholder="Take a note...."
+                                        onClick={this.handleNotes}>
+                                    </InputBase>
                                 </div>
-                            </Card>
+                            </div>
+                        </Card>
                         // </MuiThemeProvider>
                     )
                 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tooltip, IconButton, Popper,Paper } from '@material-ui/core'
+import { Tooltip, IconButton, Popper,Paper,ClickAwayListener } from '@material-ui/core'
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 const colorPalette = [{ name: "default", colorCode: "#FDFEFE" },
 { name: "Red", colorCode: "#ef9a9a" },
@@ -23,6 +23,11 @@ export default class ColorPaletteComponent extends Component {
             // anchorEl:null
             anchorEl:false
         }
+    }
+    handleClickAway=()=>{
+        this.setState({
+            anchorEl:false
+        })
     }
     // handleOpenPopper = () => {
     //     this.setState({
@@ -83,7 +88,10 @@ export default class ColorPaletteComponent extends Component {
             // </div>
             <div className="colorpalette-div">
             <Tooltip title="change color">
+            <ClickAwayListener onClickAway={this.handleClickAway}>
                 <ColorLensOutlinedIcon onClick={(event) => this.handleClick(event)} cursor="pointer" />
+            </ClickAwayListener>
+
             </Tooltip>
             <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl}
                 // style={{

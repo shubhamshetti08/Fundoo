@@ -37,3 +37,11 @@ export function updateNotes(data){
         }
     })
 }
+export function archive(data){
+    return axios.post(baseURL+'/notes/archiveNotes',data,{
+        headers:{
+            Authorization:localStorage.getItem('token')
+
+        }
+    })
+}
