@@ -94,9 +94,9 @@ export default class ColorPaletteComponent extends Component {
 
             </Tooltip>
             <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl}
-                // style={{
-                //     zIndex: "9999"
-                // }}
+                style={{
+                    zIndex: "9999"
+                }}
             >
                 <Paper className="color-styles">
                     {colorChange}

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { AppBar,MuiThemeProvider, createMuiTheme, IconButton, Tooltip } from '@material-ui/core';
+import { AppBar, MuiThemeProvider, createMuiTheme, IconButton, Tooltip } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import ClearIcon from '@material-ui/icons/Clear';
 // import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 import DrawerComponent from '../components/DrawerComponent';
+import AccountComponent from './accountComponent';
 const theme = createMuiTheme({
     overrides: {
         MuiAppBar: {
@@ -66,7 +67,7 @@ export default class DashboardComponent extends Component {
         this.setState({
             searchText: '',
             clr: false
-        });   
+        });
     }
     handleSearchClick = () => {
         this.setState({
@@ -88,15 +89,15 @@ export default class DashboardComponent extends Component {
                     <MuiThemeProvider theme={theme}>
                         <AppBar className="dashboard-appbar" position="fixed" color="primary">
                             <div className="dashboard-imageandfundoo">
-                            <Tooltip title="menu">
-                                <IconButton
-                                    edge="start"
-                                    color="inherit"
-                                    aria-label="open drawer"
-                                    onClick={this.handleMenu}
-                                >                                 
-                                    <MenuIcon className="dashboard-menuIcon" />                                   
-                                </IconButton>
+                                <Tooltip title="menu">
+                                    <IconButton
+                                        edge="start"
+                                        color="inherit"
+                                        aria-label="open drawer"
+                                        onClick={this.handleMenu}
+                                    >
+                                        <MenuIcon className="dashboard-menuIcon" />
+                                    </IconButton>
                                 </Tooltip>
                                 <DrawerComponent menuSelect={this.state.menu} />
                                 <img className="keep-image" alt="" aria-hidden="true" src={require("../assets/images/keep.png")}
@@ -122,14 +123,14 @@ export default class DashboardComponent extends Component {
                                     <RefreshIcon className="refreshicon" onClick={this.handleReload} />
                                     {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}
                                 </div>
-                                <Avatar className="avatar" alt="Remy Sharp" />
+                                {/* <Avatar className="avatar" alt="Remy Sharp" /> */}
                                 {/* src={require("../assets/images/keep.png")} */}
-
+                                <AccountComponent/>
                             </div>
 
                         </AppBar>
                     </MuiThemeProvider>
-                    <DrawerComponent></DrawerComponent>
+                    {/* <DrawerComponent></DrawerComponent> */}
                 </div>
             </div>
         )

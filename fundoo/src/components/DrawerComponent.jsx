@@ -4,93 +4,128 @@ import Drawer from '@material-ui/core/Drawer';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
-import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';import { withRouter } from 'react-router-dom';
+import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'; import { withRouter } from 'react-router-dom';
 import NotificationsOutlinedIcon from '@material-ui/icons/NotificationsOutlined';
 import { MenuItem, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import { yellow } from '@material-ui/core/colors';
+// import { yellow } from '@material-ui/core/colors';
 // import { width } from '@material-ui/system';
 const theme = createMuiTheme({
     overrides: {
         MuiDrawer: {
             paper: {
                 top: "10.6%"
-            },paperAnchorLeft:{
+            },
+            paperAnchorLeft: {
                 width: "18%"
+            }
+        },
+        MuiButtonBase: {
+            root: {
+                borderRadius: "0px 30px 30px 0px"
+            }
         }
     }
-}
 })
+
 class DrawerComponent extends Component {
     constructor() {
         super();
         this.state = {
             open: false,
-            open2:false,
-            open3:false,
-            color:null
+            open2: false,
+            open3: false,
+            color: null
         }
     }
-    handleColor=()=>{
+    handleColor = () => {
         this.setState({
-            open1:false,
-            open2:false,
-            open:!this.state.open,
-            color:"#fff59d"
+            open1: false,
+            open2: false,
+            open3:false,
+            open4:false,
+            open: !this.state.open,
+            color: "#FEEFC3"
         })
     }
-    handleColor1=()=>{
+    handleColor1 = () => {
         this.setState({
-open1:!this.state.open1,
-            open:false,
-            open2:false,
-            color:"#fff59d"
+            open1: !this.state.open1,
+            open: false,
+            open2: false,
+            open3:false,
+            open4:false,
+            color: "#FEEFC3"
         })
     }
-    handleColor2=()=>{
+    handleColor2 = () => {
         this.setState({
-open2:!this.state.open2,
-            open:false,
-            open1:false,
-            color:"#fff59d"
+            open2: !this.state.open2,
+            open: false,
+            open1: false,
+            open3:false,
+            open4:false,
+            color: "#FEEFC3"
+        })
+    }
+    handleColor3 = () => {
+        this.setState({
+            open3: !this.state.open3,
+            open: false,
+            open1: false,
+            open2:false,
+            open4:false,
+            color: "#FEEFC3"
+        })
+    }
+    handleColor4 = () => {
+        this.setState({
+            open4: !this.state.open4,
+            open: false,
+            open1: false,
+            open2:false,
+            open3:false,
+            color: "#FEEFC3"
         })
     }
     render() {
-        var temp1=this.state.open?this.state.color:null
-        var temp2=this.state.open1?this.state.color:null
-        var temp3=this.state.open2?this.state.color:null
+        var temp1 = this.state.open ? this.state.color : null
+        var temp2 = this.state.open1 ? this.state.color : null
+        var temp3 = this.state.open2 ? this.state.color : null
+        var temp4 = this.state.open3 ? this.state.color : null
+        var temp5 = this.state.open4 ? this.state.color : null
         return (
             <div className="drawer-container" >
                 <MuiThemeProvider theme={theme} >
-                <div  className="drawer-div1">
-                    <Drawer variant="persistent" overflow="auto" open={this.props.menuSelect} >                   
-                        <MenuItem id="notes" onClick={this.handleColor} style={{backgroundColor:temp1}}>
-                            <EmojiObjectsOutlinedIcon />
-                           <span className="drawer-names">Notes</span> 
-                     </MenuItem>
-                        <MenuItem id="notification" onClick={this.handleColor1} style={{backgroundColor:temp2}}>
-                            <NotificationsOutlinedIcon   />
-                          <span className="drawer-names">Reminders</span>  
-                     </MenuItem>
-                        <Divider />
-                        <div>
-                            <h6 style={{paddingLeft:"20px"}}>LABLES</h6>
-                            <MenuItem id="editlabel" onClick={this.handleColor2} style={{backgroundColor:temp3}}>
-                                <EditOutlinedIcon />
-                               <span className="drawer-names"> Edit labels</span>
-                    </MenuItem>
+                    <div className="drawer-div1" style={{ borderRadius: "0px 50px 50px 0px" }}>
+                        <Drawer variant="persistent" overflow="auto" open={this.props.menuSelect}  >
+                            <MenuItem id="notes" onClick={this.handleColor} style={{ backgroundColor: temp1 }}>
+                                <EmojiObjectsOutlinedIcon />
+                                <span className="drawer-names">Notes</span>
+                            </MenuItem>
+                            <MenuItem id="notification" onClick={this.handleColor1} style={{ backgroundColor: temp2 }}>
+                                <NotificationsOutlinedIcon />
+                                <span className="drawer-names">Reminders</span>
+                            </MenuItem>
                             <Divider />
-                        </div>
-                        <MenuItem id="archive">
-                            <ArchiveOutlinedIcon />
-                           <span className="drawer-names">Archive</span> 
-                     </MenuItem>
-                        <MenuItem id="bin">
-                            <DeleteTwoToneIcon />
-                         <span className="drawer-names">Bin</span>   
-                     </MenuItem>
-                        <Divider />
-                       
-                    </Drawer>
+                            <div>
+                                <h6 style={{ paddingLeft: "20px" }}>LABLES</h6>
+                                <MenuItem id="editlabel" onClick={this.handleColor2} style={{ backgroundColor: temp3 }}>
+                                    <EditOutlinedIcon />
+                                    <span className="drawer-names"> Edit labels</span>
+                                </MenuItem>
+                                <Divider />
+                            </div>
+                            <MenuItem id="archive" onClick={this.handleColor3} style={{ backgroundColor: temp4 }}>
+                                <ArchiveOutlinedIcon />
+                                <span className="drawer-names">Archive</span>
+                            </MenuItem>
+                            <MenuItem id="bin" onClick={this.handleColor4} style={{ backgroundColor: temp5 }}>
+                                <DeleteTwoToneIcon />
+                                <span className="drawer-names">Bin</span>
+                            </MenuItem>
+                            <Divider />
+
+                        </Drawer>
                     </div>
                 </MuiThemeProvider>
             </div>

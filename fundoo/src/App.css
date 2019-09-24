@@ -489,7 +489,6 @@ only screen and (min-width: 600px) {
   display: flex;
   padding-right: 10px;
 } */
-
 /*---------------------------------------------dashboard--------------------------------------------------*/
 .createNotes-page {
   display: flex;
@@ -588,11 +587,11 @@ display: flex;
 }
 
 .get-container {
-  width: 70%;
+  width: 70vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* flex-direction: column; */
+  flex-direction: row;;
   flex-wrap: wrap;
 }
 
@@ -661,3 +660,13 @@ display: flex;
 }
 
 /*---------------------------------------------colorPalette--------------------------------------------------*/
+/* .color-style{
+  flex-wrap: wrap;
+    width:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    margin-left: 46px;
+} */
+/*---------------------------------------------trashComponent--------------------------------------------------*/

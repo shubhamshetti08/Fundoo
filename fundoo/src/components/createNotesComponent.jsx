@@ -5,11 +5,11 @@ import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 // import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
+// import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import { addNotes } from '../services/userService'
 import ColorPaletteComponent from './colorPaletteComponent';
-import {  colorChange} from '../services/userService'
+import ArchiveComponent from './archiveComponent'
 // import { withRouter } from 'react-router-dom'
 // const theme = createMuiTheme({
 //     overrides: {
@@ -30,7 +30,11 @@ class CreateNotesComponent extends Component {
         this.state = {
             takeNote: false,
             description: '',
-            title: ''
+            title: '',
+            note:{},
+            colorId:'',
+            color:'',
+            isArchive:false
         }
     }
     handleClickAway=()=>{
@@ -59,41 +63,43 @@ class CreateNotesComponent extends Component {
 
         var data = {
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            color:this.state.color
         }
-        console.log("jedfewh", data)
+        console.log("create notes data", data)
         addNotes(data).then((res) => {
             console.log(res);
+            this.setState({
+                note:res.data.status.details
+            });
+            this.props.getNew(this.state.note)
         }).catch((err) => {
             console.log(err);
         })
+       
+        
         this.setState({
             takeNote: false,
             title: '',
             description: ''
         })
     }
-    handleColor = (col, noteid) => {
-        var data = {
-            noteIdList: [noteid],
-            color: col
-        }
-        console.log('data in createnote', data);
-
-        colorChange(data)
-            .then((res) => {
-                console.log('color change createnote res', res);
-                this.getNotes();
-            }).catch((err) => {
-                console.log(err);
-            })
+    handleColor = async(col) => {
+        console.log('col',col);
+        
+      await this.setState({
+           color:col
+       })
+       console.log('create notes color',this.state.color);
+       
     }
     render() {
+
         return (
             <div className="createNotes-page" >
                 {this.state.takeNote ? (
                     <ClickAwayListener onClickAway={this.handleClickAway}>
-                    <Card className="createNotes-card2">
+                    <Card className="createNotes-card2" style={{backgroundColor:this.state.color}}>
                         <div className="createNotes-card2-div1">
                             <div className="createNotes-card2-div2">
                                 <InputBase className="createNotes-input"
@@ -132,13 +138,15 @@ class CreateNotesComponent extends Component {
                                 <Tooltip title="Change color">
                                     <ColorPaletteComponent
                                         paletteProps={this.handleColor}
-                                        notesId={this.state.noteId} />
+                                        notesId={""}
+                                         />
                                 </Tooltip>
                                 <Tooltip title="add image">
                                     <ImageOutlinedIcon />
                                 </Tooltip>
                                 <Tooltip title="Archive">
-                                    <ArchiveOutlinedIcon />
+                                    <ArchiveComponent
+                                    archiveNoteId={!this.state.isArchive}  />
                                 </Tooltip>
                                 <Tooltip title="More">
                                     <MoreVertOutlinedIcon />
@@ -170,6 +178,6 @@ class CreateNotesComponent extends Component {
                 }
             </div>
         )
-    }
+}
 }
 export default CreateNotesComponent

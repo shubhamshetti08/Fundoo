@@ -45,3 +45,12 @@ export function archive(data){
         }
     })
 }
+export function trash(data){
+    console.log('service trash',data)
+    return axios.post(baseURL+'/notes/trashNotes',data,{
+        headers:{
+            Authorization:localStorage.getItem('token')
+
+        }
+    })
+}
