@@ -65,6 +65,7 @@ class login extends React.Component {
         localStorage.setItem('firstName',res.data.firstName);
         localStorage.setItem('lastName',res.data.lastName);
         localStorage.setItem('email',res.data.email);
+        localStorage.setItem('userId',res.data.userId)
         this.props.history.push('/dashboard')
     }).catch((err) => {
         console.log('errr', err);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { AppBar, MuiThemeProvider, createMuiTheme, IconButton, Tooltip } from '@material-ui/core';
+import { AppBar, MuiThemeProvider, createMuiTheme, IconButton, Tooltip, Card ,ClickAwayListener} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
@@ -35,7 +35,8 @@ export default class DashboardComponent extends Component {
             bgColor: '',
             searchText: '',
             clr: false,
-            menu: false
+            menu: false,
+            card:false
         }
     }
     // handleNotes = (e) => {
@@ -56,17 +57,30 @@ export default class DashboardComponent extends Component {
     //         noteOpen: !this.state.noteOpen
     //     })
     // }
+    handleClickAway=()=>{
+        this.setState({
+            card:false
+        })
+    }
     handleSearchText = (e) => {
         const searchText = e.target.value
         console.log(searchText)
         this.setState({
             searchText: searchText
         })
+        console.log('searchbar---',this.state.searchText);
+        
+        this.props.searchBar(this.state.searchText);
     }
     handleClearText = () => {
         this.setState({
             searchText: '',
             clr: false
+        });
+    }
+    handleSearchCard = () => {
+        this.setState({
+            card:true
         });
     }
     handleSearchClick = () => {
@@ -104,13 +118,37 @@ export default class DashboardComponent extends Component {
                                     style={{ width: "40px", height: "40px" }}>
                                 </img>
                                 <span className="dashboard-fundooname">Fundoo</span>
+                                <ClickAwayListener onClickAway={this.handleClickAway}>
+                                {(this.state.card) ?(
+                                   
+                                <Card className="searchcard1" style={{borderRadius:"10px 10px 10px 10px",backgroundColor:"antiquewhite"}}>
+                                <div className="searchdiv1">
+                                    <SearchIcon className="searchicon1" style={{ width: "24px", height: "24px" }} />
+                                </div>
+                                <InputBase className="dashboard-searchbar1" autoComplete="off"
+                                    placeholder="Search" onKeyPress={this.handleSearchClick}
+                                    onChange={this.handleSearchText}
+                                    value={this.state.searchText}
+                                // inputProps={{ 'aria-label': 'search' }}
+                                />
+                                {(this.state.searchText) ? (
+                                    <div className="cleardiv1">
+                                        <ClearIcon className="clearicon1" style={{ width: "24px", height: "24px" }}
+                                            onClick={this.handleClearText} />
+                                    </div>
+                                   
+                                ) : (null)}  </Card>)
+                                
+                                :(
+                                 <div className="searchcard" style={{borderRadius:"10px 10px 10px 10px"}}>
                                 <div className="searchdiv">
                                     <SearchIcon className="searchicon" style={{ width: "24px", height: "24px" }} />
                                 </div>
                                 <InputBase className="dashboard-searchbar" autoComplete="off"
                                     placeholder="Search" onKeyPress={this.handleSearchClick}
-                                    onChange={this.handleSearchText}
+                                    // onChange={this.handleSearchText}
                                     value={this.state.searchText}
+                                    onClick={this.handleSearchCard}
                                 // inputProps={{ 'aria-label': 'search' }}
                                 />
                                 {(this.state.searchText) ? (
@@ -118,7 +156,10 @@ export default class DashboardComponent extends Component {
                                         <ClearIcon className="clearicon" style={{ width: "24px", height: "24px" }}
                                             onClick={this.handleClearText} />
                                     </div>
-                                ) : (null)}
+                                   
+                                ) : (null)}  </div>)
+                                }
+                                </ClickAwayListener>
                                 <div className="refreshdiv">
                                     <RefreshIcon className="refreshicon" onClick={this.handleReload} />
                                     {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}

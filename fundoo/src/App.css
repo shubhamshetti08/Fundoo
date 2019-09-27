@@ -422,6 +422,7 @@ only screen and (min-width: 600px) {
   /* padding:0px,0px,0px,4px; */
   padding-left: 10px;
   padding-right: 70px;
+  min-width: 0px;
 }
 
 .dashboard-searchbar {
@@ -430,18 +431,32 @@ only screen and (min-width: 600px) {
   background-color: #f1f3f4;
   width: 100%;
 }
-
+.dashboard-searchbar1{
+  background: none;
+  padding: 10px 0;
+  width: 100%;
+}
 .searchicon {
   /* padding:8px; */
   background-color: #f1f3f4;
   color: #5f6368;
   /* background: none; */
 }
-
+.searchicon1{
+  color: #5f6368;
+}
 .searchdiv {
   height: 52px;
   width: 133px;
   background-color: #f1f3f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0px 0px 10px;
+}
+.searchdiv1 {
+  height: 52px;
+  width: 133px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -457,13 +472,34 @@ only screen and (min-width: 600px) {
   align-items: center;
   border-radius: 0px 10px 10px 0px;
 }
-
+.cleardiv1 {
+  height: 52px;
+  width: 133px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 10px 10px 0px;
+}
 .clearicon {
   padding: 8px;
   background-color: #f1f3f4;
   color: #5f6368;
 }
-
+.clearicon1{
+  padding: 8px;
+  color: #5f6368;
+}
+.searchcard{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.searchcard1{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color:#FEEFC3;
+}
 /* .settingicon{
   color: #5f6368;
   position: absolute;
@@ -599,7 +635,7 @@ display: flex;
   padding-bottom: 3%;
   height: auto;
   width: 31%;
-  
+  min-width: 150px;
 }
 
 .dashboardpage-allnotes {
@@ -608,7 +644,11 @@ display: flex;
   justify-content: center;
   padding-top: 5%;
 }
-
+.get-card2 {
+  min-width: 40vw;
+  min-height: auto;
+  border: 1px solid whitesmoke;
+}
 /*---------------------------------------------getAllNotes--------------------------------------------------*/
 .drawer-container{
   display: flex;
@@ -627,10 +667,15 @@ display: flex;
  width: 60%;
 }
 .gellAllNotes-icons{
+  visibility: hidden;
   display: flex;
   justify-content: space-around;
-  color:white;
+  /* color:white; */
   padding-top: 10%;
+}
+.get-card1:hover .gellAllNotes-icons,
+.gellAllNotes-icons:hover{
+  visibility: visible;
 }
 #gellAllNote-icons:hover{
   color:black;
@@ -670,3 +715,10 @@ display: flex;
     margin-left: 46px;
 } */
 /*---------------------------------------------trashComponent--------------------------------------------------*/
+
+.trash-checkbox{
+  overflow-y: auto;
+  max-height: 150px;
+  width: 100%;
+}
+/*---------------------------------------------createNoteLabelComponent--------------------------------------------------*/

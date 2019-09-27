@@ -54,3 +54,48 @@ export function trash(data){
         }
     })
 }
+// export function label(data){
+//     console.log('service label',data)
+
+//     return axios.post(baseURL+'/noteLabels',data,{
+//         headers:{
+//             Authorization:localStorage.getItem('token')
+
+//         }
+//     })
+// }
+export function createlabel(id,data){
+    console.log('service label',id)
+    return axios.post(baseURL+`/notes/${id}/noteLabels`,data,{
+        headers:{
+            Authorization:localStorage.getItem('token')
+
+        }
+    })
+}
+export function getLabels(){
+    return axios.get(baseURL+'/noteLabels/getNoteLabelList',{
+        headers:{
+            Authorization:localStorage.getItem('token')
+
+        }
+    })
+}
+// export function createNoteLabels(){
+//     return axios.get(baseURL+'/notes/{id}/noteLabels',{
+//         headers:{
+//             Authorization:localStorage.getItem('token')
+
+//         }
+//     })
+// }
+export function noteLabels(data){
+    const noteId=data.noteId;
+    const labelId=data.labelId;
+    return axios.post(baseURL+`/notes/${noteId}/addLabelToNotes/${labelId}/add`,data,{
+        headers:{
+            Authorization:localStorage.getItem('token')
+
+        }
+    })
+}

@@ -5,11 +5,10 @@ import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 // import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-// import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
+import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
-import { addNotes } from '../services/userService'
+import { addNotes} from '../services/userService';
 import ColorPaletteComponent from './colorPaletteComponent';
-import ArchiveComponent from './archiveComponent'
 // import { withRouter } from 'react-router-dom'
 // const theme = createMuiTheme({
 //     overrides: {
@@ -31,15 +30,15 @@ class CreateNotesComponent extends Component {
             takeNote: false,
             description: '',
             title: '',
-            note:{},
-            colorId:'',
-            color:'',
-            isArchive:false
+            note: {},
+            colorId: '',
+            color: '',
+            archive: false
         }
     }
-    handleClickAway=()=>{
+    handleClickAway = () => {
         this.setState({
-            takeNote:false
+            takeNote: false
         })
     }
     handleNotes = () => {
@@ -64,34 +63,46 @@ class CreateNotesComponent extends Component {
         var data = {
             title: this.state.title,
             description: this.state.description,
-            color:this.state.color
+            color: this.state.color,
+            isArchived:this.state.archive
         }
         console.log("create notes data", data)
         addNotes(data).then((res) => {
             console.log(res);
             this.setState({
-                note:res.data.status.details
+                note: res.data.status.details
             });
             this.props.getNew(this.state.note)
+            this.setState({
+                archive:false
+            })
         }).catch((err) => {
             console.log(err);
         })
-       
-        
+
+
         this.setState({
             takeNote: false,
             title: '',
             description: ''
         })
     }
-    handleColor = async(col) => {
-        console.log('col',col);
+    handleColor = async (col) => {
+        console.log('col', col);
+
+        await this.setState({
+            color: col
+        })
+        console.log('create notes color', this.state.color);
+
+    }
+    handleArchive = async () => {
         
-      await this.setState({
-           color:col
-       })
-       console.log('create notes color',this.state.color);
-       
+        await this.setState({
+            archive: !this.state.archive
+        
+        })
+        console.log('createnotes archive', this.state.archive);
     }
     render() {
 
@@ -99,65 +110,66 @@ class CreateNotesComponent extends Component {
             <div className="createNotes-page" >
                 {this.state.takeNote ? (
                     <ClickAwayListener onClickAway={this.handleClickAway}>
-                    <Card className="createNotes-card2" style={{backgroundColor:this.state.color}}>
-                        <div className="createNotes-card2-div1">
-                            <div className="createNotes-card2-div2">
-                                <InputBase className="createNotes-input"
-                                    style={{ paddingLeft: "10px", paddingTop: "20px" }}
-                                    type="text"
-                                    fullWidth
-                                    spellCheck={true}
-                                    placeholder="Title"
-                                    value={this.state.title}
-                                    onChange={this.handleTitle}
-                                >
-                                </InputBase>
+                        <Card className="createNotes-card2" style={{ backgroundColor: this.state.color }}>
+                            <div className="createNotes-card2-div1">
+                                <div className="createNotes-card2-div2">
+                                    <InputBase className="createNotes-input"
+                                        style={{ paddingLeft: "10px", paddingTop: "20px" }}
+                                        type="text"
+                                        fullWidth
+                                        spellCheck={true}
+                                        placeholder="Title"
+                                        value={this.state.title}
+                                        onChange={this.handleTitle}
+                                    >
+                                    </InputBase>
+                                </div>
+                                <div className="createNotes-card2-takeNotes" >
+                                    <InputBase className="createNotes-input"
+                                        style={{ paddingLeft: "10px", paddingTop: "20px" }}
+                                        type="text"
+                                        multiline
+                                        fullWidth
+                                        spellCheck={true}
+                                        placeholder="Take a note...."
+                                        value={this.state.description}
+                                        onChange={this.handleDescription}
+                                    >
+                                    </InputBase>
+                                </div>
                             </div>
-                            <div className="createNotes-card2-takeNotes" >
-                                <InputBase className="createNotes-input"
-                                    style={{ paddingLeft: "10px", paddingTop: "20px" }}
-                                    type="text"
-                                    multiline
-                                    fullWidth
-                                    spellCheck={true}
-                                    placeholder="Take a note...."
-                                    value={this.state.description}
-                                    onChange={this.handleDescription}
-                                >
-                                </InputBase>
-                            </div>
-                        </div>
-                        <div className="notes-icons">
-                            <div className="notes-icon-div ">
-                                <Tooltip title="Remind me">
-                                    < AddAlertOutlinedIcon />
-                                </Tooltip>
-                                <Tooltip title="Collaborator">
-                                    <PersonAddOutlinedIcon />
-                                </Tooltip>
-                                <Tooltip title="Change color">
-                                    <ColorPaletteComponent
-                                        paletteProps={this.handleColor}
-                                        notesId={""}
+                            <div className="notes-icons">
+                                <div className="notes-icon-div ">
+                                    <Tooltip title="Remind me">
+                                        < AddAlertOutlinedIcon />
+                                    </Tooltip>
+                                    <Tooltip title="Collaborator">
+                                        <PersonAddOutlinedIcon />
+                                    </Tooltip>
+                                    <Tooltip title="Change color">
+                                        <ColorPaletteComponent
+                                            paletteProps={this.handleColor}
+                                            notesId={""}
+                                        />
+                                    </Tooltip>
+                                    <Tooltip title="add image">
+                                        <ImageOutlinedIcon />
+                                    </Tooltip>
+                                    <Tooltip title="Archive">
+                                    <ArchiveOutlinedIcon 
+                                    onClick={this.handleArchive}
                                          />
-                                </Tooltip>
-                                <Tooltip title="add image">
-                                    <ImageOutlinedIcon />
-                                </Tooltip>
-                                <Tooltip title="Archive">
-                                    <ArchiveComponent
-                                    archiveNoteId={!this.state.isArchive}  />
-                                </Tooltip>
-                                <Tooltip title="More">
-                                    <MoreVertOutlinedIcon />
-                                </Tooltip>
+                                    </Tooltip>
+                                    <Tooltip title="More">
+                                        <MoreVertOutlinedIcon />
+                                    </Tooltip>
+                                </div>
+                                <Button style={{ paddingRight: "10px" }}
+                                    onClick={this.handleClose}><b>
+                                        Close</b>
+                                </Button>
                             </div>
-                            <Button style={{ paddingRight: "10px" }}
-                                onClick={this.handleClose}><b>
-                                    Close</b>
-                            </Button>
-                        </div>
-                    </Card>
+                        </Card>
                     </ClickAwayListener>
                 ) : (
                         // <MuiThemeProvider theme={theme}>
@@ -178,6 +190,6 @@ class CreateNotesComponent extends Component {
                 }
             </div>
         )
-}
+    }
 }
 export default CreateNotesComponent

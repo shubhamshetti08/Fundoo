@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getAllNotes, colorChange, updateNotes } from '../services/userService'
-import { Card, InputBase, Tooltip } from '@material-ui/core';
+import { Card, InputBase, Tooltip, Chip } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Dialog, DialogTitle, Button, DialogActions, DialogContent } from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
@@ -10,7 +10,8 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ColorPaletteComponent from './colorPaletteComponent';
 import ArchiveComponent from './archiveComponent';
-import TrashComponent from './trashComponent';
+// import TrashComponent from './trashComponent';
+import MoreComponent from './moreComponent';
 // const themes = createMuiTheme({
 //     overrides: {
 //         MuiInputBase: {
@@ -37,7 +38,9 @@ const themes = createMuiTheme({
                 backgroundColor: "rgba(11,11,11,0.06)"
             }
         }, MuiPaper: {
-            boxShadow: "none"
+            elevation24: {
+                boxShadow: "none"
+            }
         }
     }
 })
@@ -52,7 +55,12 @@ const themes = createMuiTheme({
 //         boxShadow:"none"
 // }
 // })
-class GetAllNoteComponent extends Component {
+function titleDescSearch(searchText) {
+    return function (val) {
+        return val.title.includes(searchText) || val.description.includes(searchText)
+    }
+}
+    export default class GetAllNoteComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -62,9 +70,16 @@ class GetAllNoteComponent extends Component {
             title: '',
             description: '',
             colorUpdated: '',
+            colorUpdate:'',
             color: '',
-            id: ''
+            id: '',
+            trashId:''
         }
+    }
+    handleDelete=()=>{
+        this.setState({
+            open:true
+        })
     }
     handleOpen = () => {
         this.setState({
@@ -102,6 +117,9 @@ class GetAllNoteComponent extends Component {
             noteIdList: [noteid],
             color: col
         }
+        this.setState({
+            colorUpdate:col
+        })
         console.log('data in get', data);
 
         colorChange(data)
@@ -125,11 +143,13 @@ class GetAllNoteComponent extends Component {
         })
     }
 
-    handleUpdate = (id, oldTitle, oldDescription) => {
+    handleUpdate = (id, oldTitle, oldDescription,colorUpdate) => {
         this.setState({
             noteId: id,
             title: oldTitle,
             description: oldDescription,
+            colorUpdate:colorUpdate,
+            open:!this.state.open
         })
         var data = {
             noteId: this.state.noteId,
@@ -148,12 +168,16 @@ class GetAllNoteComponent extends Component {
                 console.log('err in get all notes update is ', err);
             })
     }
-
+deleteUpdate=(trashNoteId)=>{
+    this.setState({
+       trashId: trashNoteId
+    })
+}
 
     render() {
-        const allNotes = this.state.notes.map((key) => {
-            // console.log('is archived',key.isArchived);
-            console.log('is archived', key.isDeleted);
+        const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
+            //  console.log('is archived',JSON.stringify(key.label));
+            // console.log('is archived', key.isDeleted);
             if (key.isArchived === false && key.isDeleted === false) {
                 return (
 
@@ -169,7 +193,7 @@ class GetAllNoteComponent extends Component {
                                         placeholder="Title"
                                         id="title"
                                         value={key.title}
-                                        onClick={() => this.handleUpdate(key.id, key.title, key.description)}
+                                        onClick={() => this.handleUpdate(key.id, key.title, key.description,key.color)}
                                     />
                                 </div>
                                 <div className="input2" >
@@ -178,8 +202,26 @@ class GetAllNoteComponent extends Component {
                                         placeholder="Take a note ...."
                                         id="description"
                                         value={key.description}
-                                        onClick={() => this.handleUpdate(key.id, key.title, key.description)}
+                                        onClick={() => this.handleUpdate(key.id, key.title, key.description,key.color)}
                                     />
+                                </div>
+                                <div>
+                                {/* <Paper style={{
+                                    backgroundColor: "transparent",
+                                    boxShadow: "0px 1px 3px 0px rgba(0, 0, 0, 0), 0px 1px 1px 0px rgba(0, 0, 0, 0), 0px 2px 1px -1px rgba(0, 0, 0, 0)"
+                                }}
+                                > */}
+
+                                    {key.noteLabels.map(data => {
+                                        console.log("chip data.............", data.label);
+                                        return (
+                                            <Chip onDelete={this.handleDelete}
+                                            label={data.label}>
+                                             
+                                            </Chip>
+                                        );
+                                    })}
+                                {/* </Paper> */}
                                 </div>
                             </div>
 
@@ -206,8 +248,11 @@ class GetAllNoteComponent extends Component {
                                             archiveNoteId={key.id} />
                                     </Tooltip>
                                     <Tooltip title="More">
-                                        <TrashComponent
-                                            trashNoteId={key.id} />
+                                        {/* <TrashComponent
+                                            trashNoteId={key.id} /> */}
+                                        <MoreComponent
+                                            noteID={key.id}
+                                            deleteUpdate={this.deleteUpdate} />
 
                                     </Tooltip>
                                 </div>
@@ -220,7 +265,7 @@ class GetAllNoteComponent extends Component {
                             // aria-labelledby="alert-dialog-title"
                             // aria-describedby="alert-dialog-description"
                             >
-                                <Card className="get-card2" style={{ backgroundColor: this.state.colorUpdated }}>
+                                <Card className="get-card2" style={{ backgroundColor: this.state.colorUpdate }}>
                                     {/* this.state.colorUpdated */}
                                     <DialogTitle>
                                         Edit Notes
@@ -256,20 +301,22 @@ class GetAllNoteComponent extends Component {
                                                 <Tooltip title="Change color">
                                                     <ColorPaletteComponent
                                                         paletteProps={this.handleColor}
-                                                        notesId={this.state.noteId} 
-                                                        // notesId={key.id} 
-                                                        />
+                                                        notesId={this.state.noteId}
+                                                    // notesId={key.id} 
+                                                    />
                                                 </Tooltip>
                                                 <Tooltip title="Add image">
                                                     <ImageOutlinedIcon />
                                                 </Tooltip>
                                                 <Tooltip title="Archive">
                                                     <ArchiveOutlinedIcon
-                                                    // getAllNotes={this.props.id}
+                                                        // getAllNotes={this.props.id}
                                                         archiveNoteId={key.id} />
                                                 </Tooltip>
                                                 <Tooltip title="More">
-                                                    <MoreVertOutlinedIcon />
+                                                    <MoreVertOutlinedIcon
+                                                        NoteId={key.id} 
+                                                        deleteUpdate={this.deleteUpdate} />
                                                 </Tooltip>
                                                 <Button
                                                     onClick={() => this.handleUpdate(this.state.noteId, this.state.title, this.state.description, this.state.color)}>
@@ -293,4 +340,3 @@ class GetAllNoteComponent extends Component {
         )
     }
 }
-export default GetAllNoteComponent
