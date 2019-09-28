@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAllNotes, colorChange, updateNotes } from '../services/userService'
+import { getAllNotes, colorChange, updateNotes, deleteLabels } from '../services/userService'
 import { Card, InputBase, Tooltip, Chip } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Dialog, DialogTitle, Button, DialogActions, DialogContent } from '@material-ui/core';
@@ -75,11 +75,22 @@ function titleDescSearch(searchText) {
             id: '',
             trashId:''
         }
+    }  
+     componentDidMount() {
+        this.getNotes();
     }
-    handleDelete=()=>{
-        this.setState({
-            open:true
-        })
+    handleDelete=(labelId,noteIdToLabel)=>{
+        var data = {
+            "labelId": labelId,
+           "noteId":noteIdToLabel
+        }
+        deleteLabels(data,noteIdToLabel,labelId)
+        // this.props.noteIdToLabel
+            .then((response) => {
+                console.log("response in note label", response);
+            }).catch((err)=>{
+                console.log("error in note label", err);
+            })
     }
     handleOpen = () => {
         this.setState({
@@ -96,9 +107,7 @@ function titleDescSearch(searchText) {
             open: true
         })
     }
-    componentDidMount() {
-        this.getNotes();
-    }
+ 
     getNotes = () => {
         getAllNotes().then((res) => {
             console.log('response is', res);
@@ -144,19 +153,20 @@ function titleDescSearch(searchText) {
     }
 
     handleUpdate = (id, oldTitle, oldDescription,colorUpdate) => {
+        console.log('=====',id)
         this.setState({
+            open:!this.state.open,
             noteId: id,
             title: oldTitle,
             description: oldDescription,
             colorUpdate:colorUpdate,
-            open:!this.state.open
         })
         var data = {
             noteId: this.state.noteId,
             title: this.state.title,
             description: this.state.description
         }
-        console.log("data to be upadated", data);
+        console.log("data to be upadated----", data.noteId);
 
 
         updateNotes(data)
@@ -169,10 +179,32 @@ function titleDescSearch(searchText) {
             })
     }
 deleteUpdate=(trashNoteId)=>{
-    this.setState({
-       trashId: trashNoteId
-    })
-}
+    // this.setState({
+    //    trashId: trashNoteId
+    // })
+        console.log("note in deleteUp", this.state.notes);
+        var delId = trashNoteId;
+        var newArr = this.state.notes;
+        console.log("trashnotes id is ", delId);
+        console.log("new array is ", newArr);
+        for (let i = 0; i < newArr.length; i++) {
+            console.log("yes entered");
+            if (newArr[i].id === delId) {
+                console.log("yes ", delId);
+                newArr[i].isDeleted = true;
+                newArr[i].isArchived = false;
+                newArr[i].isPinned = false;
+            }
+        }
+        this.setState({
+            notes: newArr
+        })
+        this.setState({
+            trashId: trashNoteId,
+            open: !this.state.open
+        })
+    }
+
 
     render() {
         const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
@@ -186,7 +218,7 @@ deleteUpdate=(trashNoteId)=>{
 
                         <Card className="get-card1" style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
                         >
-                            <div style={{ paddingLeft: "20px", paddingTop: "20px" }} onClick={this.handleNoteClick}>
+                            <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
                                 <div className="input1">
                                     <InputBase className="get-in2"
                                         multiline
@@ -205,6 +237,8 @@ deleteUpdate=(trashNoteId)=>{
                                         onClick={() => this.handleUpdate(key.id, key.title, key.description,key.color)}
                                     />
                                 </div>
+                                </div>
+
                                 <div>
                                 {/* <Paper style={{
                                     backgroundColor: "transparent",
@@ -215,7 +249,7 @@ deleteUpdate=(trashNoteId)=>{
                                     {key.noteLabels.map(data => {
                                         console.log("chip data.............", data.label);
                                         return (
-                                            <Chip onDelete={this.handleDelete}
+                                            <Chip onDelete={()=>this.handleDelete(data.id,key.id)}
                                             label={data.label}>
                                              
                                             </Chip>
@@ -223,7 +257,6 @@ deleteUpdate=(trashNoteId)=>{
                                     })}
                                 {/* </Paper> */}
                                 </div>
-                            </div>
 
                             <MuiThemeProvider theme={themes}>
                                 <div className="gellAllNotes-icons" id="gellAllNote-icons" >
@@ -260,7 +293,7 @@ deleteUpdate=(trashNoteId)=>{
                         </Card>
                         <MuiThemeProvider theme={themes}>
                             <Dialog position="static"
-                                onClose={this.handleClose}
+                                // onClose={this.handleClose}
                                 open={this.state.open}
                             // aria-labelledby="alert-dialog-title"
                             // aria-describedby="alert-dialog-description"
@@ -319,7 +352,7 @@ deleteUpdate=(trashNoteId)=>{
                                                         deleteUpdate={this.deleteUpdate} />
                                                 </Tooltip>
                                                 <Button
-                                                    onClick={() => this.handleUpdate(this.state.noteId, this.state.title, this.state.description, this.state.color)}>
+                                                    onClick={this.handleUpdate}>
                                                     close
                                         </Button>
                                             </div>

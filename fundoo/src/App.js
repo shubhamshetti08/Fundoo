@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router,Route } from "react-router-dom";
 import './App.css';
-import './App.scss'
+import './App.scss';
 import LoginPage from './pages/loginPage';
 // import card from './components/card';
 import serviceCard from './components/serviceCardComponent';

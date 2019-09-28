@@ -34,8 +34,7 @@ export default class CreateLabelComponents extends Component {
     }
     handleAddLabel = (event) => {
         this.setState({
-            // poper: true,
-            // anchorEl: event.currentTarget
+           
             anchorEl: this.state.anchorEl ? !this.state.anchorEl : event.target
         })
         console.log("creayret mnmkjkj", this.state.anchorEl, this.state.poper);
@@ -86,7 +85,7 @@ export default class CreateLabelComponents extends Component {
     }
     handleCheck = (labelId) => {
         this.setState({
-           check:!this.state 
+           check:!this.state.check
         })
         console.log("jdkfkdj",this.props.noteIdToLabel);
         var data = {

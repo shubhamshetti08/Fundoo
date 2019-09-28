@@ -99,3 +99,11 @@ export function noteLabels(data){
         }
     })
 }
+export function deleteLabels(data,noteId,labelId){
+    return axios.post(baseURL+`/notes/${noteId}/addLabelToNotes/${labelId}/remove`,data,{
+        headers:{
+            Authorization:localStorage.getItem('token')
+
+        }
+    })
+}

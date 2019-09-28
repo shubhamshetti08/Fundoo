@@ -16,7 +16,7 @@ class TrashComponent extends Component {
             noteIdList: [trashNoteId],
             isDeleted: true
         }
-        console.log('data in trash', data);
+        console.log('data in trashcomp', trashNoteId);
         trash(data)
             .then((res) => {
                 console.log('res in trash after hitting', res);

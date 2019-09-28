@@ -61,13 +61,13 @@ class MoreComponent extends Component {
                 <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} 
                 >
                     <Paper className="trash-paper">
-                    <MenuItem ><TrashComponent trashNoteId={this.props.noteId} deleteUpdate={this.deleteUpdate}/></MenuItem>
+                    <MenuItem ><TrashComponent trashNoteId={this.props.noteID} deleteUpdate={this.deleteUpdate}/></MenuItem>
                         <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID}/></MenuItem>
                     </Paper>
                 </Popper>
             
             </div>
-            // </ClickAwayListener>
+            //  </ClickAwayListener>
            
         )
     }
