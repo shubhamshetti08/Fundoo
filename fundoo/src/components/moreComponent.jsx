@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Tooltip,MenuItem,ClickAwayListener,Popper,Paper} from '@material-ui/core';
+import { Tooltip,MenuItem,Popper,Paper} from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 // import { trash } from '../services/userService';
-import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+// import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import CreateLabelComponents from './createLabelComponents';
 import TrashComponent from './trashComponent'
 
@@ -16,6 +16,7 @@ class MoreComponent extends Component {
             cardOpen: false,
             label:false,
             create:false,
+            moreNoteId:''
         }
     }
     handleClickAway=()=>{
@@ -34,7 +35,14 @@ class MoreComponent extends Component {
             anchorEl: this.state.anchorEl ?  !this.state.anchorEl : e.target
         })
         console.log('anchor',this.state.anchorEl);
+        console.log('gdgdddd==---p-',this.props.labels)
         
+    }
+    deleteUpdate=(moreNoteId)=>{
+        this.setState({
+moreNoteId:moreNoteId
+        })
+        this.props.deleteUpdate(moreNoteId)
     }
     // handleButton = () => {
 
@@ -52,6 +60,8 @@ class MoreComponent extends Component {
     //     })
     // }
     render() {
+        // console.log("more"+this.props.labels);
+        
         return (
             // <ClickAwayListener onClickAway={this.handleClickAway}>
             <div>
@@ -62,7 +72,7 @@ class MoreComponent extends Component {
                 >
                     <Paper className="trash-paper">
                     <MenuItem ><TrashComponent trashNoteId={this.props.noteID} deleteUpdate={this.deleteUpdate}/></MenuItem>
-                        <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID}/></MenuItem>
+                        <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID} noteLabels={this.props.labels}/></MenuItem>
                     </Paper>
                 </Popper>
             

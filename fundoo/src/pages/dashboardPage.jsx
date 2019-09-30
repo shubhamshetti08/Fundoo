@@ -6,7 +6,8 @@ class DashboardPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchText: ''
+            searchText: '',
+            list:false
         }
         this.newNote = React.createRef()
     }
@@ -20,14 +21,19 @@ class DashboardPage extends Component {
         console.log('card', card);
         this.newNote.current.updatedCard(card)
     }
+    listView=(value)=>{
+        this.setState({
+            list:value
+        })
+    }
     render() {
         return (
             <div className="dashboardpage-maindiv">
 
-               <div><DashboardComponent  searchBar={this.searchBar}/></div> 
+               <div><DashboardComponent  searchBar={this.searchBar} listView={this.listView}/></div> 
                <div><CreateNotesComponent getNew={this.display}/></div> 
                <div className="dashboardpage-allnotes"><GetAllNoteComponent  ref={this.newNote}
-                 searchText={this.state.searchText}/></div>
+                 searchText={this.state.searchText} list={this.state.list}/></div>
             </div>
             
         )

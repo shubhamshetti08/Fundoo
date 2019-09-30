@@ -4,6 +4,7 @@ import { AppBar, MuiThemeProvider, createMuiTheme, IconButton, Tooltip, Card ,Cl
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';import DnsTwoToneIcon from '@material-ui/icons/DnsTwoTone';
 import ClearIcon from '@material-ui/icons/Clear';
 // import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 // import Avatar from '@material-ui/core/Avatar';
@@ -36,7 +37,8 @@ export default class DashboardComponent extends Component {
             searchText: '',
             clr: false,
             menu: false,
-            card:false
+            card:false,
+            view:false
         }
     }
     // handleNotes = (e) => {
@@ -95,6 +97,18 @@ export default class DashboardComponent extends Component {
     }
     handleReload = () => {
         window.location.reload();
+    }
+    handleGrid=()=>{
+        this.setState({
+            view:!this.state.view
+        })
+        this.props.listView(this.state.view)
+    }
+    handleList=()=>{
+        this.setState({
+            view:!this.state.view
+        }) 
+        this.props.listView(this.state.view)
     }
     render() {
         return (
@@ -160,9 +174,22 @@ export default class DashboardComponent extends Component {
                                 ) : (null)}  </div>)
                                 }
                                 </ClickAwayListener>
+                                <div className="ref-list-grid">
                                 <div className="refreshdiv">
                                     <RefreshIcon className="refreshicon" onClick={this.handleReload} />
                                     {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}
+                                </div>
+                                {!this.state.view ?
+                                <div className='grid-view'style={{ width: "34px", height: "34px"}}>
+                                <DashboardOutlinedIcon fontSize="large"
+                                onClick={this.handleGrid}/>
+                                </div>
+                                :
+                                <div className='list-view'style={{ width: "34px", height: "34px"}}>
+                                <DnsTwoToneIcon fontSize="large"
+                                onClick={this.handleList}/>
+                                </div>
+                                }
                                 </div>
                                 {/* <Avatar className="avatar" alt="Remy Sharp" /> */}
                                 {/* src={require("../assets/images/keep.png")} */}

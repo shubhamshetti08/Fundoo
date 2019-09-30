@@ -525,6 +525,14 @@ only screen and (min-width: 600px) {
   display: flex;
   padding-right: 10px;
 } */
+.ref-list-grid{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+  align-items: center;
+  color: #5f6368;
+  width: 25%;
+}
 /*---------------------------------------------dashboard--------------------------------------------------*/
 .createNotes-page {
   display: flex;
@@ -673,7 +681,8 @@ display: flex;
   /* color:white; */
   padding-top: 10%;
 }
-.get-card1:hover .gellAllNotes-icons,
+/* .gellAllNotes-icons, */
+.get-card1:hover 
 .gellAllNotes-icons:hover{
   visibility: visible;
 }

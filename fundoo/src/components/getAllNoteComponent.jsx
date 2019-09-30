@@ -182,7 +182,7 @@ deleteUpdate=(trashNoteId)=>{
     // this.setState({
     //    trashId: trashNoteId
     // })
-        console.log("note in deleteUp", this.state.notes);
+        console.log("note in deleteUpdate-----", this.state.notes);
         var delId = trashNoteId;
         var newArr = this.state.notes;
         console.log("trashnotes id is ", delId);
@@ -201,7 +201,7 @@ deleteUpdate=(trashNoteId)=>{
         })
         this.setState({
             trashId: trashNoteId,
-            open: !this.state.open
+            // open: !this.state.open
         })
     }
 
@@ -248,6 +248,7 @@ deleteUpdate=(trashNoteId)=>{
 
                                     {key.noteLabels.map(data => {
                                         console.log("chip data.............", data.label);
+                                        console.log("notelabeles in gettallnotes",key.noteLabels);
                                         return (
                                             <Chip onDelete={()=>this.handleDelete(data.id,key.id)}
                                             label={data.label}>
@@ -285,8 +286,8 @@ deleteUpdate=(trashNoteId)=>{
                                             trashNoteId={key.id} /> */}
                                         <MoreComponent
                                             noteID={key.id}
-                                            deleteUpdate={this.deleteUpdate} />
-
+                                            deleteUpdate={this.deleteUpdate}
+                                            labels={key.noteLabels}/>
                                     </Tooltip>
                                 </div>
                             </MuiThemeProvider>
@@ -322,7 +323,6 @@ deleteUpdate=(trashNoteId)=>{
                                                 onChange={this.handleUpdateDescription}
                                             />
                                         </div>
-
                                         <DialogActions>
                                             <div className="notes-icon-div2">
                                                 <Tooltip title="Remind me">

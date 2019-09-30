@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Tooltip, InputBase, Popper, Paper,Checkbox } from '@material-ui/core';
+import { Tooltip, InputBase, Popper, Paper, Checkbox } from '@material-ui/core';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
-import { getLabels, getAllNotes, noteLabels,label } from '../services/userService';
+import { getLabels, getAllNotes, noteLabels, label } from '../services/userService';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 export default class CreateLabelComponents extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export default class CreateLabelComponents extends Component {
             isDeleted: false,
             anchorEl: false,
             cardOpen: false,
-            check:false,
+            check: false,
             label: [],
             create: false,
             labelText: '',
@@ -34,13 +34,13 @@ export default class CreateLabelComponents extends Component {
     }
     handleAddLabel = (event) => {
         this.setState({
-           
+
             anchorEl: this.state.anchorEl ? !this.state.anchorEl : event.target
         })
         console.log("creayret mnmkjkj", this.state.anchorEl, this.state.poper);
 
     }
-   
+
     getLabel = () => {
         getLabels()
             .then(res => {
@@ -48,7 +48,7 @@ export default class CreateLabelComponents extends Component {
                 this.setState({
                     allLabels: res.data.data.details
                 })
-                console.log('get alllabels',this.state.allLabels);
+                console.log('get alllabels', this.state.allLabels);
             })
             .catch((err) => {
                 console.log('err in get labels', err);
@@ -70,7 +70,7 @@ export default class CreateLabelComponents extends Component {
             "isDeleted": false,
             "userId": userId
         }
-        label(this.props.noteIdToLabel,data).then((res) => {
+        label(this.props.noteIdToLabel, data).then((res) => {
             console.log('res after hitting api label', res);
             this.setState({
                 createdLabel: res.data.label
@@ -83,47 +83,32 @@ export default class CreateLabelComponents extends Component {
             console.log('err in create label', err);
         })
     }
-    handleCheck = (labelId) => {
-        this.setState({
-           check:!this.state.check
-        })
-        console.log("jdkfkdj",this.props.noteIdToLabel);
-        var data = {
-            "labelId": labelId,
-           "noteId":this.props.noteIdToLabel
-        }
-        
-        console.log("data in create labelcomp", data);
-        noteLabels(data)
-        // this.props.noteIdToLabel
-            .then((response) => {
-                console.log("response in note label", response);
-            }).catch((err)=>{
-                console.log("error in note label", err);
+    handleCheck = (labelId, checked) => {
+            this.setState({
+                check: !this.state.check
             })
-    }
-    // renderAllLabel=()=>{
-    //     return(<div>
-    //         {this.state.allLabels.map((key)=>
-    //             <List>
-    //                 <Checkbox
-    //                 value={key.label}
-    //                 onClick={(e.CheckedNotes(e.key.id))}
-    //                 ></Checkbox>
-    //                 {key.label}
-    //             </List>
-    //         )
-    //         }
-    //     </div>)
-    // }
+            console.log("jdkfkdj", this.props.noteIdToLabel);
+            var data = {
+                "labelId": labelId,
+                "noteId": this.props.noteIdToLabel
+            }
+            console.log("data in create labelcomp", data);
+            noteLabels(data)
+                // this.props.noteIdToLabel
+                .then((response) => {
+                    console.log("response in note label", response);
+                }).catch((err) => {
+                    console.log("error in note label", err);
+                })
+        }
     render() {
         const labelMap = this.state.allLabels.map((key) => {
-            console.log('create key',JSON.stringify(key.id));
-
+            console.log('create key', JSON.stringify(key.id));
+            // console.log('create key----',this.props.noteLabels);
             return (
                 <div >
-                    <Checkbox checked={this.state.check}
-                        onChange={()=>this.handleCheck(key.id)}
+                    <Checkbox defaultChecked={this.props.noteLabels.map(ele => ele.label).includes(key.label)} 
+                        onChange={() => this.handleCheck(key.id)}
                     />
 
                     {key.label}
@@ -132,9 +117,7 @@ export default class CreateLabelComponents extends Component {
             )
         })
         return (
-
             <div>
-
                 {/* <div  onClick={event => this.setState({
                         poper: true,
                         anchorEl: event.currentTarget
@@ -143,7 +126,6 @@ export default class CreateLabelComponents extends Component {
                     <LabelOutlinedIcon />
                     Add Label
                         </div>
-
                 <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} onKeyDown={this.handleKeyDown}>
                     <Paper className="label-popper">
                         <div>
