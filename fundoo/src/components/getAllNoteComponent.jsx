@@ -207,16 +207,20 @@ deleteUpdate=(trashNoteId)=>{
 
 
     render() {
+        const list = this.props.list ? "container1" : "container";
+        const list1 = this.props.list ? "get-contents1" : "get-contents"
+        const list2 = this.props.list ? "get-card2" : "get-card1"
+
         const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
             //  console.log('is archived',JSON.stringify(key.label));
             // console.log('is archived', key.isDeleted);
             if (key.isArchived === false && key.isDeleted === false) {
                 return (
 
-                    <div className="get-contents">
+                    // <div className="get-contents">
+<div className={list1}>
 
-
-                        <Card className="get-card1" style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
+                        <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
                         >
                             <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
                                 <div className="input1">
@@ -250,7 +254,7 @@ deleteUpdate=(trashNoteId)=>{
                                         console.log("chip data.............", data.label);
                                         console.log("notelabeles in gettallnotes",key.noteLabels);
                                         return (
-                                            <Chip onDelete={()=>this.handleDelete(data.id,key.id)}
+                                            <Chip className="chip" onDelete={()=>this.handleDelete(data.id,key.id)}
                                             label={data.label}>
                                              
                                             </Chip>
@@ -367,7 +371,7 @@ deleteUpdate=(trashNoteId)=>{
             return (null);
         })
         return (
-            <div className="get-container">
+            <div className={list}>
                 {allNotes}
             </div>
         )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
-import { Avatar, Tooltip, Paper, MenuItem,Popper,ClickAwayListener } from '@material-ui/core';
+import { Avatar, Tooltip, Paper,Popper,ClickAwayListener, Button, Divider } from '@material-ui/core';
  class AccountComponent extends Component {
     constructor(props){
         super(props);
@@ -38,7 +38,14 @@ import { Avatar, Tooltip, Paper, MenuItem,Popper,ClickAwayListener } from '@mate
             >
                 
                 <Paper className="account-paper">
-                    <MenuItem onClick={this.handleSignOut}>Sign out</MenuItem>
+                    <div>
+                <Avatar className="avatar1" alt="Remy Sharp"   cursor="pointer" style={{width:"80px",height:"80px"}}/>
+                <div>
+                    <Divider/>
+                    <Button onClick={this.handleAddAccount}>Add account</Button>
+                    <Button onClick={this.handleSignOut}>Sign out</Button>
+                    </div>
+                    </div>
                 </Paper>
             </Popper>                
             </div>

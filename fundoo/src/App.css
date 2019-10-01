@@ -19,15 +19,15 @@
   width: 100%;
   height: 100vh;
   justify-content: center;
- align-items: center;
- /* flex-direction: column; */
+  align-items: center;
+  /* flex-direction: column; */
 }
 
 .loginCard {
-  height:400px;
+  height: 400px;
   /* height: 100vh; 
    width: 100%; */
-  width:350px;
+  width: 350px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -40,7 +40,8 @@
   justify-content: center;
   font-style: italic;
 }
-.login-buttons{
+
+.login-buttons {
   padding-top: 18px;
   display: flex;
   justify-content: space-between;
@@ -84,6 +85,7 @@
     /* margin-right: -317px; */
     /* float: right; */
   }
+
   /* .login-importedcard {
     margin-left: 420px; 
     background-color: lightgrey;
@@ -372,6 +374,7 @@ only screen and (min-width: 600px) {
 
 /*---------------------------------------------forgotpass--------------------------------------------------*/
 .dashboardpage-maindiv {
+  /* animation: pulse 5s infinite; */
   width: 100%;
   /* display: flex; */
   height: auto;
@@ -384,6 +387,16 @@ only screen and (min-width: 600px) {
   width: 100%;
   height: auto;
 }
+
+/* @keyframes pulse {
+  0% {
+    background-color: #cfd8dc
+  }
+
+  100% {
+    background-color: whitesmoke;
+  }
+} */
 
 .dashboard-maincard {
   display: flex;
@@ -431,32 +444,37 @@ only screen and (min-width: 600px) {
   background-color: #f1f3f4;
   width: 100%;
 }
-.dashboard-searchbar1{
+
+.dashboard-searchbar1 {
   background: none;
   padding: 10px 0;
   width: 100%;
 }
+
 .searchicon {
   /* padding:8px; */
   background-color: #f1f3f4;
   color: #5f6368;
   /* background: none; */
 }
-.searchicon1{
+
+.searchicon1 {
   color: #5f6368;
 }
+
 .searchdiv {
   height: 52px;
-  width: 133px;
+  width: 90px;
   background-color: #f1f3f4;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px 0px 0px 10px;
 }
+
 .searchdiv1 {
   height: 52px;
-  width: 133px;
+  width: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -472,6 +490,7 @@ only screen and (min-width: 600px) {
   align-items: center;
   border-radius: 0px 10px 10px 0px;
 }
+
 .cleardiv1 {
   height: 52px;
   width: 133px;
@@ -480,37 +499,69 @@ only screen and (min-width: 600px) {
   align-items: center;
   border-radius: 0px 10px 10px 0px;
 }
+
 .clearicon {
   padding: 8px;
   background-color: #f1f3f4;
   color: #5f6368;
 }
-.clearicon1{
+
+.clearicon1 {
   padding: 8px;
   color: #5f6368;
 }
-.searchcard{
+
+.searchcard {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
-.searchcard1{
+
+.searchcard1 {
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color:#FEEFC3;
+  background-color: #FEEFC3;
 }
+
 /* .settingicon{
   color: #5f6368;
   position: absolute;
 
 } */
 .refreshicon {
+  /* animation: rotate-spin 5s linear; */
+  -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
   color: #5f6368;
   /* padding-left: 80px; */
   /* position: absolute; */
   /* right: 150px; */
+
 }
+
+/* rotate90: {
+  transform: [{ rotate: '90deg' }]
+} */
+/* .refreshicon-spin {
+  -webkit-animation: refreshicon-spin 2s infinite linear;
+          animation: refreshicon-spin 2s infinite linear;
+} */
+/* @keyframes rotate-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+} */
+@-moz-keyframes spin { 50% { -moz-transform: rotateY(90deg); } }
+@-webkit-keyframes spin { 50% { -webkit-transform: rotateY(90deg); } }
+@keyframes spin { 50% { -webkit-transform: rotateY(90deg); transform:rotateY(90deg); } }
 
 .refreshdiv {
   width: 30%;
@@ -525,21 +576,33 @@ only screen and (min-width: 600px) {
   display: flex;
   padding-right: 10px;
 } */
-.ref-list-grid{
+.ref-list-grid {
   display: flex;
   flex-direction: row;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   align-items: center;
   color: #5f6368;
   width: 25%;
 }
+
 /*---------------------------------------------dashboard--------------------------------------------------*/
 .createNotes-page {
+  /* animation: pulse 5s infinite; */
   display: flex;
   justify-content: center;
   width: 100%;
   height: 100%;
 }
+
+/* @keyframes pulse {
+  0% {
+    background-color: lightgray;
+  }
+
+  100% {
+    background-color: whitesmoke;
+  }
+} */
 
 .createNotes-card1 {
   height: 22px;
@@ -589,11 +652,13 @@ only screen and (min-width: 600px) {
   justify-content: space-between;
   padding-left: 20px;
 }
-.notes-icon-div2{
-display: flex;
-    justify-content: space-between;
-    width: 100%;
+
+.notes-icon-div2 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
+
 .createNotes-input {
   padding-top: 20px;
   padding-left: 13px;
@@ -602,6 +667,7 @@ display: flex;
 .createNotes-iconsize {
   width: 4%;
 }
+
 /* .createNotes-card2-takeNotes{
   align-items: center;
   display: flex;
@@ -614,6 +680,7 @@ display: flex;
   /* border: 1px solid whitesmoke; */
   border-radius: 1em;
 }
+
 .get-in1 {
   width: auto;
 }
@@ -630,65 +697,90 @@ display: flex;
   justify-content: center;
 }
 
-.get-container {
+.container {
   width: 70vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row;;
+  flex-direction: row;
+  ;
   flex-wrap: wrap;
 }
-
+.container1 {
+width: 47%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+}
 .get-contents {
   padding-bottom: 3%;
   height: auto;
   width: 31%;
   min-width: 170px;
 }
-
+.get-contents1 {
+  width: 100%;
+  padding-bottom: 3%;
+}
 .dashboardpage-allnotes {
   width: 100%;
   display: flex;
   justify-content: center;
   padding-top: 5%;
 }
+
 .get-card2 {
   min-width: 40vw;
   min-height: auto;
   border: 1px solid whitesmoke;
 }
+
+.chip {
+  margin-top: 2%;
+  margin-right: 1%;
+  margin-left: 2%;
+}
+
 /*---------------------------------------------getAllNotes--------------------------------------------------*/
-.drawer-container{
+.drawer-container {
   display: flex;
   align-items: center;
   position: fixed;
   /* width: 25% */
 }
-.drawer-names{
+
+.drawer-names {
   padding-left: 32px;
-  font-family: 'Google Sans',Roboto,Arial,sans-serif;
-    font-size: .875rem;
-    font-weight: 500;
-    color: #202124;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  color: #202124;
 }
-.drawer-div1{
- width: 60%;
+
+.drawer-div1 {
+  width: 60%;
 }
-.gellAllNotes-icons{
+
+.gellAllNotes-icons {
   visibility: hidden;
   display: flex;
   justify-content: space-around;
   /* color:white; */
   padding-top: 10%;
 }
-/* .gellAllNotes-icons, */
-.get-card1:hover 
-.gellAllNotes-icons:hover{
+
+.get-card1:hover .gellAllNotes-icons
+
+/* .gellAllNotes-icons:hover */
+  {
   visibility: visible;
 }
-#gellAllNote-icons:hover{
-  color:black;
+
+#gellAllNote-icons:hover {
+  color: black;
 }
+
 /*---------------------------------------------drawerComponent--------------------------------------------------*/
 .colorpalette-card {
   display: flex;
@@ -699,6 +791,7 @@ display: flex;
   width: 9%;
   height: 10%;
 }
+
 .color-styles {
   /* display: flex;
   flex-direction: row;
@@ -706,11 +799,11 @@ display: flex;
   align-items: center;
   justify-content: center; */
   flex-wrap: wrap;
-    width: 34%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 46px;
+  width: 34%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 46px;
 }
 
 /*---------------------------------------------colorPalette--------------------------------------------------*/
@@ -725,9 +818,65 @@ display: flex;
 } */
 /*---------------------------------------------trashComponent--------------------------------------------------*/
 
-.trash-checkbox{
+.trash-checkbox {
   overflow-y: auto;
   max-height: 150px;
   width: 100%;
+}
+.account-paper{
+width:100%;
+}
+
+/*---------------------------------------------trashComponent--------------------------------------------------*/
+@media all and (max-width:415px) {
+  .container {
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .dashboardpage-allnotes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+
+  }
+.createNotes-card1 {
+    height: 22px;
+    width: 600px;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 30px;
+    border-color: #e0e0e0;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    padding: 12px 16px 12px 16px;
+    color: #5f6368;
+    font-size: 22px;
+    font-weight: 400;
+    font-family: Roboto, Arial, sans-serif;
+   
+    margin-top: 24%;
+}
+.createNotes-card2 {
+  height: auto;
+  width: 600px;
+  display: -ms-flexbox;
+  display: flex;
+  border-color: #e0e0e0;
+  margin-top: 22%;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+}
+/*---------------------------------------------createNoteLabelComponent--------------------------------------------------*/
+.avatar1 {
+width: 80px;
+height: 80px;
+/* margin: 20px; */
 }
 /*---------------------------------------------createNoteLabelComponent--------------------------------------------------*/
