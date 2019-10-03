@@ -59,6 +59,9 @@ moreNoteId:moreNoteId
     //         console.log('error in trash ', err);
     //     })
     // }
+    handleDeleteNote=(isTrash)=>{
+        this.props.TrashPropsToGetNote(isTrash)
+    }
     render() {
         // console.log("more"+this.props.labels);
         
@@ -71,7 +74,7 @@ moreNoteId:moreNoteId
                 <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} 
                 >
                     <Paper className="trash-paper">
-                    <MenuItem ><TrashComponent trashNoteId={this.props.noteID} deleteUpdate={this.deleteUpdate}/></MenuItem>
+                    <MenuItem ><TrashComponent trashNoteId={this.props.noteID} deleteUpdate={this.deleteUpdate} trashToMore={this.handleDeleteNote}/></MenuItem>
                         <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID} noteLabels={this.props.labels}/></MenuItem>
                     </Paper>
                 </Popper>

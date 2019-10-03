@@ -877,6 +877,26 @@ width:100%;
 .avatar1 {
 width: 80px;
 height: 80px;
-/* margin: 20px; */
+margin: 3%;
 }
-/*---------------------------------------------createNoteLabelComponent--------------------------------------------------*/
+.account-buttons{
+width: 100%;
+display: flex;
+justify-content: space-between;
+padding: 10px 2px 10px 0px;
+background-color: #f5f5f5;
+}
+.avtar-email-div{
+  display: flex;
+  flex-direction: row;
+}
+.account-name-email{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+/*---------------------------------------------accountComponent--------------------------------------------------*/
+.reminder-paper{
+
+}
+/*---------------------------------------------reminderComponent--------------------------------------------------*/

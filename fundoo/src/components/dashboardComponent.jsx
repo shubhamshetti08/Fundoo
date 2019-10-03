@@ -176,18 +176,24 @@ export default class DashboardComponent extends Component {
                                 </ClickAwayListener>
                                 <div className="ref-list-grid">
                                 <div className="refreshdiv">
+                                <Tooltip title="Refresh">
                                     <RefreshIcon className="refreshicon" onClick={this.handleReload} />
                                     {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}
+                                    </Tooltip>
                                 </div>
                                 {!this.state.view ?
                                 <div className='grid-view'style={{ width: "34px", height: "34px"}}>
+                                    <Tooltip title="Grid view">
                                 <DashboardOutlinedIcon fontSize="large"
                                 onClick={this.handleGrid}/>
+                                </Tooltip>
                                 </div>
                                 :
                                 <div className='list-view'style={{ width: "34px", height: "34px"}}>
+                                     <Tooltip title="List view">
                                 <DnsTwoToneIcon fontSize="large"
                                 onClick={this.handleList}/>
+                                </Tooltip>
                                 </div>
                                 }
                                 </div>

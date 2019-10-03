@@ -20,8 +20,8 @@ class TrashComponent extends Component {
         trash(data)
             .then((res) => {
                 console.log('res in trash after hitting', res);
-                this.props.deleteUpdate(trashNoteId)
-                console.log('deleteUpdate props------', this.props.deleteUpdate);
+                this.props.trashToMore(true)
+                // console.log('deleteUpdate props------', this.props.deleteUpdate);
                 
             }).catch((err) => {
                 console.log('error in trash ', err);

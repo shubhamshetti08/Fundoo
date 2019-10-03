@@ -12,6 +12,7 @@ import ColorPaletteComponent from './colorPaletteComponent';
 import ArchiveComponent from './archiveComponent';
 // import TrashComponent from './trashComponent';
 import MoreComponent from './moreComponent';
+import ReminderComponent from './reminderComponent';
 // const themes = createMuiTheme({
 //     overrides: {
 //         MuiInputBase: {
@@ -60,7 +61,7 @@ function titleDescSearch(searchText) {
         return val.title.includes(searchText) || val.description.includes(searchText)
     }
 }
-    export default class GetAllNoteComponent extends Component {
+export default class GetAllNoteComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -70,25 +71,25 @@ function titleDescSearch(searchText) {
             title: '',
             description: '',
             colorUpdated: '',
-            colorUpdate:'',
+            colorUpdate: '',
             color: '',
             id: '',
-            trashId:''
+            trashId: ''
         }
-    }  
-     componentDidMount() {
+    }
+    componentDidMount() {
         this.getNotes();
     }
-    handleDelete=(labelId,noteIdToLabel)=>{
+    handleDelete = (labelId, noteIdToLabel) => {
         var data = {
             "labelId": labelId,
-           "noteId":noteIdToLabel
+            "noteId": noteIdToLabel
         }
-        deleteLabels(data,noteIdToLabel,labelId)
-        // this.props.noteIdToLabel
+        deleteLabels(data, noteIdToLabel, labelId)
+            // this.props.noteIdToLabel
             .then((response) => {
                 console.log("response in note label", response);
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.log("error in note label", err);
             })
     }
@@ -107,7 +108,7 @@ function titleDescSearch(searchText) {
             open: true
         })
     }
- 
+
     getNotes = () => {
         getAllNotes().then((res) => {
             console.log('response is', res);
@@ -127,7 +128,7 @@ function titleDescSearch(searchText) {
             color: col
         }
         this.setState({
-            colorUpdate:col
+            colorUpdate: col
         })
         console.log('data in get', data);
 
@@ -152,14 +153,14 @@ function titleDescSearch(searchText) {
         })
     }
 
-    handleUpdate = (id, oldTitle, oldDescription,colorUpdate) => {
-        console.log('=====',id)
+    handleUpdate = (id, oldTitle, oldDescription, colorUpdate) => {
+        console.log('=====', id)
         this.setState({
-            open:!this.state.open,
+            open: !this.state.open,
             noteId: id,
             title: oldTitle,
             description: oldDescription,
-            colorUpdate:colorUpdate,
+            colorUpdate: colorUpdate,
         })
         var data = {
             noteId: this.state.noteId,
@@ -178,33 +179,37 @@ function titleDescSearch(searchText) {
                 console.log('err in get all notes update is ', err);
             })
     }
-deleteUpdate=(trashNoteId)=>{
-    // this.setState({
-    //    trashId: trashNoteId
-    // })
-        console.log("note in deleteUpdate-----", this.state.notes);
-        var delId = trashNoteId;
-        var newArr = this.state.notes;
-        console.log("trashnotes id is ", delId);
-        console.log("new array is ", newArr);
-        for (let i = 0; i < newArr.length; i++) {
-            console.log("yes entered");
-            if (newArr[i].id === delId) {
-                console.log("yes ", delId);
-                newArr[i].isDeleted = true;
-                newArr[i].isArchived = false;
-                newArr[i].isPinned = false;
-            }
-        }
-        this.setState({
-            notes: newArr
-        })
-        this.setState({
-            trashId: trashNoteId,
-            // open: !this.state.open
-        })
+    deleteUpdate = (trashNoteId) => {
+        // this.setState({
+        //    trashId: trashNoteId
+        // })
+        // console.log("note in deleteUpdate-----", this.state.notes);
+        // var delId = trashNoteId;
+        // var newArr = this.state.notes;
+        // console.log("trashnotes id is ", delId);
+        // console.log("new array is ", newArr);
+        // for (let i = 0; i < newArr.length; i++) {
+        //     console.log("yes entered");
+        //     if (newArr[i].id === delId) {
+        //         console.log("yes ", delId);
+        //         newArr[i].isDeleted = true;
+        //         newArr[i].isArchived = false;
+        //         newArr[i].isPinned = false;
+        //     }
+        // }
+        // this.setState({
+        //     notes: newArr
+        // })
+        // this.setState({
+        //     trashId: trashNoteId,
+        //     // open: !this.state.open
+        // })
     }
-
+    handleTrashInGetnote=(isTrash)=>{
+        if(isTrash){
+            this.getNotes()
+        }
+    }
 
     render() {
         const list = this.props.list ? "container1" : "container";
@@ -218,7 +223,7 @@ deleteUpdate=(trashNoteId)=>{
                 return (
 
                     // <div className="get-contents">
-<div className={list1}>
+                    <div className={list1}>
 
                         <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
                         >
@@ -229,7 +234,7 @@ deleteUpdate=(trashNoteId)=>{
                                         placeholder="Title"
                                         id="title"
                                         value={key.title}
-                                        onClick={() => this.handleUpdate(key.id, key.title, key.description,key.color)}
+                                        onClick={() => this.handleUpdate(key.id, key.title, key.description, key.color)}
                                     />
                                 </div>
                                 <div className="input2" >
@@ -238,35 +243,45 @@ deleteUpdate=(trashNoteId)=>{
                                         placeholder="Take a note ...."
                                         id="description"
                                         value={key.description}
-                                        onClick={() => this.handleUpdate(key.id, key.title, key.description,key.color)}
+                                        onClick={() => this.handleUpdate(key.id, key.title, key.description, key.color)}
                                     />
                                 </div>
-                                </div>
+                            </div>
 
-                                <div>
+                            <div>
                                 {/* <Paper style={{
                                     backgroundColor: "transparent",
                                     boxShadow: "0px 1px 3px 0px rgba(0, 0, 0, 0), 0px 1px 1px 0px rgba(0, 0, 0, 0), 0px 2px 1px -1px rgba(0, 0, 0, 0)"
                                 }}
                                 > */}
 
-                                    {key.noteLabels.map(data => {
-                                        console.log("chip data.............", data.label);
-                                        console.log("notelabeles in gettallnotes",key.noteLabels);
-                                        return (
-                                            <Chip className="chip" onDelete={()=>this.handleDelete(data.id,key.id)}
+                                {key.noteLabels.map(data => {
+                                    console.log("chip data.............", data.label);
+                                    console.log("notelabeles in gettallnotes", key.noteLabels);
+                                    return (
+                                        <Chip style={{backgroundColor:"rgba(0,0,0,0.08)"}} className="chip" onDelete={() => this.handleDelete(data.id, key.id)}
                                             label={data.label}>
-                                             
-                                            </Chip>
-                                        );
-                                    })}
+
+                                        </Chip>
+                                    );
+                                })}
+                                  {key.reminder.map(data => {
+                                    console.log("chip data=>", data);
+                                    console.log("reminder in gettallnotes", key.reminder);
+                                    return (
+                                        <Chip style={{backgroundColor:"rgba(0,0,0,0.08)"}} className="chip" onDelete={() => this.handleDelete(data.id, key.id)}
+                                            reminder={data}>
+
+                                        </Chip>
+                                    );
+                                })}
                                 {/* </Paper> */}
-                                </div>
+                            </div>
 
                             <MuiThemeProvider theme={themes}>
                                 <div className="gellAllNotes-icons" id="gellAllNote-icons" >
                                     <Tooltip title="Remind me">
-                                        < AddAlertOutlinedIcon />
+                                        < ReminderComponent  notesId={key.id} />
                                     </Tooltip>
                                     <Tooltip title="Collaborator">
                                         <PersonAddOutlinedIcon />
@@ -291,7 +306,8 @@ deleteUpdate=(trashNoteId)=>{
                                         <MoreComponent
                                             noteID={key.id}
                                             deleteUpdate={this.deleteUpdate}
-                                            labels={key.noteLabels}/>
+                                            labels={key.noteLabels} 
+                                            TrashPropsToGetNote={this.handleTrashInGetnote}/>
                                     </Tooltip>
                                 </div>
                             </MuiThemeProvider>
@@ -352,7 +368,7 @@ deleteUpdate=(trashNoteId)=>{
                                                 </Tooltip>
                                                 <Tooltip title="More">
                                                     <MoreVertOutlinedIcon
-                                                        NoteId={key.id} 
+                                                        NoteId={key.id}
                                                         deleteUpdate={this.deleteUpdate} />
                                                 </Tooltip>
                                                 <Button

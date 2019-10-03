@@ -91,7 +91,6 @@ export default class ColorPaletteComponent extends Component {
             <ClickAwayListener onClickAway={this.handleClickAway}>
                 <ColorLensOutlinedIcon onClick={(event) => this.handleClick(event)} cursor="pointer" />
             </ClickAwayListener>
-
             </Tooltip>
             <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl}
                 style={{

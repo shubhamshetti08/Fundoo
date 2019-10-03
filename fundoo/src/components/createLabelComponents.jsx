@@ -83,7 +83,7 @@ export default class CreateLabelComponents extends Component {
             console.log('err in create label', err);
         })
     }
-    handleCheck = (labelId, checked) => {
+    handleCheck = (labelId) => {
             this.setState({
                 check: !this.state.check
             })

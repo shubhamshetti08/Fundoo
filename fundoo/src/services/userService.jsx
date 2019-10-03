@@ -103,8 +103,29 @@ export function noteLabels(data) {
         }
     })
 }
-export function deleteLabels(data, noteId, labelId) {
+exports.deleteLabels=(data, noteId, labelId)=>{
     return axios.post(baseURL + `/notes/${noteId}/addLabelToNotes/${labelId}/remove`, data, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+}
+exports.profileUpload=(uploads)=> {
+    console.log('-----',uploads);
+    const data=new FormData();
+    data.append('image',uploads)
+    return axios.post(baseURL + `/user/uploadProfileImage`, data, {
+        headers: {
+            'content-Type':'multipart/form-data',
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+}
+exports.addReminder=(data)=>{
+    console.log('service trash', data)
+    return axios.post(baseURL + '/notes/addUpdateReminderNotes', data, {
         headers: {
             Authorization: localStorage.getItem('token')
 
