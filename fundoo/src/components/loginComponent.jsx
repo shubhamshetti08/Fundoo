@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import { Card } from '@material-ui/core';
 import { userLogin } from '../services/userService';
 import ServiceCard from './serviceCardComponent';
+var Url ="http://fundoonotes.incubation.bridgelabz.com/"
+
 //import { blue } from '@material-ui/core/colors';
 import {withRouter} from 'react-router-dom';
 class login extends React.Component {
@@ -56,7 +58,7 @@ class login extends React.Component {
         }
 
     userLogin(loginDetails).then((res) => {
-        console.log('res from backend', res)
+        console.log('res in login-----------', res)
         this.setState({
             openSnackBar: true,
             SnackBarMessage: 'Registration Successfull'
@@ -66,6 +68,7 @@ class login extends React.Component {
         localStorage.setItem('lastName',res.data.lastName);
         localStorage.setItem('email',res.data.email);
         localStorage.setItem('userId',res.data.userId)
+        localStorage.setItem('profileimage',Url+res.data.imageUrl)
         this.props.history.push('/dashboard')
     }).catch((err) => {
         console.log('errr', err);

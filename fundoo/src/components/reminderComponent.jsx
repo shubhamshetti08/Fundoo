@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Tooltip, Button, MenuItem, createMuiTheme } from '@material-ui/core';
+import { Tooltip, Button,createMuiTheme } from '@material-ui/core';
 import { DateTimePicker } from 'material-ui-pickers';
 import Popper from '@material-ui/core/Popper';
 import 'date-fns';
@@ -23,6 +23,20 @@ const theme = createMuiTheme({
             }
         },MuiPickersDay:{
             isSelected: {
+            backgroundColor:"yellowgreen"
+            }
+        },MuiPickerDTTabs:{
+            tabs:{
+            backgroundColor:"yellowgreen"
+            }
+        },MuiPickersClockPointer:{
+            pointer:{
+            backgroundColor:"yellowgreen"
+            },thumb:{
+                border:"14px solid yellowgreen"
+               } 
+        },MuiPickersClock:{
+            pin:{
             backgroundColor:"yellowgreen"
             }
         }
@@ -56,6 +70,7 @@ class ReminderComponent extends Component {
     }
 
     handleReminderButton = () => {
+        console.log("reminder-notesId----", this.props.notesId);
         let data = {
             "noteIdList": [this.props.notesId],
             "reminder":this.state.selectedDate
@@ -63,6 +78,7 @@ class ReminderComponent extends Component {
         console.log("data in reminderCompo is ",data);  
         addReminder(data).then((res) => {
             console.log("response---- in reminder", res);
+            this.props.reminderPropsToGetNotes(true)
         }).catch((err) => {
             console.log('err in  remindercomp', err);
         })
@@ -90,7 +106,7 @@ class ReminderComponent extends Component {
                                 <DateTimePicker value={this.state.selectedDate} onChange={this.handleChangeDate} />
                             </MuiPickersUtilsProvider>
                             <div>
-                                <Button onClick={this.handleReminderButton}>Save</Button>
+                                <Button onClick={this.handleReminderButton}>Set Reminder</Button>
                             </div>
                         </Paper>
                     </Popper>

@@ -111,17 +111,28 @@ exports.deleteLabels=(data, noteId, labelId)=>{
         }
     })
 }
-exports.profileUpload=(uploads)=> {
-    console.log('-----',uploads);
-    const data=new FormData();
-    data.append('image',uploads)
-    return axios.post(baseURL + `/user/uploadProfileImage`, data, {
+exports.deleteReminder=(data)=>{
+    return axios.post(baseURL + `/notes/removeReminderNotes`, data, {
         headers: {
-            'content-Type':'multipart/form-data',
             Authorization: localStorage.getItem('token')
 
         }
     })
+}
+exports.profileUpload=async (upload)=> {
+        console.log("upload image in services");
+    
+    return await axios.post(baseURL + '/user/uploadProfileImage', upload, {
+        headers: {
+            'Content-Type':'multipart/form-data',
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+    // .then(res=>{
+    //     console.log("response"+res)
+        
+    // })
 }
 exports.addReminder=(data)=>{
     console.log('service trash', data)

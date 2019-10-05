@@ -62,6 +62,9 @@ moreNoteId:moreNoteId
     handleDeleteNote=(isTrash)=>{
         this.props.TrashPropsToGetNote(isTrash)
     }
+    handleCreateLabel=(isLabel)=>{
+        this.props.createLabelPropsToGetNote(isLabel)
+    }
     render() {
         // console.log("more"+this.props.labels);
         
@@ -75,7 +78,7 @@ moreNoteId:moreNoteId
                 >
                     <Paper className="trash-paper">
                     <MenuItem ><TrashComponent trashNoteId={this.props.noteID} deleteUpdate={this.deleteUpdate} trashToMore={this.handleDeleteNote}/></MenuItem>
-                        <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID} noteLabels={this.props.labels}/></MenuItem>
+                        <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID} noteLabels={this.props.labels} createLabelPropsToMore={this.handleCreateLabel}/></MenuItem>
                     </Paper>
                 </Popper>
             

@@ -571,11 +571,11 @@ only screen and (min-width: 600px) {
   align-items: center;
 }
 
-/* .avatar {
-  position: absolute;
-  display: flex;
-  padding-right: 10px;
-} */
+.avatar {
+width:45px;
+height: 45px;
+
+}
 .ref-list-grid {
   display: flex;
   flex-direction: row;
@@ -873,7 +873,10 @@ width:100%;
   flex-direction: column;
 }
 }
-/*---------------------------------------------createNoteLabelComponent--------------------------------------------------*/
+/* @media all and (max-width:568px ) and (min-width:320px) {
+
+} */
+/*---------------------------------------------mediaQuarry--------------------------------------------------*/
 .avatar1 {
 width: 80px;
 height: 80px;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, InputBase, Tooltip, Button, ClickAwayListener } from '@material-ui/core';
 // import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
+// import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 // import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
@@ -9,6 +9,7 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import { addNotes} from '../services/userService';
 import ColorPaletteComponent from './colorPaletteComponent';
+import ReminderComponent from './reminderComponent';
 // import { withRouter } from 'react-router-dom'
 // const theme = createMuiTheme({
 //     overrides: {
@@ -104,6 +105,11 @@ class CreateNotesComponent extends Component {
         })
         console.log('createnotes archive', this.state.archive);
     }
+    handleReminderInGetnote=(isRem)=>{
+        if(isRem){
+            this.getNotes()
+        }
+    }
     render() {
 
         return (
@@ -141,7 +147,10 @@ class CreateNotesComponent extends Component {
                             <div className="notes-icons">
                                 <div className="notes-icon-div ">
                                     <Tooltip title="Remind me">
-                                        < AddAlertOutlinedIcon />
+                                    < ReminderComponent 
+                                    notesId={""}
+                                        reminderPropsToGetNotes={this.handleReminderInGetnote}
+                                        />
                                     </Tooltip>
                                     <Tooltip title="Collaborator">
                                         <PersonAddOutlinedIcon />

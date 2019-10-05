@@ -97,6 +97,7 @@ export default class CreateLabelComponents extends Component {
                 // this.props.noteIdToLabel
                 .then((response) => {
                     console.log("response in note label", response);
+                    this.props.createLabelPropsToMore(true)
                 }).catch((err) => {
                     console.log("error in note label", err);
                 })

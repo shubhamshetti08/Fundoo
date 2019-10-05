@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAllNotes, colorChange, updateNotes, deleteLabels } from '../services/userService'
+import { getAllNotes, colorChange, updateNotes, deleteLabels,deleteReminder } from '../services/userService'
 import { Card, InputBase, Tooltip, Chip } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Dialog, DialogTitle, Button, DialogActions, DialogContent } from '@material-ui/core';
@@ -13,6 +13,8 @@ import ArchiveComponent from './archiveComponent';
 // import TrashComponent from './trashComponent';
 import MoreComponent from './moreComponent';
 import ReminderComponent from './reminderComponent';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import TagFacesIcon from '@material-ui/icons/TagFaces';
 // const themes = createMuiTheme({
 //     overrides: {
 //         MuiInputBase: {
@@ -89,8 +91,22 @@ export default class GetAllNoteComponent extends Component {
             // this.props.noteIdToLabel
             .then((response) => {
                 console.log("response in note label", response);
+                this.getNotes();
             }).catch((err) => {
                 console.log("error in note label", err);
+            })
+    }
+    handleDeleteReminder = (noteId) => {
+        var data = {
+           noteIdList:[noteId]
+        }
+        deleteReminder(data)
+            // this.props.noteIdToLabel
+            .then((response) => {
+                console.log("response in get all notes delete reminder", response);
+                this.getNotes();
+            }).catch((err) => {
+                console.log("error in get all notes delete reminder", err);
             })
     }
     handleOpen = () => {
@@ -210,6 +226,16 @@ export default class GetAllNoteComponent extends Component {
             this.getNotes()
         }
     }
+    handleReminderInGetnote=(isRem)=>{
+        if(isRem){
+            this.getNotes()
+        }
+    }
+    handleCreateLabel=(isLabel)=>{
+        if(isLabel){
+            this.getNotes()
+        }
+    }
 
     render() {
         const list = this.props.list ? "container1" : "container";
@@ -260,28 +286,32 @@ export default class GetAllNoteComponent extends Component {
                                     console.log("notelabeles in gettallnotes", key.noteLabels);
                                     return (
                                         <Chip style={{backgroundColor:"rgba(0,0,0,0.08)"}} className="chip" onDelete={() => this.handleDelete(data.id, key.id)}
-                                            label={data.label}>
-
-                                        </Chip>
-                                    );
-                                })}
-                                  {key.reminder.map(data => {
-                                    console.log("chip data=>", data);
-                                    console.log("reminder in gettallnotes", key.reminder);
-                                    return (
-                                        <Chip style={{backgroundColor:"rgba(0,0,0,0.08)"}} className="chip" onDelete={() => this.handleDelete(data.id, key.id)}
-                                            reminder={data}>
+                                        icon={<TagFacesIcon style={{color:"black"}}/>}
+                                        label={data.label}>
 
                                         </Chip>
                                     );
                                 })}
                                 {/* </Paper> */}
                             </div>
+                            <div>
+                            {key.reminder.map(data => {
+                                    console.log("chip data=>", data);
+                                    console.log("reminder in gettallnotes", key.reminder);
+                                    return (
+                                        <Chip style={{backgroundColor:"rgba(0,0,0,0.08)"}} className="chip"  onDelete={() => this.handleDeleteReminder(key.id)}
+                                        icon={<AccessTimeIcon style={{color:"black"}}/>} label={data.slice(0,21)}>
+
+                                        </Chip>
+                                    );
+                                })}
+                            </div>
 
                             <MuiThemeProvider theme={themes}>
                                 <div className="gellAllNotes-icons" id="gellAllNote-icons" >
                                     <Tooltip title="Remind me">
-                                        < ReminderComponent  notesId={key.id} />
+                                        < ReminderComponent  notesId={key.id}
+                                        reminderPropsToGetNotes={this.handleReminderInGetnote}/>
                                     </Tooltip>
                                     <Tooltip title="Collaborator">
                                         <PersonAddOutlinedIcon />
@@ -307,7 +337,8 @@ export default class GetAllNoteComponent extends Component {
                                             noteID={key.id}
                                             deleteUpdate={this.deleteUpdate}
                                             labels={key.noteLabels} 
-                                            TrashPropsToGetNote={this.handleTrashInGetnote}/>
+                                            TrashPropsToGetNote={this.handleTrashInGetnote}
+                                            createLabelPropsToGetNote={this.handleCreateLabel}/>
                                     </Tooltip>
                                 </div>
                             </MuiThemeProvider>

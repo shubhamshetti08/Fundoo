@@ -96,7 +96,7 @@ export default class DashboardComponent extends Component {
         })
     }
     handleReload = () => {
-        // window.location.reload();
+        window.location.reload();
     }
     handleGrid=()=>{
         this.setState({
