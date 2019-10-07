@@ -11,6 +11,7 @@ import Dashboard from './pages/dashboardPage';
 import CreateNotesComponent from './components/createNotesComponent'
 import GetAllNoteComponent from './components/getAllNoteComponent';
 import ColorPaletteComponent from './components/colorPaletteComponent';
+import GetReminderPage from './pages/getReminderPage';
 class App extends Component {
   render() {
     return (
@@ -25,6 +26,7 @@ class App extends Component {
       <Route path="/createNotes" component={CreateNotesComponent}></Route>
       <Route path="/getAllNotes" component={GetAllNoteComponent}></Route>
       <Route path="/color" component={ColorPaletteComponent}></Route>
+      <Route path="/reminder" component={GetReminderPage}></Route>
     </Router>
     );
   }

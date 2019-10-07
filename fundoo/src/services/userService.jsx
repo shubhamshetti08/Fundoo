@@ -143,3 +143,11 @@ exports.addReminder=(data)=>{
         }
     })
 }
+exports.getReminder=()=>{
+    return axios.get(baseURL + '/notes/getReminderNotesList',  {
+        headers: {
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+}

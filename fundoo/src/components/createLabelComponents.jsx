@@ -34,7 +34,6 @@ export default class CreateLabelComponents extends Component {
     }
     handleAddLabel = (event) => {
         this.setState({
-
             anchorEl: this.state.anchorEl ? !this.state.anchorEl : event.target
         })
         console.log("creayret mnmkjkj", this.state.anchorEl, this.state.poper);

@@ -53,10 +53,13 @@ class ReminderComponent extends Component {
             // '2014-08-18T21:11:54'
         }
     }
-    handleChangeDate = date => {
-        this.setState({
+    handleChangeDate =async date => {
+       await this.setState({
             selectedDate: date
         })
+        console.log("reminder date value in rem compnent",this.state.selectedDate);
+        
+        this.props.propsToCreateNote(this.state.selectedDate)
     }
     handleOpen = () => {
         this.setState({
@@ -71,6 +74,7 @@ class ReminderComponent extends Component {
 
     handleReminderButton = () => {
         console.log("reminder-notesId----", this.props.notesId);
+       
         let data = {
             "noteIdList": [this.props.notesId],
             "reminder":this.state.selectedDate
@@ -78,7 +82,9 @@ class ReminderComponent extends Component {
         console.log("data in reminderCompo is ",data);  
         addReminder(data).then((res) => {
             console.log("response---- in reminder", res);
-            this.props.reminderPropsToGetNotes(true)
+       this.props.reminderPropsToGetNotes(true)
+            this.props.reminderPropsToGetReminder(true)
+         
         }).catch((err) => {
             console.log('err in  remindercomp', err);
         })

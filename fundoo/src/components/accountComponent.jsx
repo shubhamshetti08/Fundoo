@@ -18,13 +18,13 @@ class AccountComponent extends Component {
             selected: ''
         }
     }
-    componentDidMount() {
-        if (localStorage.getItem("profileimage") !== 'undefined') {
-            this.setState({
-                pic: localStorage.getItem("profileimage")
-            })
-        }
-    }
+    // componentDidMount() {
+    //     if (localStorage.getItem("profileimage") !== 'undefined') {
+    //         this.setState({
+    //             pic: localStorage.getItem("profileimage")
+    //         })
+    //     }
+    // }
     handleToggle() {
         try {
             this.setState(state => ({ open: !state.open }));
@@ -54,19 +54,19 @@ class AccountComponent extends Component {
         data.append('file', e.target.files[0]);
         await profileUpload(data)
             .then((result) => {
-                console.log('backend image result', result);
+                // console.log('backend image result', result);
 
                 localStorage.setItem('profileimage', Url + result.data.status.imageUrl);
-                var image = localStorage.getItem("profileimage");
-                console.log("image url  ", image);
-                this.setState({
-                    // pic: image,
-                    imageSet: true,
-                    selected: Url + result.data.status.imageUrl
-                })
-                console.log('selected img---', this.state.selected);
+                // var image = localStorage.getItem("profileimage");
+                // console.log("image url  ", image);
+                // this.setState({
+                //     pic: image,
+                //     imageSet: true,
+                //     selected: Url + result.data.status.imageUrl
+                // })
+                // console.log('selected img---', this.state.selected);
 
-                localStorage.setItem('profileimage', this.state.selected);
+                // localStorage.setItem('profileimage', this.state.selected);
             })
     }
     render() {
@@ -93,11 +93,11 @@ class AccountComponent extends Component {
                                 <label className="label">
                                     <div className="avtar-email-div">
                                         <Avatar className="avatar1" alt="Remy Sharp" cursor="pointer" style={{ width: "80px", height: "80px" }} >
-                                            {this.state.imageSet ?
+                                            {/* {this.state.imageSet !== "" ?
                                                 <img src={this.state.selected} alt="profile"></img>
-                                                :
+                                                : */}
                                                 <img src={localStorage.getItem('profileimage')} alt="profile"></img>
-                                            }
+                                            {/* } */}
                                         </Avatar>
                                         <input type='file' id='file' onChange={(event) => this.profile(event)}
                                             style={{ display: 'none' }} />

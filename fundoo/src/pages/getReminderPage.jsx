@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import DashboardComponent from '../components/dashboardComponent'
 import CreateNotesComponent from '../components/createNotesComponent';
 import GetAllNoteComponent from '../components/getAllNoteComponent';
-import { withRouter } from 'react-router-dom'
-class DashboardPage extends Component {
+import GetReminderComponent from '../components/getReminderComponent'
+class GetReminderPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,16 +28,18 @@ class DashboardPage extends Component {
         })
     }
     render() {
+        console.log('getRemPage',this.props);
+        
         return (
-            <div className="dashboardpage-maindiv">
+            <div>
 
                 <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
                 <div><CreateNotesComponent getNew={this.display} /></div>
-                <div className="dashboardpage-allnotes"><GetAllNoteComponent ref={this.newNote}
-                    searchText={this.state.searchText} list={this.state.list} /></div>
+                <div className="dashboardpage-allnotes">
+                    <GetReminderComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} />
+                </div>               
             </div>
-
         )
     }
 }
-export default withRouter(DashboardPage);
+export default GetReminderPage;

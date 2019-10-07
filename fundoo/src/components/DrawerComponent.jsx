@@ -7,6 +7,7 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'; import { withRouter } from 'react-router-dom';
 import NotificationsOutlinedIcon from '@material-ui/icons/NotificationsOutlined';
 import { MenuItem, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import ReminderComponent from './reminderComponent';
 // import { yellow } from '@material-ui/core/colors';
 // import { width } from '@material-ui/system';
 const theme = createMuiTheme({
@@ -34,7 +35,8 @@ class DrawerComponent extends Component {
             open: false,
             open2: false,
             open3: false,
-            color: null
+            color: null,
+            appTitle:''
         }
     }
     handleColor = () => {
@@ -46,16 +48,19 @@ class DrawerComponent extends Component {
             open: !this.state.open,
             color: "#FEEFC3"
         })
+        this.props.history.push('/dashboard');
     }
-    handleColor1 = () => {
-        this.setState({
+    handleColor1 = async () => {
+       await this.setState({
             open1: !this.state.open1,
             open: false,
             open2: false,
             open3:false,
             open4:false,
-            color: "#FEEFC3"
+            color: "#FEEFC3",
+            appTitle:"Reminder"
         })
+        this.props.history.push('/reminder',this.state.appTitle);
     }
     handleColor2 = () => {
         this.setState({
@@ -103,7 +108,7 @@ class DrawerComponent extends Component {
                                 <span className="drawer-names">Notes</span>
                             </MenuItem>
                             <MenuItem id="notification" onClick={this.handleColor1} style={{ backgroundColor: temp2 }}>
-                                <NotificationsOutlinedIcon />
+                                <ReminderComponent/>
                                 <span className="drawer-names">Reminders</span>
                             </MenuItem>
                             <Divider />
