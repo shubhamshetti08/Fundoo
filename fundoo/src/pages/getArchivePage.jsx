@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import DashboardComponent from '../components/dashboardComponent'
-import CreateNotesComponent from '../components/createNotesComponent';
-import GetReminderComponent from '../components/getReminderComponent'
-class GetReminderPage extends Component {
-    constructor(props) {
+import GetArchiveComponent from '../components/getArchiveComponent';
+class GetArchivePage extends Component {
+        constructor(props) {
         super(props);
         this.state = {
             searchText: '',
@@ -27,18 +26,14 @@ class GetReminderPage extends Component {
         })
     }
     render() {
-        console.log('getRemPage',this.props);
-        
         return (
             <div>
-
-                <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
-                <div><CreateNotesComponent getNew={this.display} /></div>
-                <div className="dashboardpage-allnotes">
-                    <GetReminderComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} />
-                </div>               
+                  <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
+                <div className="getArchivepage-allnotes">
+                    <GetArchiveComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} />
+                </div>   
             </div>
         )
     }
 }
-export default GetReminderPage;
+export default GetArchivePage;

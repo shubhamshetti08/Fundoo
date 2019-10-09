@@ -67,7 +67,6 @@ moreNoteId:moreNoteId
     }
     render() {
         // console.log("more"+this.props.labels);
-        
         return (
             // <ClickAwayListener onClickAway={this.handleClickAway}>
             <div>
@@ -81,10 +80,8 @@ moreNoteId:moreNoteId
                         <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID} noteLabels={this.props.labels} createLabelPropsToMore={this.handleCreateLabel}/></MenuItem>
                     </Paper>
                 </Popper>
-            
             </div>
-            //  </ClickAwayListener>
-           
+            //  </ClickAwayListener>          
         )
     }
 }

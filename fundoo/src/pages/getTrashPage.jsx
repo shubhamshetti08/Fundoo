@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import DashboardComponent from '../components/dashboardComponent'
-import CreateNotesComponent from '../components/createNotesComponent';
-import GetReminderComponent from '../components/getReminderComponent'
-class GetReminderPage extends Component {
+import GetTrashComponent from '../components/getTrashComponent';
+class GetTrashPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,18 +26,14 @@ class GetReminderPage extends Component {
         })
     }
     render() {
-        console.log('getRemPage',this.props);
-        
         return (
             <div>
-
-                <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
-                <div><CreateNotesComponent getNew={this.display} /></div>
-                <div className="dashboardpage-allnotes">
-                    <GetReminderComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} />
-                </div>               
+                  <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
+                <div className="getArchivepage-allnotes">
+                    <GetTrashComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} />
+                </div>   
             </div>
         )
     }
 }
-export default GetReminderPage;
+export default GetTrashPage;

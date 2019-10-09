@@ -171,7 +171,7 @@ class CreateNotesComponent extends Component {
                         <div className="notes-icons">
                             <div className="notes-icon-div ">
                                 <Tooltip title="Remind me">
-                                    < ReminderComponent
+                                    <ReminderComponent
                                         notesId={""}
                                         // reminderPropsToGetNotes={this.handleReminderInGetnote}
                                         propsToCreateNote={this.handleRemValue}

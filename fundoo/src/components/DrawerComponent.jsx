@@ -72,25 +72,31 @@ class DrawerComponent extends Component {
             color: "#FEEFC3"
         })
     }
-    handleColor3 = () => {
-        this.setState({
+    handleColor3 =async  () => {
+       await this.setState({
             open3: !this.state.open3,
             open: false,
             open1: false,
             open2:false,
             open4:false,
-            color: "#FEEFC3"
+            color: "#FEEFC3",
+            appTitle:"Archive"
         })
+        this.props.history.push('/archive',this.state.appTitle);
+        console.log('title----',this.state.appTitle);
+        
     }
-    handleColor4 = () => {
-        this.setState({
+    handleColor4 =async () => {
+       await this.setState({
             open4: !this.state.open4,
             open: false,
             open1: false,
             open2:false,
             open3:false,
-            color: "#FEEFC3"
+            color: "#FEEFC3",
+            appTitle:"Trash"
         })
+        this.props.history.push('/trash',this.state.appTitle);
     }
     render() {
         var temp1 = this.state.open ? this.state.color : null

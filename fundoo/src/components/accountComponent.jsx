@@ -55,7 +55,6 @@ class AccountComponent extends Component {
         await profileUpload(data)
             .then((result) => {
                 // console.log('backend image result', result);
-
                 localStorage.setItem('profileimage', Url + result.data.status.imageUrl);
                 // var image = localStorage.getItem("profileimage");
                 // console.log("image url  ", image);

@@ -903,3 +903,26 @@ align-items: center;
 
 }
 /*---------------------------------------------reminderComponent--------------------------------------------------*/
+.getArchivepage-allnotes{
+  width: 100%;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-top: 10%;
+}
+/*---------------------------------------------getArchive--------------------------------------------------*/
+.getTrash-icons {
+  visibility: hidden;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  /* color: white; */
+  padding-top: 10%;
+  padding-bottom: 7%;
+}
+  .get-card1:hover .getTrash-icons
+  {
+  visibility: visible;
+}
+
+  /*---------------------------------------------getTrashComp--------------------------------------------------*/

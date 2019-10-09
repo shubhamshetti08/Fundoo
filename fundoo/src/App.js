@@ -12,6 +12,9 @@ import CreateNotesComponent from './components/createNotesComponent'
 import GetAllNoteComponent from './components/getAllNoteComponent';
 import ColorPaletteComponent from './components/colorPaletteComponent';
 import GetReminderPage from './pages/getReminderPage';
+import GetTrashPage from './pages/getTrashPage';
+import GetArchivePage from './pages/getArchivePage';
+
 class App extends Component {
   render() {
     return (
@@ -27,6 +30,8 @@ class App extends Component {
       <Route path="/getAllNotes" component={GetAllNoteComponent}></Route>
       <Route path="/color" component={ColorPaletteComponent}></Route>
       <Route path="/reminder" component={GetReminderPage}></Route>
+      <Route path="/trash" component={GetTrashPage}></Route>
+      <Route path="/archive" component={GetArchivePage}></Route>
     </Router>
     );
   }

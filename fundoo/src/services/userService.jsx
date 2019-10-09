@@ -135,7 +135,7 @@ exports.profileUpload=async (upload)=> {
     // })
 }
 exports.addReminder=(data)=>{
-    console.log('service trash', data)
+    console.log('service addReminder', data)
     return axios.post(baseURL + '/notes/addUpdateReminderNotes', data, {
         headers: {
             Authorization: localStorage.getItem('token')
@@ -145,6 +145,31 @@ exports.addReminder=(data)=>{
 }
 exports.getReminder=()=>{
     return axios.get(baseURL + '/notes/getReminderNotesList',  {
+        headers: {
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+}
+exports.getTrash=()=>{
+    return axios.get(baseURL + '/notes/getTrashNotesList',  {
+        headers: {
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+}
+exports.getArchive=()=>{
+    return axios.get(baseURL + '/notes/getArchiveNotesList',  {
+        headers: {
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+}
+exports.deleteForever=(data)=>{
+    console.log('service deleteForever', data)
+    return axios.post(baseURL + '/notes/deleteForeverNotes',data,  {
         headers: {
             Authorization: localStorage.getItem('token')
 
