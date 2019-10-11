@@ -89,7 +89,9 @@ class CreateNotesComponent extends Component {
         this.setState({
             takeNote: false,
             title: '',
-            description: ''
+            description: '',
+            color:'',
+            rem:''
         })
     }
     handleColor = async (col) => {

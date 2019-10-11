@@ -531,9 +531,9 @@ only screen and (min-width: 600px) {
 } */
 .refreshicon {
   /* animation: rotate-spin 5s linear; */
-  -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
   color: #5f6368;
   /* padding-left: 80px; */
   /* position: absolute; */
@@ -559,9 +559,24 @@ only screen and (min-width: 600px) {
     transform: rotate(359deg);
   }
 } */
-@-moz-keyframes spin { 50% { -moz-transform: rotateY(90deg); } }
-@-webkit-keyframes spin { 50% { -webkit-transform: rotateY(90deg); } }
-@keyframes spin { 50% { -webkit-transform: rotateY(90deg); transform:rotateY(90deg); } }
+@-moz-keyframes spin {
+  50% {
+    -moz-transform: rotateY(90deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  50% {
+    -webkit-transform: rotateY(90deg);
+  }
+}
+
+@keyframes spin {
+  50% {
+    -webkit-transform: rotateY(90deg);
+    transform: rotateY(90deg);
+  }
+}
 
 .refreshdiv {
   width: 30%;
@@ -572,10 +587,11 @@ only screen and (min-width: 600px) {
 }
 
 .avatar {
-width:45px;
-height: 45px;
+  width: 45px;
+  height: 45px;
 
 }
+
 .ref-list-grid {
   display: flex;
   flex-direction: row;
@@ -706,23 +722,27 @@ height: 45px;
   ;
   flex-wrap: wrap;
 }
+
 .container1 {
-width: 47%;
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
+  width: 47%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
+
 .get-contents {
   padding-bottom: 3%;
   height: auto;
   width: 31%;
-  min-width: 170px;
+  min-width: 200px;
 }
+
 .get-contents1 {
   width: 100%;
   padding-bottom: 3%;
 }
+
 .dashboardpage-allnotes {
   width: 100%;
   display: flex;
@@ -732,6 +752,7 @@ flex-wrap: wrap;
 
 .get-card2 {
   min-width: 40vw;
+  /* min-width: 28vw; */
   min-height: auto;
   border: 1px solid whitesmoke;
 }
@@ -781,6 +802,21 @@ flex-wrap: wrap;
   color: black;
 }
 
+.drawer-label {
+  padding: 4%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.drawer-labels {
+  overflow-y: scroll;
+  height: 55%;
+  /* display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: column;  */
+}
+
 /*---------------------------------------------drawerComponent--------------------------------------------------*/
 .colorpalette-card {
   display: flex;
@@ -823,8 +859,9 @@ flex-wrap: wrap;
   max-height: 150px;
   width: 100%;
 }
-.account-paper{
-width:100%;
+
+.account-paper {
+  width: 100%;
 }
 
 /*---------------------------------------------trashComponent--------------------------------------------------*/
@@ -845,7 +882,8 @@ width:100%;
     padding-top: 5%;
 
   }
-.createNotes-card1 {
+
+  .createNotes-card1 {
     height: 22px;
     width: 600px;
     display: -ms-flexbox;
@@ -859,57 +897,63 @@ width:100%;
     font-size: 22px;
     font-weight: 400;
     font-family: Roboto, Arial, sans-serif;
-   
+
     margin-top: 24%;
+  }
+
+  .createNotes-card2 {
+    height: auto;
+    width: 600px;
+    display: -ms-flexbox;
+    display: flex;
+    border-color: #e0e0e0;
+    margin-top: 22%;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
 }
-.createNotes-card2 {
-  height: auto;
-  width: 600px;
-  display: -ms-flexbox;
-  display: flex;
-  border-color: #e0e0e0;
-  margin-top: 22%;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-}
+
 /* @media all and (max-width:568px ) and (min-width:320px) {
 
 } */
 /*---------------------------------------------mediaQuarry--------------------------------------------------*/
 .avatar1 {
-width: 80px;
-height: 80px;
-margin: 3%;
+  width: 80px;
+  height: 80px;
+  margin: 3%;
 }
-.account-buttons{
-width: 100%;
-display: flex;
-justify-content: space-between;
-padding: 10px 2px 10px 0px;
-background-color: #f5f5f5;
+
+.account-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 2px 10px 0px;
+  background-color: #f5f5f5;
 }
-.avtar-email-div{
+
+.avtar-email-div {
   display: flex;
   flex-direction: row;
 }
-.account-name-email{
-display: flex;
-justify-content: center;
-align-items: center;
-}
-/*---------------------------------------------accountComponent--------------------------------------------------*/
-.reminder-paper{
 
+.account-name-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/*---------------------------------------------accountComponent--------------------------------------------------*/
+.reminder-paper {}
+
 /*---------------------------------------------reminderComponent--------------------------------------------------*/
-.getArchivepage-allnotes{
+.getArchivepage-allnotes {
   width: 100%;
   display: flex;
   -ms-flex-pack: center;
   justify-content: center;
   padding-top: 10%;
 }
+
 /*---------------------------------------------getArchive--------------------------------------------------*/
 .getTrash-icons {
   visibility: hidden;
@@ -920,9 +964,34 @@ align-items: center;
   padding-top: 10%;
   padding-bottom: 7%;
 }
-  .get-card1:hover .getTrash-icons
-  {
+
+.get-card1:hover .getTrash-icons {
   visibility: visible;
 }
 
-  /*---------------------------------------------getTrashComp--------------------------------------------------*/
+/*---------------------------------------------getTrashComp--------------------------------------------------*/
+.edit-label-input {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.edit-label-div{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 3% 0% 3% 0%;
+}
+.edit-label-labelmap{
+  overflow-y:scroll;
+   max-height : 250px;
+   display: flex;
+   flex-direction: column;
+   padding: 23px;
+}
+.edit-label-card{
+  min-width: 28vw;
+  min-height: auto;
+  border: 1px solid whitesmoke;
+}
+/*---------------------------------------------editlabel--------------------------------------------------*/

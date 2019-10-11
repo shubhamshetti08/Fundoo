@@ -75,10 +75,10 @@ class AccountComponent extends Component {
         return (
             <div>
                 <Tooltip title="change profile pic">
-                    <ClickAwayListener onClickAway={this.handleClickAway}>
+                    {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
                         <Avatar src={localStorage.getItem('profileimage')} className="avatar" alt="Remy Sharp" onClick={(event) => this.handleClick(event)} cursor="pointer"
                         ></Avatar>
-                    </ClickAwayListener>
+                    {/* </ClickAwayListener> */}
 
                 </Tooltip>
                 <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} placement="bottom-end"
@@ -87,7 +87,7 @@ class AccountComponent extends Component {
                     }}
                 >
                     <Paper className="account-paper" placement="bottom-end" >
-                        <ClickAwayListener onClickAway={this.handleToggle}>
+                        {/* <ClickAwayListener onClickAway={this.handleToggle}> */}
                             <div>
                                 <label className="label">
                                     <div className="avtar-email-div">
@@ -112,7 +112,7 @@ class AccountComponent extends Component {
                                     </div>
                                 </label>
                             </div>
-                        </ClickAwayListener>
+                        {/* </ClickAwayListener> */}
                     </Paper>
                 </Popper>
             </div>

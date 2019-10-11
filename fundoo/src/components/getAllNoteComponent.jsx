@@ -254,7 +254,7 @@ export default class GetAllNoteComponent extends Component {
                 return (
 
                     //  <div className="get-contents">
-                    <Draggable>
+                    // <Draggable>
                         <div className={list1}>
 
                             <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
@@ -424,7 +424,7 @@ export default class GetAllNoteComponent extends Component {
                                 </Dialog>
                             </MuiThemeProvider>
                         </div >
-                    </Draggable>
+                    // </Draggable>
                 )
             }
             return (null);

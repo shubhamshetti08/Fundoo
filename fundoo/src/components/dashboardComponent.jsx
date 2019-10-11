@@ -135,7 +135,7 @@ class DashboardComponent extends Component {
                                 <span className="dashboard-fundooname">
                                     {(this.props.location.state !== undefined) ? this.props.location.state : "Fundoo"}
                                 </span>
-                                <ClickAwayListener onClickAway={this.handleClickAway}>
+                                {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
                                     {(this.state.card) ? (
 
                                         <Card className="searchcard1" style={{ borderRadius: "10px 10px 10px 10px", backgroundColor: "antiquewhite" }}>
@@ -176,7 +176,7 @@ class DashboardComponent extends Component {
 
                                                 ) : (null)}  </div>)
                                     }
-                                </ClickAwayListener>
+                                {/* </ClickAwayListener> */}
                                 <div className="ref-list-grid">
                                     <div className="refreshdiv">
                                         <Tooltip title="Refresh">

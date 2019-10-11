@@ -58,16 +58,16 @@ export function trash(data) {
         }
     })
 }
-// export function label(data){
-//     console.log('service label',data)
+export function label(data){
+    console.log('service label',data)
 
-//     return axios.post(baseURL+'/noteLabels',data,{
-//         headers:{
-//             Authorization:localStorage.getItem('token')
+    return axios.post(baseURL+'/noteLabels',data,{
+        headers:{
+            Authorization:localStorage.getItem('token')
 
-//         }
-//     })
-// }
+        }
+    })
+}
 export function createlabel(id, data) {
     console.log('service label', id)
     return axios.post(baseURL + `/notes/${id}/noteLabels`, data, {
@@ -173,6 +173,27 @@ exports.deleteForever=(data)=>{
         headers: {
             Authorization: localStorage.getItem('token')
 
+        }
+    })
+}
+exports.deleteNoteLabel=(data)=>{
+    console.log('service deleteForever', data)
+    var id=data.labelId;
+    return axios.post(baseURL +`/noteLabels/${id}/deleteNoteLabel`,data,  {
+        headers: {
+            Authorization: localStorage.getItem('token')
+
+        }
+    })
+}
+export function editNoteLabel(data) {
+    const labelId = data.labelId;
+    var data1 = {
+        "label": data.label
+    }
+    return axios.post(baseURL + `/noteLabels/${labelId}/updateNoteLabel`, data1, {
+        headers: {
+            Authorization: localStorage.getItem('token')
         }
     })
 }
