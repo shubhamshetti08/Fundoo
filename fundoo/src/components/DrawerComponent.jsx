@@ -150,7 +150,7 @@ class DrawerComponent extends Component {
                                 <span className="drawer-names">Reminders</span>
                             </MenuItem>
                             <Divider />
-                            <div  style={{overflowY:"auto",height:"40%"}} >
+                            <div  style={{overflowY:"auto",height:"50%"}} >
                                 <h6 style={{ paddingLeft: "20px" }}>LABLES</h6>
                                 <div className="drawer-labels">{labelMap}</div>
                                 <span id="editlabel" onClick={this.handleColor2} style={{ backgroundColor: temp3 }}>

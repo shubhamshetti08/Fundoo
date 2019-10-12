@@ -177,9 +177,9 @@ exports.deleteForever=(data)=>{
     })
 }
 exports.deleteNoteLabel=(data)=>{
-    console.log('service deleteForever', data)
-    var id=data.labelId;
-    return axios.post(baseURL +`/noteLabels/${id}/deleteNoteLabel`,data,  {
+    console.log('service deleteNoteLabel', data)
+    const id=data.labelId;
+    return axios.delete(baseURL +`/noteLabels/${id}/deleteNoteLabel`,  {
         headers: {
             Authorization: localStorage.getItem('token')
 

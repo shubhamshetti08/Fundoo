@@ -16,6 +16,8 @@ import ReminderComponent from './reminderComponent';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import Draggable from 'react-draggable';
+import Slide from '@material-ui/core/Slide';
+
 // const themes = createMuiTheme({
 //     overrides: {
 //         MuiInputBase: {
@@ -430,9 +432,11 @@ export default class GetAllNoteComponent extends Component {
             return (null);
         })
         return (
+            // <Slide direction="right"  mountOnEnter unmountOnExit>
             <div className={list}>
                 {allNotes}
             </div>
+            // </Slide>
         )
     }
 }

@@ -219,9 +219,9 @@ handleRestore=()=>{
         const allTrash = this.state.trash.filter(titleDescSearch(this.props.searchText)).map((key) => {
             console.log('getTrash comp map key id---',key.id);
             // console.log('getTrash comp allTrash---',allTrash);
-            // if (key.isArchived === false && key.isDeleted === false) {
+            if ( key.isDeleted === true) {
                 return (
-                    (key.isArchived===false)&&
+                    // (key.isArchived===false)&&(key.isDeleted===true)&&
                     <div className={list1}>
                         <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
                         >
@@ -284,6 +284,7 @@ handleRestore=()=>{
                         </Card>
                     </div >
                 )
+                            }
         })
         return (
             <div className={list}>

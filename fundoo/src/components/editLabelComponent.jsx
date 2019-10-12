@@ -6,14 +6,16 @@ import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import { withRouter } from 'react-router-dom';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
-import { getLabels, label,deleteNoteLabel,editNoteLabel } from '../services/userService';
+import { getLabels, label, deleteNoteLabel, editNoteLabel } from '../services/userService';
 import EditIcon from '@material-ui/icons/Edit';
 import LabelIcon from '@material-ui/icons/Label';
 import AddIcon from '@material-ui/icons/Add';
 import Tippy from '@tippy.js/react';
 import 'tippy.js/dist/tippy.css';
-import { Card, InputBase, Button, MenuItem,DeleteIcon } from '@material-ui/core';
+import { Card, InputBase, Button, MenuItem } from '@material-ui/core';
+import { th } from 'date-fns/locale';
 // const theme = createMuiTheme({
 //     overrides: {
 //         MuiDrawer: {
@@ -114,18 +116,20 @@ class EditeLabelComponent extends Component {
 
         })
     }
-    handleMouseOut = async (labelName) => {
+    handleMouseOut = async (labelId) => {
         await this.setState({
-            mouse: false,
-            labelName: labelName
+            mouse: !this.state.mouse,
+            labelId:labelId
         })
+        console.log("state in mouseout", this.state.mouse);
     }
-    handleMouseOver = async (labelName) => {
-        console.log("label name is ", labelName);
+    handleMouseOver = async (labelId) => {
         await this.setState({
-            mouse: true,
-            labelName: labelName
+            mouse: !this.state.mouse,
+            labelId:labelId
         })
+        console.log("state in mouseover", this.state.mouse);
+
     }
     handleLabel = async (labelName, labelId) => {
         // console.log("label name is ", labelName);
@@ -174,35 +178,23 @@ class EditeLabelComponent extends Component {
     }
     render() {
         var labelMap = this.state.allLabels.map((key) => {
-            // console.log('map keyin edit label',this.state.labelId)
-            // console.log("label id is ", this.state.labelId);
-            // console.log("key id is ", key.id);
-            // console.log("label key---- ", key.label);
-            return (
-                // <div>
-                // <span id="note" className="edit-label-div">
-                //     <LabelIcon style={{ paddingRight: "15%", color: "grey" }} />
-                //     {key.label}
-                //     <Tippy content={<span>Edit Label</span>}>
-                //         <EditIcon style={{ color: "grey" }} />
-                //     </Tippy>
 
-                // </span>
-                // className="label1-map"
-                 <div  className="edit-label-div">
-                    {/* {this.state.trueIcon && key.id === this.state.labelId ? <DeleteIcon
-                        onClick={() => this.handleDeleteLabel(key.id)} /> : */}
-                        {console.log('----',key.label)}
-                        {this.state.mouse && key.label === this.state.labelName ?
-                            <DeleteIcon
-                                onMouseOut={() => this.handleMouseOut(key.label)}
-                                onClick={() => this.handleDeleteLabel(key.id)} /> :
-                                
-                            < LabelIcon style={{ paddingRight: "15%", color: "grey" }}
-                                onClick={() => this.handleMouseOver(key.label)}
-                            />
-                     }
-                   {this.state.input && key.id === this.state.labelId ?
+            return (
+
+                <div className="edit-label-div">
+                    {(this.state.mouse && key.id===this.state.labelId) ?
+                        <div 
+                        onMouseLeave={()=>this.handleMouseOut(key.id)}
+                           onClick={() => this.handleDeleteLabel(key.id)}
+                        ><DeleteIcon /></div>
+                        :
+                        <div 
+                        onMouseEnter={()=>this.handleMouseOver(key.id)}
+                         onClick={() => this.handleDeleteLabel(key.id)}>
+                            < LabelIcon style={{ paddingRight: "15%", color: "grey" }}/>
+                            </div>
+                    }
+                 {this.state.input && key.id === this.state.labelId ?
                         <InputBase
                             id="title"
                             value={this.state.labelName}
@@ -215,14 +207,13 @@ class EditeLabelComponent extends Component {
                             onClick={() => this.handleLabel(key.label, key.id)}
                         />
                     }
-                    {this.state.trueIcon && key.id === this.state.labelId ?
+                      {this.state.input && key.id === this.state.labelId ?
                         <DoneOutlinedIcon onClick={this.handleDoneLables} /> :
                         <Tippy content={<span>Edit Label</span>}>
                          <EditIcon style={{ color: "grey" }} />
                     </Tippy>
-                    }
-                </div> 
-                // </div> 
+                    } 
+                </div>
             )
         })
         return (
@@ -297,3 +288,18 @@ class EditeLabelComponent extends Component {
 }
 
 export default withRouter(EditeLabelComponent)
+// <div>
+// <span id="note" className="edit-label-div">
+//     <LabelIcon style={{ paddingRight: "15%", color: "grey" }} />
+//     {key.label}
+//     <Tippy content={<span>Edit Label</span>}>
+//         <EditIcon style={{ color: "grey" }} />
+//     </Tippy>
+
+// </span>
+// className="label1-map" && key.id === this.state.labelId 
+
+
+
+
+

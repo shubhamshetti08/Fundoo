@@ -10,6 +10,8 @@ import ClearIcon from '@material-ui/icons/Clear';
 // import Avatar from '@material-ui/core/Avatar';
 import DrawerComponent from '../components/DrawerComponent';
 import AccountComponent from './accountComponent';
+import styled,{keyframes} from 'styled-components';
+import {bounce} from 'react-animations';
 import {withRouter} from 'react-router-dom'
 const theme = createMuiTheme({
     overrides: {
@@ -26,6 +28,7 @@ const theme = createMuiTheme({
         }
     }
 })
+const Bounce=styled.div`animation:3s ${keyframes `${bounce}`} linear`;
 
 class DashboardComponent extends Component {
     constructor() {
@@ -129,12 +132,15 @@ class DashboardComponent extends Component {
                                     </IconButton>
                                 </Tooltip>
                                 <DrawerComponent menuSelect={this.state.menu} />
+                                {(this.props.location.state === undefined) ?
                                 <img className="keep-image" alt="" aria-hidden="true" src={require("../assets/images/keep.png")}
-                                    style={{ width: "40px", height: "40px" }}>
-                                </img>
+                                    style={{ width: "40px", height: "40px" }}> 
+                                </img>:null}
+                                <Bounce>
                                 <span className="dashboard-fundooname">
                                     {(this.props.location.state !== undefined) ? this.props.location.state : "Fundoo"}
                                 </span>
+                                </Bounce>
                                 {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
                                     {(this.state.card) ? (
 

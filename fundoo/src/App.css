@@ -634,6 +634,7 @@ only screen and (min-width: 600px) {
   font-family: Roboto, Arial, sans-serif;
   /* margin-top: 20%; */
   /* position: absolute; */
+  justify-content: space-between;
   margin-top: 10%;
 }
 
@@ -689,6 +690,23 @@ only screen and (min-width: 600px) {
   display: flex;
   justify-content: center;
 } */
+.createnotes-done{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.createNotes-card2-checklist{
+  display: flex;
+  width: 96%;
+  border-radius: 30px 30px 30px 30px;
+
+}
+.createNotes-card2-checklist{
+  display: flex;
+  width: 96%;
+  justify-content: space-between;
+  flex-direction: row;
+}
 /*---------------------------------------------createNotes--------------------------------------------------*/
 .get-card1 {
   min-width: auto;

@@ -205,9 +205,9 @@ class GetTrashComponent extends Component {
         const allArchive = this.state.archive.filter(titleDescSearch(this.props.searchText)).map((key) => {
             // console.log('getArchive comp map key---',key);
             // console.log('getArchive comp allArchive---',allArchive);
-            // if (key.isArchived === false && key.isDeleted === false) {
+            if (key.isArchived === true && key.isDeleted === false) {
             return (
-                (key.isDeleted === false) &&
+                // (key.isDeleted === false) &&(key.isArchived===true)&&
                 <div className={list1}>
                     <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
                     >
@@ -358,6 +358,7 @@ class GetTrashComponent extends Component {
                     </MuiThemeProvider>
                 </div >
             )
+                                }
         })
         return (
             <div className={list}>
