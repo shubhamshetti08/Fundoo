@@ -76,7 +76,8 @@ class EditeLabelComponent extends Component {
     }
     handleClear = () => {
         this.setState({
-            title: ''
+            title: '',
+            opens:false
         })
     }
     handleDone = () => {
@@ -186,7 +187,9 @@ class EditeLabelComponent extends Component {
                         <div 
                         onMouseLeave={()=>this.handleMouseOut(key.id)}
                            onClick={() => this.handleDeleteLabel(key.id)}
-                        ><DeleteIcon /></div>
+                        >
+                            <DeleteIcon />
+                            </div>
                         :
                         <div 
                         onMouseEnter={()=>this.handleMouseOver(key.id)}
@@ -210,7 +213,7 @@ class EditeLabelComponent extends Component {
                       {this.state.input && key.id === this.state.labelId ?
                         <DoneOutlinedIcon onClick={this.handleDoneLables} /> :
                         <Tippy content={<span>Edit Label</span>}>
-                         <EditIcon style={{ color: "grey" }} />
+                         <EditIcon style={{ color: "grey" }} onClick={() => this.handleLabel(key.label, key.id)}/>
                     </Tippy>
                     } 
                 </div>

@@ -29,7 +29,6 @@ class MoreComponent extends Component {
             create: true
         })
     }
-   
     handleOpenPopper(e) {
         this.setState({
             anchorEl: this.state.anchorEl ?  !this.state.anchorEl : e.target

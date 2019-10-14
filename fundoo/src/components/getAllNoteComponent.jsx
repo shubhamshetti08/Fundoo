@@ -15,6 +15,7 @@ import MoreComponent from './moreComponent';
 import ReminderComponent from './reminderComponent';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
+import CollaboratorComponent from "../components/collaboratorComponent"
 import Draggable from 'react-draggable';
 import Slide from '@material-ui/core/Slide';
 
@@ -244,6 +245,11 @@ export default class GetAllNoteComponent extends Component {
             this.getNotes()
         }
     }
+    handleColab =(isColab)=>{
+        if (isColab) {
+            this.getNotes()
+        }
+    }
     render() {
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
@@ -326,7 +332,9 @@ export default class GetAllNoteComponent extends Component {
                                                 reminderPropsToGetNotes={this.handleReminderInGetnote} />
                                         </Tooltip>
                                         <Tooltip title="Collaborator">
-                                            <PersonAddOutlinedIcon />
+                                            <CollaboratorComponent noteToCollab={key.id}
+                                            addCollab={this.handleColab}/>
+                                            {/* <PersonAddOutlinedIcon /> */}
                                         </Tooltip>
                                         <Tooltip title="Change color">
                                             <ColorPaletteComponent

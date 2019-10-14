@@ -1,0 +1,13 @@
+.trash-checkbox {
+    overflow-y: auto;
+    max-height: 170px;
+    width: 100%;
+  }
+  
+  .drawer-data:focus {
+    background-color: aquamarine;
+  }
+  .collaborator-buttons{
+      display: flex;
+      justify-content: space-between
+  }

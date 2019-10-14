@@ -197,3 +197,36 @@ export function editNoteLabel(data) {
         }
     })
 }
+export function removeCollabNotes(data) {
+    const id = data.id;
+    const  collaboratorUserId=data.collaboratorUserId;
+    return axios.delete(baseURL + `/notes/${id}/removeCollaboratorsNotes/${collaboratorUserId}`, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
+
+export function addCollaboratorNotes(data, id) {
+    console.log("data1/n id", data, id);
+    return axios.post(baseURL + `/notes/${id}/AddcollaboratorsNotes`, data, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
+export function searchUserList(data) {
+    return axios.post(baseURL + '/user/searchUserList', data, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
+
+export function getUserEmails() {
+    return axios.get(baseURL + '/user', {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
