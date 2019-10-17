@@ -132,13 +132,16 @@ class DashboardComponent extends Component {
                                     </IconButton>
                                 </Tooltip>
                                 <DrawerComponent menuSelect={this.state.menu} />
-                                {(this.props.location.state === undefined) ?
+                               
+                                {(this.props.location.state === undefined ||this.props.location.state[3]==='editor') ?
                                 <img className="keep-image" alt="" aria-hidden="true" src={require("../assets/images/keep.png")}
                                     style={{ width: "40px", height: "40px" }}> 
                                 </img>:null}
                                 <Bounce>
                                 <span className="dashboard-fundooname">
-                                    {(this.props.location.state !== undefined) ? this.props.location.state : "Fundoo"}
+                                  {console.log('name-----',this.props.location.state )}
+                                  
+                                    {(this.props.location.state !== undefined && this.props.location.state[3]!=='editor') ? this.props.location.state : "Fundoo"}
                                 </span>
                                 </Bounce>
                                 {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
@@ -148,12 +151,14 @@ class DashboardComponent extends Component {
                                             <div className="searchdiv1">
                                                 <SearchIcon className="searchicon1" style={{ width: "24px", height: "24px" }} />
                                             </div>
+                                            <div>
                                             <InputBase className="dashboard-searchbar1" autoComplete="off"
                                                 placeholder="Search" onKeyPress={this.handleSearchClick}
                                                 onChange={this.handleSearchText}
                                                 value={this.state.searchText}
                                             // inputProps={{ 'aria-label': 'search' }}
                                             />
+                                            </div>
                                             {(this.state.searchText) ? (
                                                 <div className="cleardiv1">
                                                     <ClearIcon className="clearicon1" style={{ width: "24px", height: "24px" }}
@@ -166,7 +171,8 @@ class DashboardComponent extends Component {
                                             <div className="searchcard" style={{ borderRadius: "10px 10px 10px 10px" }}>
                                                 <div className="searchdiv">
                                                     <SearchIcon className="searchicon" style={{ width: "24px", height: "24px" }} />
-                                                </div>
+                                                </div >
+                                                <div className="dashboard-searchbar-div">
                                                 <InputBase className="dashboard-searchbar" autoComplete="off"
                                                     placeholder="Search" onKeyPress={this.handleSearchClick}
                                                     // onChange={this.handleSearchText}
@@ -174,6 +180,7 @@ class DashboardComponent extends Component {
                                                     onClick={this.handleSearchCard}
                                                 // inputProps={{ 'aria-label': 'search' }}
                                                 />
+                                                </div>
                                                 {(this.state.searchText) ? (
                                                     <div className="cleardiv">
                                                         <ClearIcon className="clearicon" style={{ width: "24px", height: "24px" }}
@@ -183,6 +190,7 @@ class DashboardComponent extends Component {
                                                 ) : (null)}  </div>)
                                     }
                                 {/* </ClickAwayListener> */}
+                                <div className="ref-list-grid-avtar">
                                 <div className="ref-list-grid">
                                     <div className="refreshdiv">
                                         <Tooltip title="Refresh">
@@ -209,6 +217,7 @@ class DashboardComponent extends Component {
                                 {/* <Avatar className="avatar" alt="Remy Sharp" /> */}
                                 {/* src={require("../assets/images/keep.png")} */}
                                 <AccountComponent />
+                                </div>
                             </div>
 
                         </AppBar>

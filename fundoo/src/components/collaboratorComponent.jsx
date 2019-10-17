@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
-import { Dialog, Card, DialogTitle, DialogContent,
-     DialogActions, Button, InputBase, Divider, Avatar,MenuItem} from '@material-ui/core';
+import {
+    Dialog, Card, DialogTitle, DialogContent, Button, InputBase, Divider,
+     Avatar, MenuItem, MuiThemeProvider, createMuiTheme} from '@material-ui/core';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
-import { removeCollabNotes,searchUserList,addCollaboratorNotes,getUserEmails } from '../services/userService'
+import { removeCollabNotes, searchUserList, addCollaboratorNotes, getUserEmails, getAllNotes } from '../services/userService'
+const theme = createMuiTheme({
+    overrides: {
+        MuiDialogContent: {
+            root: {
+                padding: "0px 0px"
+            }
+        }
+    }
+})
 class CollaboratorComponent extends Component {
     constructor(props) {
         super(props);
@@ -44,6 +54,14 @@ class CollaboratorComponent extends Component {
     handleDialoge = () => {
         this.setState({
             open: !this.state.open
+        })
+    }
+    getNotes = () => {
+        getAllNotes().then((res) => {
+            // console.log('response is', res);
+            this.setState({
+                notes: res.data.data.data
+            })
         })
     }
     getEmails = () => {
@@ -143,109 +161,108 @@ class CollaboratorComponent extends Component {
             searchText: e.target.value
         })
     }
-
+    handleClose = () => {
+        this.setState({
+            open: false
+        })
+    }
     render() {
         return (
             <div>
                 <div onClick={this.handleDialoge}>
                     <PersonAddOutlinedIcon />
                 </div>
-                <div>
-                    <Dialog position="static"
-                        // onClose={this.handleClose}
-                        open={this.state.open}
-                    // aria-labelledby="alert-dialog-title"
-                    // aria-describedby="alert-dialog-description"
-                    >
-                        <Card className="get-card2" style={{ backgroundColor: this.state.colorUpdate }}>
-                            {/* this.state.colorUpdated */}
-                            <DialogTitle>
-                                Collaborators
+                <MuiThemeProvider theme={theme}>
+                    <div>
+                        <Dialog position="static"
+                            // onClose={this.handleClose}
+                            open={this.state.open}
+                        // aria-labelledby="alert-dialog-title"
+                        // aria-describedby="alert-dialog-description"
+                        >
+                            <Card className="get-card2" style={{ backgroundColor: this.state.colorUpdate }}>
+                                {/* this.state.colorUpdated */}
+                                <DialogTitle>
+                                    Collaborators
                                 </DialogTitle>
-                            <Divider />
-                            <DialogContent>
-                                <div>
-                                <div className="collaborator-avtar-email">
-                                <div className="collaborator-firstAvatar">
-                                    <Avatar style={{ width: "35px", height: "35px" }}>
-                                        <img alt="pic"
-                                            style={{
-                                                width: "-webkit-fill-available",
-                                                height: "-webkit-fill-available",
-                                            }}
-                                            src={localStorage.getItem('profileimage')}
-                                        />
-                                    </Avatar>
-                                </div>
-                                <div className="collaborator-name-email">
-                                            <span style={{ fontFamily: 'Roboto' }}>
-                                                <b>{localStorage.getItem('firstName')}
-                                                    {localStorage.getItem('lastName')}
-                                                </b>
-                                                <span style={{fontFamily:"Roboto arial sansSerif",paddingLeft:"10px"}}>
-                                                    (owner)</span>  
-                                            </span>
+                                <Divider />
+                                <DialogContent>
+                                    <div>
+                                        <div className="collaborator-avtar-email">
+                                            <div className="collaborator-firstAvatar">
+                                                <Avatar style={{ width: "35px", height: "35px" }}>
+                                                    <img alt="pic"
+                                                        style={{
+                                                            width: "-webkit-fill-available",
+                                                            height: "-webkit-fill-available",
+                                                        }}
+                                                        src={localStorage.getItem('profileimage')}
+                                                    />
+                                                </Avatar>
+                                            </div>
+                                            <div className="collaborator-name-email">
+                                                <span style={{ fontFamily: 'Roboto' }}>
+                                                    <b>{localStorage.getItem('firstName')}
+                                                        {localStorage.getItem('lastName')}
+                                                    </b>
+                                                    <span style={{ fontFamily: "Roboto arial sansSerif", paddingLeft: "10px" }}>
+                                                        (owner)</span>
+                                                </span>
                                                 <br />
-                                              {localStorage.getItem('email')}
-                                        </div>
+                                                {localStorage.getItem('email')}
+                                            </div>
                                         </div>
                                         {this.state.notes.map(key => {
-                                        // console.log("this.porops.collab", this.props.noteToCollab);
-                                        return (
-                                            key.id === this.props.noteToCollab ?
-                                                <div className="map-container">
-                                                    <div className="secondCollab-avatar">
-                                                        <div className="secondCollab-secondAvatar">
-                                                            {key.collaborators.map(col => {
-                                                                return (
-                                                                    <div className="para-collab">
-                                                                        <Avatar style={{
-                                                                            cursor: "pointer",
-                                                                            width: "35px", height: "35px"
-                                                                        }}>
-                                                                            {col.firstName.toUpperCase().charAt(0)}
-                                                                        </Avatar>
-                                                                        <span style={{ fontFamily: 'Roboto' }}>
-                                                                            {col.email}
-                                                                        </span>
-                                                                        <ClearOutlinedIcon
-                                                                            onClick={() => this.handleClear(col.userId)} />
-                                                                    </div>
-                                                                )
-                                                            })
-                                                            }
+                                            // console.log("this.porops.collab", this.props.noteToCollab);
+                                            return (
+                                                key.id === this.props.noteToCollab ?
+                                                    <div className="map-container">
+                                                        <div className="secondCollab-avatar">
+                                                            <div className="secondCollab-secondAvatar">
+                                                                {key.collaborators.map(col => {
+                                                                    return (
+                                                                        <div className="para-collab">
+                                                                            <Avatar style={{
+                                                                                cursor: "pointer",
+                                                                                width: "35px", height: "35px"
+                                                                            }}>
+                                                                                {col.firstName.toUpperCase().charAt(0)}
+                                                                            </Avatar>
+                                                                            <span style={{ fontFamily: 'Roboto' }}>
+                                                                                {col.email}
+                                                                            </span>
+                                                                            <ClearOutlinedIcon
+                                                                                onClick={() => this.handleClear(col.userId)} />
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                                }
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                : (null))
-                                    })
-                                    }
+                                                    : (null))
+                                        })
+                                        }
                                         <div className="collaborator-avtar-email">
-                                        <div className="collaborator-secondAvatar">
-                                    <Avatar style={{ width: "35px", height: "35px" }}>
-                                        <img alt="pic"
-                                            style={{
-                                                width: "-webkit-fill-available",
-                                                height: "-webkit-fill-available",
-                                            }}
-                                            src={localStorage.getItem('profileimage')}
-                                        />
-                                    </Avatar>
-                                </div>
-                                <div className="collaborator-name-email">
-                                        <InputBase className="get-in2"
-                                            fullWidth
-                                            placeholder="person or email to share with"
-                                            id="addperson"
-                                            value={this.state.searchText}
-                                            onKeyDown={this.handleTrueIcon}
-                                            onChange={this.handleCollabChange}
-                                            onKeyUp={this.handleSearch}
-                                        />
-                                    </div>
-                                    {this.state.trueIcon ? <DoneOutlinedIcon onClick={this.handleDone} />
+                                            <div className="collaborator-secondAvatar">
+                                            <Avatar style={{ width: "35px", height: "35px" }}>
+                                                <PersonAddOutlinedIcon />
+                                            </Avatar>
+                                            </div>
+                                            <div className="collaborator-name-email">
+                                                <InputBase className="get-in2"
+                                                    fullWidth
+                                                    placeholder="person or email to share with"
+                                                    id="addperson"
+                                                    value={this.state.searchText}
+                                                    onKeyDown={this.handleTrueIcon}
+                                                    onChange={this.handleCollabChange}
+                                                    onKeyUp={this.handleSearch}
+                                                />
+                                            </div>
+                                            {this.state.trueIcon ? <DoneOutlinedIcon onClick={this.handleDone} />
                                                 : (null)}
-                                                   <div>
+                                            <div>
                                                 {
                                                     this.state.card !== false && this.state.searchText !== '' ?
                                                         <Card className="collab-card">
@@ -263,30 +280,31 @@ class CollaboratorComponent extends Component {
                                                         (null)
                                                 }
                                             </div>
-                                </div>
-                                </div>
-                                <DialogActions>
-                                    <div className="collaborator-buttons">
-                                        <div >
-                                            <Button
-                                                onClick={this.handleClose}>
-                                                close
-                                        </Button>
-                                        </div>
-                                        <div>
-                                            <Button
-                                                onClick={this.handleSave}>
-                                                save
-                                        </Button>
                                         </div>
                                     </div>
-                                </DialogActions>
-                            </DialogContent>
-                        </Card>
-                    </Dialog>
-                </div>
+                                    <div>
+                                        <div className="collaborator-buttons">
+                                            <div >
+                                                <Button
+                                                    onClick={this.handleClose}>
+                                                    close
+                                        </Button>
+                                            </div>
+                                            <div>
+                                                <Button
+                                                    onClick={this.handleSave}>
+                                                    save
+                                        </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </DialogContent>
+                            </Card>
+                        </Dialog>
+                    </div>
+                    </MuiThemeProvider>
             </div>
-        )
-    }
-}
+                )
+            }
+        }
 export default CollaboratorComponent

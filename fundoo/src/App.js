@@ -14,6 +14,7 @@ import ColorPaletteComponent from './components/colorPaletteComponent';
 import GetReminderPage from './pages/getReminderPage';
 import GetTrashPage from './pages/getTrashPage';
 import GetArchivePage from './pages/getArchivePage';
+import EditorPage from './pages/editorPage';
 
 class App extends Component {
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
       <Route path="/reminder" component={GetReminderPage}></Route>
       <Route path="/trash" component={GetTrashPage}></Route>
       <Route path="/archive" component={GetArchivePage}></Route>
+      <Route path="/editor" component={EditorPage}></Route>
     </Router>
     );
   }

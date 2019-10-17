@@ -780,7 +780,17 @@ only screen and (min-width: 600px) {
   margin-right: 1%;
   margin-left: 2%;
 }
-
+.getAllNotes-colab-card{
+  padding: 10px;
+}
+.input1{
+  font-weight: bold;
+  color: #5f6368;
+  
+}
+.input2{
+  opacity: 0.6;
+}
 /*---------------------------------------------getAllNotes--------------------------------------------------*/
 .drawer-container {
   display: flex;
@@ -931,6 +941,76 @@ only screen and (min-width: 600px) {
     -ms-flex-direction: column;
     flex-direction: column;
   }
+  .dashboard-fundooname {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-size: 22px;
+    line-height: 24px;
+    font-family: 'Product Sans', Arial, sans-serif;
+    position: relative;
+    vertical-align: middle;
+    top: -1.5px;
+    color: #5f6368;
+    padding-left: 10px;
+    padding-right: 0px;
+    min-width: 3px;
+  }
+  /* .searchcard{
+    display: none;
+} */
+/* .dashboard-searchbar1{
+  display: none;
+} */
+.dashboard-searchbar{
+  display: none;
+}
+.dashboard-searcdiv1{
+  display: none;
+}
+  .searchdiv {
+    height: 52px;
+    width: 33px;
+    background-color: white;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 10px;
+}
+.searchicon {
+  background-color:white;
+  color: #5f6368;
+}
+.searchcard {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 12%;
+}
+.dashboard-searchbar-div{
+  display: none;
+}
+.ref-list-grid-avtar{
+display: flex;
+justify-content:space-evenly;
+flex-direction: row;
+width: 100%
+}
+.ref-list-grid {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #5f6368;
+  width:47%;
+}
 }
 
 /* @media all and (max-width:568px ) and (min-width:320px) {
@@ -1017,7 +1097,7 @@ only screen and (min-width: 600px) {
 /*---------------------------------------------editlabel--------------------------------------------------*/
 .collaborator-buttons{
   display: flex;
-width: 100%;
+width: 94%;
       background-color: rgba(0,0,0,0.07);
     display: -webkit-box;
     display: -webkit-flex;
@@ -1040,3 +1120,73 @@ width: 100%;
 }
 
 /*---------------------------------------------collaborator------------------------------------------------------*/
+.editor-page{
+  width: 82%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+margin-top: 2%;
+
+}
+/* .editor-comp{
+  margin-top: 10%;
+} */
+.editor-title{
+  font-size: 28px;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden !important;
+  padding: 10px;
+}
+.editor-description{
+  font-size: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    word-wrap: break-word;
+    padding: 10px;
+}
+.editor-close{
+  display: flex;
+  /* justify-content: flex-end; */
+  /* margin-top:10%; */
+}
+.editor-close-title{
+  display: flex;
+  flex-direction: row;
+  margin-top:6%;
+  justify-content: space-between;
+}
+.editor-like-date{
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+}
+.editor-assignment{
+  /* display: flex;
+  flex-direction: row; */
+}
+.editor-thumb{
+  padding: 10px;
+}
+.editor-questionasked{
+  font-size: 20px;
+  word-wrap: break-word;
+}
+.editor-contents{
+  margin: 2% 0% 2% 0%;
+  overflow-y: auto;
+  max-height: 80px;
+}
+.editorPage{
+  width:100%;
+  display: flex;
+  justify-content:center;
+  /* padding: 30px; */
+  
+  }
+  .editor-asked-msg{
+    padding: 15px;
+  }
+/*---------------------------------------------------editor-----------------------------------------------------*/

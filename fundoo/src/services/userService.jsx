@@ -230,3 +230,42 @@ export function getUserEmails() {
         }
     })
 }
+export function questionAndAnswer(data) {
+    return axios.post(baseURL + '/questionAndAnswerNotes/addQuestionAndAnswer', data, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
+
+export function getQuesAns(id) {
+    return axios.get(baseURL + `/notes/${id}/questionAndAnswerNotes`, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
+
+export function postLike(data) {
+    const like=data.like
+    var data1 = {
+        "like":like
+    }
+    return axios.post(baseURL + `/questionAndAnswerNotes/like/${data.id}`,data1, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
+export function postRate(data) {
+    var data1 = {
+        "rate":data.rate
+    }
+    console.log('user service postrate',data.id);
+    
+    return axios.post(baseURL + `/questionAndAnswerNotes/rate/${data.id}`,data1, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}

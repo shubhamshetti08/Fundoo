@@ -18,7 +18,7 @@ const theme = createMuiTheme({
     overrides: {
         MuiDrawer: {
             paper: {
-                top: "10.6%"
+                top:"69px"
             },
             paperAnchorLeft: {
                 width: "18%"
@@ -114,6 +114,7 @@ class DrawerComponent extends Component {
                 this.setState({
                     allLabels: res.data.data.details
                 })
+                // this.getLabel()
                 console.log('get alllabels', this.state.allLabels);
             })
             .catch((err) => {
