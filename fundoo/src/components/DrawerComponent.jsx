@@ -21,7 +21,7 @@ const theme = createMuiTheme({
                 top:"69px"
             },
             paperAnchorLeft: {
-                width: "18%"
+                width:"230px"
             }
         },
         MuiButtonBase: {
@@ -132,7 +132,7 @@ class DrawerComponent extends Component {
             // console.log('create key----',this.props.noteLabels);
             return (
                 <div className="drawer-label" >
-                    <LabelOutlinedIcon style={{paddingRight:"7px"}} />
+                    <LabelOutlinedIcon style={{paddingRight:"30px"}} />
                     {key.label}
 
                 </div>
@@ -152,7 +152,7 @@ class DrawerComponent extends Component {
                                 <span className="drawer-names">Reminders</span>
                             </MenuItem>
                             <Divider />
-                            <div  style={{overflowY:"auto",height:"50%"}} >
+                            <div  style={{overflowY:"auto",height:"53%"}} >
                                 <h6 style={{ paddingLeft: "20px" }}>LABLES</h6>
                                 <div className="drawer-labels">{labelMap}</div>
                                 <span id="editlabel"className="drawer-data" onClick={this.handleColor2} style={{ backgroundColor: temp3 }}>

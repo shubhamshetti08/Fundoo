@@ -10,9 +10,10 @@ import ClearIcon from '@material-ui/icons/Clear';
 // import Avatar from '@material-ui/core/Avatar';
 import DrawerComponent from '../components/DrawerComponent';
 import AccountComponent from './accountComponent';
-import styled,{keyframes} from 'styled-components';
-import {bounce} from 'react-animations';
-import {withRouter} from 'react-router-dom'
+import styled, { keyframes } from 'styled-components';
+import { bounce } from 'react-animations';
+import { withRouter } from 'react-router-dom';
+import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
 const theme = createMuiTheme({
     overrides: {
         MuiAppBar: {
@@ -28,7 +29,7 @@ const theme = createMuiTheme({
         }
     }
 })
-const Bounce=styled.div`animation:3s ${keyframes `${bounce}`} linear`;
+const Bounce = styled.div`animation:3s ${keyframes`${bounce}`} linear`;
 
 class DashboardComponent extends Component {
     constructor() {
@@ -42,9 +43,42 @@ class DashboardComponent extends Component {
             clr: false,
             menu: false,
             card: false,
-            view: false
+            view: false,
+            show: true
         }
     }
+    // componentWillMount(){
+    //     var mediaQuery=window.matchMedia("(max-width:415px)")
+    //         if(mediaQuery.matches){
+    //         this.setState({
+    //            show:false,
+    //             menu:false
+            
+    //         })
+    // }else{
+    //     this.setState({
+    //         show:false,
+    //          menu:false
+         
+    //      })
+
+    // }
+    //     mediaQuery.addListener(key=>{
+    //         if(key.matches){
+    //         this.setState({
+    //             show:false,
+    //             menu:false
+    //         })
+    //     }else{
+    //         this.setState({
+    //             show:false,
+    //              menu:false
+             
+    //          })
+    
+    //     }
+    //     })
+    // }
     // handleNotes = (e) => {
     //     const notes = e.target.value;
     //     this.setState({
@@ -102,19 +136,26 @@ class DashboardComponent extends Component {
     handleReload = () => {
         window.location.reload();
     }
-    handleGrid = () => {
-        this.setState({
+    handleGrid = async() => {
+       await this.setState({
             view: !this.state.view
         })
         this.props.listView(this.state.view)
     }
-    handleList = () => {
-        this.setState({
+    handleList = async() => {
+       await this.setState({
             view: !this.state.view
         })
         this.props.listView(this.state.view)
+    }
+    searchDiv = () => {
+        this.setState({
+            show: !this.state.show
+        })
     }
     render() {
+    let search=this.state.show?'keep-image':'keep-image1';
+    let fundooName=this.state.show?'dashboard-fundooname':'dashboard-fundooname1';
         return (
             <div className="dashboard-page">
                 <div className='dashboard-maincard'>
@@ -132,47 +173,61 @@ class DashboardComponent extends Component {
                                     </IconButton>
                                 </Tooltip>
                                 <DrawerComponent menuSelect={this.state.menu} />
-                               
-                                {(this.props.location.state === undefined ||this.props.location.state[3]==='editor') ?
-                                <img className="keep-image" alt="" aria-hidden="true" src={require("../assets/images/keep.png")}
-                                    style={{ width: "40px", height: "40px" }}> 
-                                </img>:null}
+
+                                {(this.props.location.state === undefined || this.props.location.state[3] === 'editor') ?
+                                    <img className={search} alt="" aria-hidden="true" src={require("../assets/images/keep.png")}
+                                        style={{ width: "40px", height: "40px" }}>
+                                    </img> : null}
                                 <Bounce>
-                                <span className="dashboard-fundooname">
-                                  {console.log('name-----',this.props.location.state )}
-                                  
-                                    {(this.props.location.state !== undefined && this.props.location.state[3]!=='editor') ? this.props.location.state : "Fundoo"}
-                                </span>
+                                    <span className={fundooName}>
+                                        {console.log('name-----', this.props.location.state)}
+
+                                        {(this.props.location.state !== undefined && this.props.location.state[3] !== 'editor') ? this.props.location.state : "Fundoo"}
+                                    </span>
                                 </Bounce>
                                 {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
-                                    {(this.state.card) ? (
+                                {(this.state.card) ? (
 
-                                        <Card className="searchcard1" style={{ borderRadius: "10px 10px 10px 10px", backgroundColor: "antiquewhite" }}>
-                                            <div className="searchdiv1">
-                                                <SearchIcon className="searchicon1" style={{ width: "24px", height: "24px" }} />
-                                            </div>
-                                            <div>
+                                    <Card className="searchcard1" style={{ borderRadius: "10px 10px 10px 10px", backgroundColor: "antiquewhite" }}>
+                                        <div className="searchdiv1">
+                                            <SearchIcon className="searchicon1" style={{ width: "24px", height: "24px" }} />
+                                        </div>
+                                        <div style={{ width: "80%" }}>
                                             <InputBase className="dashboard-searchbar1" autoComplete="off"
                                                 placeholder="Search" onKeyPress={this.handleSearchClick}
                                                 onChange={this.handleSearchText}
                                                 value={this.state.searchText}
                                             // inputProps={{ 'aria-label': 'search' }}
                                             />
+                                        </div>
+                                        {(this.state.searchText) ? (
+                                            <div className="cleardiv1">
+                                                <ClearIcon className="clearicon1" style={{ width: "24px", height: "24px" }}
+                                                    onClick={this.handleClearText} />
                                             </div>
-                                            {(this.state.searchText) ? (
-                                                <div className="cleardiv1">
-                                                    <ClearIcon className="clearicon1" style={{ width: "24px", height: "24px" }}
-                                                        onClick={this.handleClearText} />
+
+                                        ) : (null)}  </Card>)
+
+                                    : (
+                                        
+                                        <div className="searchcard" style={{ borderRadius: "10px 10px 10px 10px" }}>
+                                            {this.state.show ?
+                                                <div className="searchdiv" >
+                                                    <SearchIcon className="searchicon" style={{ width: "24px", height: "24px" }} onClick={this.searchDiv} />
+                                                </div > :
+                                                <div className="dashboard-mob-search-card">
+                                                    <Card>
+                                                        <IconButton onClick={this.searchDiv}><ArrowBackOutlinedIcon /> </IconButton>
+                                                        <InputBase className="dashboard-mob-searchbar" autoComplete="off"
+                                                            placeholder="Search" onKeyPress={this.handleSearchClick}
+                                                            onChange={this.handleSearchText}
+                                                            value={this.state.searchText}
+                                                        // inputProps={{ 'aria-label': 'search' }}
+                                                        />
+                                                    </Card>
                                                 </div>
-
-                                            ) : (null)}  </Card>)
-
-                                        : (
-                                            <div className="searchcard" style={{ borderRadius: "10px 10px 10px 10px" }}>
-                                                <div className="searchdiv">
-                                                    <SearchIcon className="searchicon" style={{ width: "24px", height: "24px" }} />
-                                                </div >
-                                                <div className="dashboard-searchbar-div">
+                                            }
+                                            <div className="dashboard-searchbar-div">
                                                 <InputBase className="dashboard-searchbar" autoComplete="off"
                                                     placeholder="Search" onKeyPress={this.handleSearchClick}
                                                     // onChange={this.handleSearchText}
@@ -180,46 +235,45 @@ class DashboardComponent extends Component {
                                                     onClick={this.handleSearchCard}
                                                 // inputProps={{ 'aria-label': 'search' }}
                                                 />
+                                            </div>
+                                            {(this.state.searchText) ? (
+                                                <div className="cleardiv">
+                                                    <ClearIcon className="clearicon" style={{ width: "24px", height: "24px" }}
+                                                        onClick={this.handleClearText} />
                                                 </div>
-                                                {(this.state.searchText) ? (
-                                                    <div className="cleardiv">
-                                                        <ClearIcon className="clearicon" style={{ width: "24px", height: "24px" }}
-                                                            onClick={this.handleClearText} />
-                                                    </div>
 
-                                                ) : (null)}  </div>)
-                                    }
+                                            ) : (null)}  </div>)
+                                }
                                 {/* </ClickAwayListener> */}
                                 <div className="ref-list-grid-avtar">
-                                <div className="ref-list-grid">
-                                    <div className="refreshdiv">
-                                        <Tooltip title="Refresh">
-                                            <RefreshIcon className="refreshicon" onClick={this.handleReload} />
-                                            {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}
-                                        </Tooltip>
+                                    <div className="ref-list-grid">
+                                        <div className="refreshdiv">
+                                            <Tooltip title="Refresh">
+                                                <RefreshIcon className="refreshicon" onClick={this.handleReload} />
+                                                {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}
+                                            </Tooltip>
+                                        </div>
+                                        {!this.state.view ?
+                                            <div className='grid-view' style={{ width: "34px", height: "34px" }}>
+                                                <Tooltip title="Grid view">
+                                                    <DashboardOutlinedIcon fontSize="large"
+                                                        onClick={this.handleGrid} />
+                                                </Tooltip>
+                                            </div>
+                                            :
+                                            <div className='list-view' style={{ width: "34px", height: "34px" }}>
+                                                <Tooltip title="List view">
+                                                    <DnsTwoToneIcon fontSize="large"
+                                                        onClick={this.handleList} />
+                                                </Tooltip>
+                                            </div>
+                                        }
                                     </div>
-                                    {!this.state.view ?
-                                        <div className='grid-view' style={{ width: "34px", height: "34px" }}>
-                                            <Tooltip title="Grid view">
-                                                <DashboardOutlinedIcon fontSize="large"
-                                                    onClick={this.handleGrid} />
-                                            </Tooltip>
-                                        </div>
-                                        :
-                                        <div className='list-view' style={{ width: "34px", height: "34px" }}>
-                                            <Tooltip title="List view">
-                                                <DnsTwoToneIcon fontSize="large"
-                                                    onClick={this.handleList} />
-                                            </Tooltip>
-                                        </div>
-                                    }
-                                </div>
-                                {/* <Avatar className="avatar" alt="Remy Sharp" /> */}
-                                {/* src={require("../assets/images/keep.png")} */}
-                                <AccountComponent />
+                                    {/* <Avatar className="avatar" alt="Remy Sharp" /> */}
+                                    {/* src={require("../assets/images/keep.png")} */}
+                                    <AccountComponent />
                                 </div>
                             </div>
-
                         </AppBar>
                     </MuiThemeProvider>
                     {/* <DrawerComponent></DrawerComponent> */}

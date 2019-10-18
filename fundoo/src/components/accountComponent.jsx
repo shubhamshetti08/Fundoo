@@ -72,11 +72,14 @@ class AccountComponent extends Component {
         let email = localStorage.getItem("email");
         let firstName = localStorage.getItem("firstName");
         let lastName = localStorage.getItem("lastName");
+        let firstChar= firstName.charAt(0);
+        console.log('firstchar----',firstChar);
+        
         return (
             <div>
                 <Tooltip title="change profile pic">
                     {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
-                        <Avatar src={localStorage.getItem('profileimage')} className="avatar" alt="Remy Sharp" onClick={(event) => this.handleClick(event)} cursor="pointer"
+                        <Avatar src={localStorage.getItem('profileimage')} className="avatar" alt={firstChar} onClick={(event) => this.handleClick(event)} cursor="pointer"
                         ></Avatar>
                     {/* </ClickAwayListener> */}
 

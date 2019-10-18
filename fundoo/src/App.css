@@ -521,6 +521,7 @@ only screen and (min-width: 600px) {
   display: flex;
   flex-direction: row;
   width: 100%;
+  /* width: 60%; */
   background-color: #FEEFC3;
 }
 
@@ -598,9 +599,25 @@ only screen and (min-width: 600px) {
   justify-content: space-evenly;
   align-items: center;
   color: #5f6368;
-  width: 25%;
+  width:60%;
 }
+.dashboard-searchbar-div{
+  width:80%;
+  
+}
+.ref-list-grid-avtar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+ width:36%;
+}
+.dashboard-searchbar{
+  border-radius: 0px 10px 10px 0px;
 
+}
+.dashboard-mob-search-card{
+  display: none;
+}
 /*---------------------------------------------dashboard--------------------------------------------------*/
 .createNotes-page {
   /* animation: pulse 5s infinite; */
@@ -782,6 +799,7 @@ only screen and (min-width: 600px) {
 }
 .getAllNotes-colab-card{
   padding: 10px;
+  display: flex;
 }
 .input1{
   font-weight: bold;
@@ -834,6 +852,7 @@ only screen and (min-width: 600px) {
   padding: 4%;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .drawer-labels {
@@ -893,9 +912,18 @@ only screen and (min-width: 600px) {
 .account-paper {
   width: 100%;
 }
-
+.keep-image{
+  display: flex;
+}
+.keep-image1{
+display: none;
+}
+.dashboard-fundooname1{
+  display: none
+}
 /*---------------------------------------------trashComponent--------------------------------------------------*/
 @media all and (max-width:415px) {
+  /* @media all and (max-width:600px) { */
   .container {
     width: 70vw;
     display: flex;
@@ -954,6 +982,7 @@ only screen and (min-width: 600px) {
     padding-left: 10px;
     padding-right: 0px;
     min-width: 3px;
+  
   }
   /* .searchcard{
     display: none;
@@ -988,16 +1017,19 @@ only screen and (min-width: 600px) {
   display: flex;
   -ms-flex-direction: row;
   flex-direction: row;
-  width: 12%;
+  /* width: 12%; */
+  width: 100%;
 }
 .dashboard-searchbar-div{
   display: none;
+
 }
 .ref-list-grid-avtar{
 display: flex;
 justify-content:space-evenly;
 flex-direction: row;
-width: 100%
+width: 100%;
+min-width: 51%;
 }
 .ref-list-grid {
   display: -ms-flexbox;
@@ -1010,6 +1042,22 @@ width: 100%
   align-items: center;
   color: #5f6368;
   width:47%;
+}
+.dashboard-mob-search-card{
+  width: 100%;
+}
+.dashboard-mob-searchbar{
+  width: 50%;
+}
+
+.dashboard-mob-search-card{
+  display: flex;
+}
+.get-contents {
+  padding-bottom: 3%;
+  height: auto;
+  width: 100%;
+  min-width: 200px;
 }
 }
 
@@ -1169,6 +1217,7 @@ margin-top: 2%;
 }
 .editor-thumb{
   padding: 10px;
+  display: flex;
 }
 .editor-questionasked{
   font-size: 20px;
@@ -1189,4 +1238,14 @@ margin-top: 2%;
   .editor-asked-msg{
     padding: 15px;
   }
+  .editor-thumbsUp{
+    padding-left: 15px;
+  }
+  .para-collab{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+  
 /*---------------------------------------------------editor-----------------------------------------------------*/

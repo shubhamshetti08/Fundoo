@@ -257,13 +257,21 @@ export function postLike(data) {
         }
     })
 }
-export function postRate(data) {
-    var data1 = {
-        "rate":data.rate
-    }
-    console.log('user service postrate',data.id);
+export function postRate(data,parentId) {
+   
     
-    return axios.post(baseURL + `/questionAndAnswerNotes/rate/${data.id}`,data1, {
+    return axios.post(baseURL + `/questionAndAnswerNotes/rate/${parentId}`,data, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+}
+
+export function questionAndAnswerReply(data) {
+    var data1 = {
+        'message': data.message
+    }
+    return axios.post(baseURL + `/questionAndAnswerNotes/reply/${data.id}`, data1, {
         headers: {
             Authorization: localStorage.getItem('token')
         }

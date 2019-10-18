@@ -254,11 +254,12 @@ export default class GetAllNoteComponent extends Component {
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
         const list2 = this.props.list ? "get-card2" : "get-card1"
-
+// var num=0;
         const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
             //  console.log('is archived',JSON.stringify(key.label));
             console.log('is archived', key.title);
             if (key.isArchived === false && key.isDeleted === false) {
+                // num=num+1;
                 return (
 
                     //  <div className="get-contents">
@@ -393,7 +394,7 @@ export default class GetAllNoteComponent extends Component {
 
 
                                     return (
-                                        <div style={{padding:"10%"}}>
+                                        <div style={{padding:"5%"}}>
                                             <span style={{color:"blue"}} >asked question</span>
                                             <p>{data.message}</p>
                                         </div>
@@ -484,7 +485,7 @@ export default class GetAllNoteComponent extends Component {
         return (
             // <Slide direction="right"  mountOnEnter unmountOnExit>
             <div className={list}>
-                {/* {console.log('0000000---',allNotes)} */}
+                {/* <div>{num}</div> */}
                 {allNotes}
             </div>
             // </Slide>

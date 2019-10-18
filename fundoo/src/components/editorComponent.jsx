@@ -3,7 +3,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Button, Divider } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
-import { questionAndAnswer, getQuesAns, postLike, getAllNotes, postRate } from '../services/userService';
+import { questionAndAnswer, getQuesAns, postLike, getAllNotes, postRate, questionAndAnswerReply } from '../services/userService';
 import { EditorState, convertToRaw } from 'draft-js';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ReplyIcon from '@material-ui/icons/Reply';
@@ -38,14 +38,15 @@ class EditorComponent extends Component {
             like: false,
             rate: false,
             notes: [],
-            count: false
+            count: false,
+            reply: false
 
         }
     }
 
     componentDidMount() {
         this.getNotes()
-       
+
         if (this.props.location !== undefined) {
             console.log("props in editors=====", this.props);
             if (this.props.location.state.length === 3) {
@@ -144,6 +145,7 @@ class EditorComponent extends Component {
 
                 console.log("log after hitting que ask and setstate", this.state.queArr);
                 this.getNotes();
+                this.getQA(this.state.id);
 
 
             })
@@ -161,20 +163,17 @@ class EditorComponent extends Component {
         this.props.history.push('/dashboard')
     }
     clickStar = async (e) => {
-         
 
- this.setState({
+
+        this.setState({
             rating: e
         })
-        console.log('rating----',this.state.e)
+        console.log('rating----', this.state.rating)
         let data = {
-            'id': localStorage.getItem('parentId'),
-            'rate':this.state.rating
+            'rate': this.state.rating
         }
-       
-        console.log('66666666', data.id);
-        console.log('res in editor handle star----',data.rate)
-        await postRate(data).then((res) => {
+        console.log('res in editor handle star----', data)
+        await postRate(data,localStorage.getItem('parentId')).then((res) => {
             console.log('res in editor handle star', res);
             this.getQA(this.state.id);
             // this.getNotes();
@@ -182,6 +181,32 @@ class EditorComponent extends Component {
             console.log('err in editor handle star', err);
 
         })
+    }
+    handleReply = () => {
+        this.setState({
+            reply: !this.state.reply
+        })
+
+        let data = {
+            'id': localStorage.getItem('parentId'),
+            'message': this.state.msg,
+        }
+
+        // console.log('66666666', data.id);
+        // console.log('res in editor handle like----', this.state.like)
+        questionAndAnswerReply(data)
+            .then(async (res) => {
+                console.log("response after hitting question and answer reply notes in editor ", data.message);
+
+                console.log("log after hitting que ans reply and setstate", this.state.queArr);
+                this.getNotes();
+                this.getQA(this.state.id);
+
+
+            })
+            .catch(err => {
+                console.log("err in hitting question and answer reply note api ", err);
+            })
     }
     render() {
         console.log('gkliurgkrr==0=re0=r0=-r0eo=[t9=r', this.state.id);
@@ -216,7 +241,7 @@ class EditorComponent extends Component {
 
                             {/* <Divider /> */}
                             <div className="editor-assignment">
-                                <div className="editor-questionasked">Question Asked</div>
+                                <div className="editor-questionasked">Questions Asked</div>
                                 {this.state.notes.map((data, index) => {
                                     //  console.log("9999999", data)
                                     // console.log("0000000",this.state.id)
@@ -247,7 +272,7 @@ class EditorComponent extends Component {
                         <Divider />
                         <div className="editor-assignment">
                             {this.state.msgArr.map((data, index) => {
-                                 localStorage.setItem('parentId',data.id)
+                                localStorage.setItem('parentId', data.id)
                                 return (
                                     <div className="editor-like-date">
                                         <div style={{ fontSize: "12px" }}>
@@ -265,11 +290,14 @@ class EditorComponent extends Component {
                                                 :
                                                 <div style={{ color: "blue" }} onClick={()=>this.handleLike(data.id)}> <ThumbUpIcon />like 1</div>
                                             } */}
+                                              
                                             {console.log("9999999", data.like.length)}
+                                            <div>
                                             {data.like.length > 0 ?
 
                                                 data.like.map(val => {
                                                     return (
+                                                     
                                                         val.like ?
                                                             <div className="editor-thumbsUp">
                                                                 <ThumbUpIcon
@@ -291,6 +319,7 @@ class EditorComponent extends Component {
                                                             </div>
                                                     )
                                                 }) :
+                                            
                                                 <div className="editor-thumbsUp">
                                                     <ThumbUpIcon
                                                         onClick={() => this.handleLike(data.id)}
@@ -306,24 +335,44 @@ class EditorComponent extends Component {
                                                         console.log("data.rate.len---", data.rate.length);
                                                         return (
                                                             <Rating
+                                                            style={{display:"flex"}}
                                                                 value={val.rate}
                                                                 onClick={this.clickStar}
                                                             />
                                                         )
                                                     }) :
                                                     <Rating
+                                                    style={{display:"flex"}}
                                                         name="simple-controlled"
                                                         value={this.state.rating}
                                                         onClick={this.clickStar}
                                                     />
+
                                             }
+                                            </div>
                                         </div>
                                     </div>
+                                  
                                 )
                             })}
                         </div>
+                        {this.state.reply ?
+                            <div>
+                                <div style={{ background: "gray" }}>
+                                    <Editor
+                                        placeholder="Type something...."
+                                        onEditorStateChange={this.onEditorStateChange} />
+                                </div>
+                                <Button color="primary" variant="outlined" onClick={this.handleReply}>Reply</Button>
+                            </div>
+                            : null
+                        }
+
                     </div>
+
+
                 }
+
             </div>
         )
     }
