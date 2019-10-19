@@ -7,7 +7,8 @@ class GetReminderPage extends Component {
         super(props);
         this.state = {
             searchText: '',
-            list: false
+            list: false,  
+             menu: false
         }
         this.newNote = React.createRef()
     }
@@ -26,16 +27,22 @@ class GetReminderPage extends Component {
             list: value
         })
     }
+    menuSelect = (menu) => {
+        this.setState({
+            menu: menu
+        })
+
+    }
     render() {
         console.log('getRemPage',this.props);
         
         return (
             <div>
 
-                <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
+                <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} transition={this.menuSelect} /></div>
                 <div><CreateNotesComponent getNew={this.display} /></div>
                 <div className="dashboardpage-allnotes">
-                    <GetReminderComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} />
+                    <GetReminderComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} menu={this.state.menu} />
                 </div>               
             </div>
         )

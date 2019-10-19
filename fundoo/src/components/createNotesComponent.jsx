@@ -14,6 +14,7 @@ import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
 import { withRouter } from 'react-router-dom'
+import CollaboratorComponent from './collaboratorComponent';
 // import { withRouter } from 'react-router-dom'
 // const theme = createMuiTheme({
 //     overrides: {
@@ -44,7 +45,8 @@ class CreateNotesComponent extends Component {
             check: false,
             checkList:'',
             checkLists: [],
-            truth: false
+            truth: false,
+            coll:'',
         }
     }
     handleClickAway = () => {
@@ -141,6 +143,12 @@ class CreateNotesComponent extends Component {
             rem: value,
         })
     }
+    handleCollValue=async(value)=>{
+        console.log("value in create note handle coll value", value);
+        await this.setState({
+            coll: value,
+        })
+    }
     handleCheckList = () => {
         this.setState({
             check: !this.state.check
@@ -164,7 +172,7 @@ class CreateNotesComponent extends Component {
         return (
             <div className="createNotes-page" >
                 {this.state.takeNote ? (
-                    <ClickAwayListener onClickAway={this.handleClickAway}>
+                    // <ClickAwayListener onClickAway={this.handleClickAway}>
                         <Card className="createNotes-card2" style={{ backgroundColor: this.state.color }}>
                             <div className="createNotes-card2-div1">
                                 <div className="createNotes-card2-div2">
@@ -204,6 +212,25 @@ class CreateNotesComponent extends Component {
                                             ></Chip>
                                     }
                                 </div>
+                                <div className="getAllNotes-colab-card" >
+                                {this.state.coll.length>=0 ?
+                                   null:
+                                   
+                            
+                                     
+                                        <Card style={{
+                                            borderRadius: "50%", display: "flex", alignItems: "center",
+                                            width: "40px", justifyContent: "center", boxShadow: "3px 3px 3px grey",
+                                            height: "40px"
+                                        }}
+                                         
+                                        >
+                                            {this.state.coll.firstName.toUpperCase().charAt(0)}
+                                        </Card>
+                                 
+                                
+                            }
+                            </div>
                             </div>
 
                             <div className="notes-icons">
@@ -216,7 +243,9 @@ class CreateNotesComponent extends Component {
                                         />
                                     </Tooltip>
                                     <Tooltip title="Collaborator">
-                                        <PersonAddOutlinedIcon />
+                                        <CollaboratorComponent
+                                        noteToCollab={""}
+                                         propsToCreateNote={this.handleCollValue}/>
                                     </Tooltip>
                                     <Tooltip title="Change color">
                                         <ColorPaletteComponent
@@ -242,7 +271,7 @@ class CreateNotesComponent extends Component {
                                 </Button>
                             </div>
                         </Card>
-                    </ClickAwayListener>
+                    // </ClickAwayListener>
                 )
                     : this.state.check ?
                         (

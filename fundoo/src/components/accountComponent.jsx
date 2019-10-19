@@ -44,7 +44,7 @@ class AccountComponent extends Component {
     };
     handleSignOut = () => {
         localStorage.clear();
-        this.props.history.push('/login')
+        this.props.history.push('/servicecard')
     }
     handleAddAccount = () => {
         this.props.history.push('/register')

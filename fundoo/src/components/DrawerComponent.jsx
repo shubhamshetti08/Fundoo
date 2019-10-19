@@ -77,7 +77,7 @@ class DrawerComponent extends Component {
             // open1: false,
             // open3: false,
             // open4: false,
-            // color: "#FEEFC3"
+            color: "#FEEFC3"
         })
     }
     handleColor3 = async () => {

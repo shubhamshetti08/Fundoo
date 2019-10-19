@@ -88,9 +88,9 @@ export default class ColorPaletteComponent extends Component {
             // </div>
             <div className="colorpalette-div">
             <Tooltip title="change color">
-            {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
+            <ClickAwayListener onClickAway={this.handleClickAway}>
                 <ColorLensOutlinedIcon onClick={(event) => this.handleClick(event)} cursor="pointer" />
-            {/* </ClickAwayListener> */}
+            </ClickAwayListener>
             </Tooltip>
             <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl}
                 style={{

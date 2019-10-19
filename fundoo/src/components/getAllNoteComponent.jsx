@@ -253,7 +253,7 @@ export default class GetAllNoteComponent extends Component {
     render() {
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
-        const list2 = this.props.list ? "get-card2" : "get-card1"
+        const list2 = this.props.list? "get-card2" : "get-card1"
 // var num=0;
         const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
             //  console.log('is archived',JSON.stringify(key.label));
@@ -266,7 +266,11 @@ export default class GetAllNoteComponent extends Component {
                     // <Draggable>
                     <div className={list1}>
 
-                        <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
+                        <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
+                            transform: (this.props.menu) ? (null):"translate(80px,0)",
+                            transition: (this.props.menu) ? ("0.5s") : ("0.5s"),
+                            // visibility: this.state.open && this.state.noteId === key.id ? 'hidden' : (null),
+                             }}
                         >
                             <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
                                 <div className="input1">
@@ -330,6 +334,7 @@ export default class GetAllNoteComponent extends Component {
                                     console.log("getnotes-colab-----data", data);
                                     // console.log("notelabeles in gettallnotes", key.noteLabels);
                                     return (
+                                        <Tooltip title={data.email}>
                                         <Card style={{
                                             borderRadius: "50%", display: "flex", alignItems: "center",
                                             width: "40px", justifyContent: "center", boxShadow: "3px 3px 3px grey",
@@ -339,6 +344,7 @@ export default class GetAllNoteComponent extends Component {
                                         >
                                             {data.firstName.toUpperCase().charAt(0)}
                                         </Card>
+                                        </Tooltip>
                                     );
                                 })}
                             </div>
@@ -394,7 +400,7 @@ export default class GetAllNoteComponent extends Component {
 
 
                                     return (
-                                        <div style={{padding:"5%"}}>
+                                        <div style={{padding:"2%"}}>
                                             <span style={{color:"blue"}} >asked question</span>
                                             <p>{data.message}</p>
                                         </div>

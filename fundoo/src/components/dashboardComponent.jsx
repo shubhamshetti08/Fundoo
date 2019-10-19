@@ -132,6 +132,7 @@ class DashboardComponent extends Component {
         this.setState({
             menu: !this.state.menu
         })
+        this.props.transition(this.state.menu)
     }
     handleReload = () => {
         window.location.reload();
@@ -256,14 +257,14 @@ class DashboardComponent extends Component {
                                         {!this.state.view ?
                                             <div className='grid-view' style={{ width: "34px", height: "34px" }}>
                                                 <Tooltip title="Grid view">
-                                                    <DashboardOutlinedIcon fontSize="large"
+                                                    <DashboardOutlinedIcon style={{fontSize:"1.875rem"}}
                                                         onClick={this.handleGrid} />
                                                 </Tooltip>
                                             </div>
                                             :
                                             <div className='list-view' style={{ width: "34px", height: "34px" }}>
                                                 <Tooltip title="List view">
-                                                    <DnsTwoToneIcon fontSize="large"
+                                                    <DnsTwoToneIcon style={{fontSize:"1.875rem"}}
                                                         onClick={this.handleList} />
                                                 </Tooltip>
                                             </div>

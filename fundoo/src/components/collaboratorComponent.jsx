@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {
     Dialog, Card, DialogTitle, DialogContent, Button, InputBase, Divider,
-     Avatar, MenuItem, MuiThemeProvider, createMuiTheme} from '@material-ui/core';
+     Avatar, MenuItem, MuiThemeProvider, createMuiTheme, Tooltip} from '@material-ui/core';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
@@ -133,6 +133,7 @@ class CollaboratorComponent extends Component {
                 this.setState({
                     searchText: ''
                 })
+                this.props.propsToCreateNote(this.state.AllCollaborators);
                 this.props.addCollab(true);
                 this.getNotes();
             }).catch((err) => {
@@ -222,12 +223,14 @@ class CollaboratorComponent extends Component {
                                                                 {key.collaborators.map(col => {
                                                                     return (
                                                                         <div className="para-collab">
+                                                                            <Tooltip title={col.email}>
                                                                             <Avatar style={{
                                                                                 cursor: "pointer",
                                                                                 width: "35px", height: "35px"
                                                                             }}>
                                                                                 {col.firstName.toUpperCase().charAt(0)}
                                                                             </Avatar>
+                                                                            </Tooltip>
                                                                             <span style={{ fontFamily: 'Roboto' }}>
                                                                                 {col.email}
                                                                             </span>
@@ -243,6 +246,7 @@ class CollaboratorComponent extends Component {
                                                     : (null))
                                         })
                                         }
+                                        <div>
                                         <div className="collaborator-avtar-email">
                                             <div className="collaborator-secondAvatar">
                                             <Avatar style={{ width: "35px", height: "35px" }}>
@@ -261,11 +265,12 @@ class CollaboratorComponent extends Component {
                                                 />
                                             </div>
                                             {this.state.trueIcon ? <DoneOutlinedIcon onClick={this.handleDone} />
-                                                : (null)}
-                                            <div>
+                                            
+                                                : (null)}</div>
+                                            <div className="collab-card">
                                                 {
                                                     this.state.card !== false && this.state.searchText !== '' ?
-                                                        <Card className="collab-card">
+                                                        <Card className="collab-card1" style={{height:"150px",overflowY:"scroll"}}>
                                                             {this.state.filteredEmails.map((key) => {
                                                                 return (
                                                                     <div className="collab-map">

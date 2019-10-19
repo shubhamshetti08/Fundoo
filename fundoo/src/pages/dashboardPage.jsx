@@ -8,7 +8,8 @@ class DashboardPage extends Component {
         super(props);
         this.state = {
             searchText: '',
-            list: false
+            list: false,
+            menu: false
         }
         this.newNote = React.createRef()
     }
@@ -27,14 +28,19 @@ class DashboardPage extends Component {
             list: value
         })
     }
+    menuSelect = (menu) => {
+        this.setState({
+            menu: menu
+        })
+    }
     render() {
         return (
             <div className="dashboardpage-maindiv">
 
-                <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
+                <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} transition={this.menuSelect} /></div>
                 <div><CreateNotesComponent getNew={this.display} /></div>
                 <div className="dashboardpage-allnotes"><GetAllNoteComponent ref={this.newNote}
-                    searchText={this.state.searchText} list={this.state.list} /></div>
+                    searchText={this.state.searchText} list={this.state.list} menu={this.state.menu}/></div>
             </div>
 
         )

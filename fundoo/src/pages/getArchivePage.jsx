@@ -6,7 +6,8 @@ class GetArchivePage extends Component {
         super(props);
         this.state = {
             searchText: '',
-            list: false
+            list: false,
+            menu:false,
         }
         this.newNote = React.createRef()
     }
@@ -25,12 +26,20 @@ class GetArchivePage extends Component {
             list: value
         })
     }
+    menuSelect = (menu) => {
+        this.setState({
+            menu: menu
+        })
+
+    }
     render() {
+     
+        
         return (
             <div>
-                  <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
+                  <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} transition={this.menuSelect}/></div>
                 <div className="getArchivepage-allnotes">
-                    <GetArchiveComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} />
+                    <GetArchiveComponent ref={this.newNote} list={this.state.list}  searchText={this.state.searchText} menu={this.state.menu} />
                 </div>   
             </div>
         )

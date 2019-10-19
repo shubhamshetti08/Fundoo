@@ -11,10 +11,9 @@ import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ColorPaletteComponent from './colorPaletteComponent';
 import UnarchiveComponent from './unarchiveComponent';
 import MoreComponent from './moreComponent';
-// import ReminderComponent from './reminderComponent';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
+import ReminderComponent from './reminderComponent';
 import { withRouter } from 'react-router-dom'
+import CollaboratorComponent from './collaboratorComponent';
 // import {  } from 'date-fns/esm/locale';
 const themes = createMuiTheme({
     overrides: {
@@ -209,7 +208,9 @@ class GetTrashComponent extends Component {
             return (
                 // (key.isDeleted === false) &&(key.isArchived===true)&&
                 <div className={list1}>
-                    <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray" }}
+                    <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
+                      transform: (!this.props.menu) ?   "translate(80px,0)":(null),
+                      transition: (!this.props.menu) ? ("0.5s") : ("0.5s"), }}
                     >
                         <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
                             <div className="input1">
@@ -257,11 +258,14 @@ class GetTrashComponent extends Component {
                         <MuiThemeProvider theme={themes}>
                             <div className="gellAllNotes-icons" id="gellAllNote-icons" >
                                 <Tooltip title="Remind me">
-                                    <AddAlertOutlinedIcon
-                                        reminderPropsToGetReminder={this.handleReminderInGetReminder} />
+                                <ReminderComponent
+                                        notesId={key.id}  
+                                         reminderPropsToGetReminder={this.handleReminderInGetReminder}/>
                                 </Tooltip>
                                 <Tooltip title="Collaborator">
-                                    <PersonAddOutlinedIcon />
+                                <CollaboratorComponent noteToCollab={key.id}
+                                            addCollab={this.handleColab}
+                                            remCollab={this.handleColab} />
                                 </Tooltip>
                                 <Tooltip title="Change color">
                                     <ColorPaletteComponent
