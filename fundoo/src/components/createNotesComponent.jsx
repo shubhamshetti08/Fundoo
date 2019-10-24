@@ -15,6 +15,7 @@ import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
 import { withRouter } from 'react-router-dom'
 import CollaboratorComponent from './collaboratorComponent';
+import MoreComponent from './moreComponent';
 // import { withRouter } from 'react-router-dom'
 // const theme = createMuiTheme({
 //     overrides: {
@@ -168,6 +169,16 @@ class CreateNotesComponent extends Component {
             checkList:''
         })
     }
+    handleTrashInGetnote = (isTrash) => {
+        if (isTrash) {
+            this.getNotes()
+        }
+    }
+    handleCreateLabel = (isLabel) => {
+        if (isLabel) {
+            this.getNotes()
+        }
+    }
     render() {
         return (
             <div className="createNotes-page" >
@@ -262,7 +273,17 @@ class CreateNotesComponent extends Component {
                                         />
                                     </Tooltip>
                                     <Tooltip title="More">
-                                        <MoreVertOutlinedIcon />
+                                        {/* <TrashComponent
+                                            trashNoteId={key.id} /> */}
+                                        <MoreComponent
+                                            noteID={""}
+                                            title={""}
+                                            description={""}
+                                            questionAndAnswerNotes={""}
+                                            labels={""}
+                                            TrashPropsToGetNote={this.handleTrashInGetnote}
+                                            createLabelPropsToGetNote={this.handleCreateLabel}
+                                             />
                                     </Tooltip>
                                 </div>
                                 <Button style={{ paddingRight: "10px" }}
@@ -271,7 +292,7 @@ class CreateNotesComponent extends Component {
                                 </Button>
                             </div>
                         </Card>
-                    // </ClickAwayListener>
+                    //  </ClickAwayListener>
                 )
                     : this.state.check ?
                         (

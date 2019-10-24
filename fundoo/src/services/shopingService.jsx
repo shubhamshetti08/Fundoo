@@ -7,4 +7,11 @@ export function service() {
 export function addToCart(data) {
     return axios.post(baseURL + '/productcarts/addToCart', data);
 }
+export function getCartDetails(cartId) {
+    return axios.get(baseURL+`/productcarts/getCartDetails/${cartId}`,{
+        headers: {
+            Authorization: localStorage.getItem('token')
 
+        }
+})
+}

@@ -6,6 +6,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined'; import DnsTwoToneIcon from '@material-ui/icons/DnsTwoTone';
 import ClearIcon from '@material-ui/icons/Clear';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+
 // import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 // import Avatar from '@material-ui/core/Avatar';
 import DrawerComponent from '../components/DrawerComponent';
@@ -14,19 +16,22 @@ import styled, { keyframes } from 'styled-components';
 import { bounce } from 'react-animations';
 import { withRouter } from 'react-router-dom';
 import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
+import ShopingCartComponent from './shopingCartComponent';
 const theme = createMuiTheme({
     overrides: {
         MuiAppBar: {
             colorPrimary: {
                 color: "#212121",
                 backgroundColor: "rgba(255,255,255,1)",
-            }
+            },
+           
         },
         MuiButton: {
             root: {
                 backgroundColor: "#f1f3f4"
             }
-        }
+        },
+        
     }
 })
 const Bounce = styled.div`animation:3s ${keyframes`${bounce}`} linear`;
@@ -46,6 +51,8 @@ class DashboardComponent extends Component {
             view: false,
             show: true
         }
+
+        this.handleMenu=this.handleMenu.bind(this);
     }
     // componentWillMount(){
     //     var mediaQuery=window.matchMedia("(max-width:415px)")
@@ -128,13 +135,18 @@ class DashboardComponent extends Component {
             clr: true
         })
     }
-    handleMenu = () => {
-        this.setState({
+    handleMenu = async () => {
+       await this.setState({
             menu: !this.state.menu
         })
-        this.props.transition(this.state.menu)
+        await this.props.transition(this.state.menu);
+        console.log("state  ",this.state.menu);
+        
     }
     handleReload = () => {
+        this.setState({
+            show: !this.state.show
+        })
         window.location.reload();
     }
     handleGrid = async() => {
@@ -154,15 +166,23 @@ class DashboardComponent extends Component {
             show: !this.state.show
         })
     }
+    handleCart=()=>{
+        console.log('555555-----',this.props.location.state);
+        
+        this.props.history.push('/shopingCart');
+    }
     render() {
     let search=this.state.show?'keep-image':'keep-image1';
     let fundooName=this.state.show?'dashboard-fundooname':'dashboard-fundooname1';
+    let menuIcon=this.state.show ? 'menu-icon':'menu-icon1';
+    let refresh=this.state.show ? 'refresh':'refreshicon'
         return (
             <div className="dashboard-page">
                 <div className='dashboard-maincard'>
                     <MuiThemeProvider theme={theme}>
                         <AppBar className="dashboard-appbar" position="fixed" color="primary">
                             <div className="dashboard-imageandfundoo">
+                                <div className={menuIcon}>
                                 <Tooltip title="menu">
                                     <IconButton
                                         edge="start"
@@ -173,6 +193,7 @@ class DashboardComponent extends Component {
                                         <MenuIcon className="dashboard-menuIcon" />
                                     </IconButton>
                                 </Tooltip>
+                                </div>
                                 <DrawerComponent menuSelect={this.state.menu} />
 
                                 {(this.props.location.state === undefined || this.props.location.state[3] === 'editor') ?
@@ -250,9 +271,13 @@ class DashboardComponent extends Component {
                                     <div className="ref-list-grid">
                                         <div className="refreshdiv">
                                             <Tooltip title="Refresh">
-                                                <RefreshIcon className="refreshicon" onClick={this.handleReload} />
+                                                
+                                                <RefreshIcon className={refresh} onClick={this.handleReload} />
                                                 {/* <SettingsOutlinedIcon className="settingicon" style={{ width: "24px", height: "24px" }}/>  */}
                                             </Tooltip>
+                                        </div>
+                                        <div onClick={this.handleCart}>
+                                            <ShoppingCartOutlinedIcon/>
                                         </div>
                                         {!this.state.view ?
                                             <div className='grid-view' style={{ width: "34px", height: "34px" }}>

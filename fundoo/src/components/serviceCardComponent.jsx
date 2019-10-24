@@ -111,6 +111,7 @@ class ServiceCard extends Component {
                     cartName: this.state.name,
                     idCart: this.state.id
                 }
+                // console.log("55555555555-------", this.state.id);
                 console.log("service data before sending to register", cartData);
 
                 this.props.history.push("/register", cartData);

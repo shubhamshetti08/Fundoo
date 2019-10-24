@@ -84,6 +84,7 @@ class ReminderComponent extends Component {
             // console.log("response---- in reminder", res);
        this.props.reminderPropsToGetNotes(true)
             this.props.reminderPropsToGetReminder(true)
+           
             // this.props.propsToCreateNote(this.state.selectedDate)
         }).catch((err) => {
             console.log('err in  remindercomp', err);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DashboardComponent from '../components/dashboardComponent'
-import EditorComponent from '../components/editorComponent'
+import EditorComponent from '../components/editorComponent';
+import {withRouter} from 'react-router-dom';
 class EditorPage extends Component {
         constructor(props) {
         super(props);
@@ -26,8 +27,8 @@ class EditorPage extends Component {
         })
     }
     render() {
-    
-        
+        console.log('editor page props',this.props);
+
         return (
             <div>
                   <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} /></div>
@@ -38,4 +39,4 @@ class EditorPage extends Component {
         )
     }
 }
-export default EditorPage;
+export default  withRouter(EditorPage);

@@ -8,7 +8,6 @@ import { EditorState, convertToRaw } from 'draft-js';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ReplyIcon from '@material-ui/icons/Reply';
 import Rating from 'material-ui-rating';
-import StarRatingComponent from 'material-ui-rating';
 // const theme = createMuiTheme({
 //     overrides: {
 //         rdw: {
@@ -42,6 +41,7 @@ class EditorComponent extends Component {
             reply: false
 
         }
+        this.clickStar=this.clickStar.bind(this);
     }
 
     componentDidMount() {
@@ -132,7 +132,7 @@ class EditorComponent extends Component {
             dis: !this.state.dis
             // editorState=EditorState.createEmpty()
         })
-        // console.log('000000000000000000', this.state.id);
+        console.log('000000000000000000', this.state.msg)
 
         let data = {
             'message': this.state.msg,
@@ -165,7 +165,7 @@ class EditorComponent extends Component {
     clickStar = async (e) => {
 
 
-        this.setState({
+       await this.setState({
             rating: e
         })
         console.log('rating----', this.state.rating)
@@ -173,10 +173,11 @@ class EditorComponent extends Component {
             'rate': this.state.rating
         }
         console.log('res in editor handle star----', data)
-        await postRate(data,localStorage.getItem('parentId')).then((res) => {
+        console.log('parent id----',localStorage.getItem('parentId'))
+        postRate(data,localStorage.getItem('parentId')).then((res) => {
             console.log('res in editor handle star', res);
             this.getQA(this.state.id);
-            // this.getNotes();
+            this.getNotes();
         }).catch((err) => {
             console.log('err in editor handle star', err);
 
@@ -331,13 +332,14 @@ class EditorComponent extends Component {
                                             {
                                                 data.rate.length > 0 ?
                                                     data.rate.map((val) => {
-                                                        console.log("val.id", data);
-                                                        console.log("data.rate.len---", data.rate.length);
+                                                        console.log("val.rate", val.rate);
+                                                        // console.log("data.rate.len---", data.rate.length);
+                                                        // console.log("data.QA.len---",data.questionAndAnswerNotes[data.questionAndAnswerNotes.length - 1].id);
                                                         return (
                                                             <Rating
                                                             style={{display:"flex"}}
                                                                 value={val.rate}
-                                                                onClick={this.clickStar}
+                                                                onChange={this.clickStar}
                                                             />
                                                         )
                                                     }) :
@@ -345,7 +347,8 @@ class EditorComponent extends Component {
                                                     style={{display:"flex"}}
                                                         name="simple-controlled"
                                                         value={this.state.rating}
-                                                        onClick={this.clickStar}
+                                                        onChange={this.clickStar}
+                                                        // onChange={()=>this.clickStar(data.questionAndAnswerNotes[data.questionAndAnswerNotes.length - 1].id )}
                                                     />
 
                                             }

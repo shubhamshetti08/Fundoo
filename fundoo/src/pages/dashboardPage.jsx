@@ -9,9 +9,10 @@ class DashboardPage extends Component {
         this.state = {
             searchText: '',
             list: false,
-            menu: false
+            menu:false
         }
-        this.newNote = React.createRef()
+        this.newNote = React.createRef();
+        this.menuSelect=this.menuSelect.bind(this);
     }
     searchBar = (searchText) => {
         console.log('search text in dash', searchText);
@@ -28,18 +29,23 @@ class DashboardPage extends Component {
             list: value
         })
     }
-    menuSelect = (menu) => {
-        this.setState({
-            menu: menu
+    menuSelect =(menu) => {
+       this.setState({
+            menu:menu
         })
+        console.log('menu in dashpage======',this.state.menu);
+        
+
     }
     render() {
+        console.log("in render dashboard  ",this.state.menu);
+        
         return (
             <div className="dashboardpage-maindiv">
 
                 <div><DashboardComponent searchBar={this.searchBar} listView={this.listView} transition={this.menuSelect} /></div>
                 <div><CreateNotesComponent getNew={this.display} /></div>
-                <div className="dashboardpage-allnotes"><GetAllNoteComponent ref={this.newNote}
+                <div className="dashboardpage-allnotes"><GetAllNoteComponent wrappedComponentRef={this.newNote}
                     searchText={this.state.searchText} list={this.state.list} menu={this.state.menu}/></div>
             </div>
 

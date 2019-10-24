@@ -37,7 +37,7 @@ export default class CreateLabelComponents extends Component {
     }
     handleAddLabel = (event) => {
         this.setState({
-            anchorEl: this.state.anchorEl ? !this.state.anchorEl : event.target,
+            anchorEl: this.state.anchorEl ? !this.state.anchorEl : this.props.propsToCreateLabel,
 
         })
         console.log("creayret mnmkjkj", this.state.anchorEl, this.state.poper);
@@ -47,7 +47,7 @@ export default class CreateLabelComponents extends Component {
     getLabel = () => {
         getLabels()
             .then(res => {
-                console.log('get labels', res);
+                console.log('get labelss', res);
                 this.setState({
                     allLabels: res.data.data.details
                 })
@@ -109,7 +109,7 @@ export default class CreateLabelComponents extends Component {
     render() {
         const labelMap = this.state.allLabels.map((key) => {
             // console.log('create key', JSON.stringify(key.id));
-            // console.log('create key----',this.props.noteLabels);
+            // console.log('create key----',this.state.allLabels);
             return (
                 <div >
                     <Checkbox defaultChecked={this.props.noteLabels.map(ele => ele.label).includes(key.label)}

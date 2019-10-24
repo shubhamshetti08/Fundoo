@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router,Route } from "react-router-dom";
-import './style.scss';
+import './new.scss'
 import './App.css';
 import LoginPage from './pages/loginPage';
 // import card from './components/card';
@@ -15,6 +15,7 @@ import GetReminderPage from './pages/getReminderPage';
 import GetTrashPage from './pages/getTrashPage';
 import GetArchivePage from './pages/getArchivePage';
 import EditorPage from './pages/editorPage';
+import shopingCartPage from './pages/shopingCartPage';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
       <Route path="/trash" component={GetTrashPage}></Route>
       <Route path="/archive" component={GetArchivePage}></Route>
       <Route path="/editor" component={EditorPage}></Route>
+      <Route path="/shopingCart" component={shopingCartPage}></Route>
     </Router>
     );
   }

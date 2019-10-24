@@ -77,8 +77,12 @@ import {userRegister} from '../services/userService'
         var loginData = {
             changeColor: changeColor,
              productId: productId,
-            status: status
+            status: status,
+            idCart:this.props.location.state.idCart
         }
+        // console.log('666666------',this.props.location.state);
+        // console.log('55555------',this.props.location.state.idCart);
+        
         this.props.history.push('/login', loginData);
     }
     render() {

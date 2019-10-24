@@ -42,10 +42,12 @@ class DrawerComponent extends Component {
             color: null,
             appTitle: '',
             allLabels: [],
+           pointer:'Notes',
         }
     }
     componentDidMount() {
         this.getLabel()
+        
     }
     handleColor = () => {
         this.setState({
@@ -55,6 +57,7 @@ class DrawerComponent extends Component {
             // open4: false,
             // open: !this.state.open,
             // color: "#FEEFC3"
+            pointer:'Notes',
         })
         this.props.history.push('/dashboard');
     }
@@ -66,6 +69,7 @@ class DrawerComponent extends Component {
             // open3: false,
             // open4: false,
             // color: "#FEEFC3",
+            pointer:'Reminder',
             appTitle: "Reminder"
         })
         this.props.history.push('/reminder', this.state.appTitle);
@@ -77,6 +81,7 @@ class DrawerComponent extends Component {
             // open1: false,
             // open3: false,
             // open4: false,
+            pointer:'EditLabel',
             color: "#FEEFC3"
         })
     }
@@ -138,16 +143,17 @@ class DrawerComponent extends Component {
                 </div>
             )
         })
+        // style={{ backgroundColor:this.state.pointer==='Reminder'?'red':'blue'}}
         return (
             <div className="drawer-container" >
                 <MuiThemeProvider theme={theme} >
                     <div className="drawer-div1" style={{ borderRadius: "0px 50px 50px 0px" }}>
                         <Drawer variant="persistent" overflow="auto" open={this.props.menuSelect}  >
-                            <MenuItem id="notes" className="drawer-data" onClick={this.handleColor} style={{ backgroundColor: temp1 }}>
+                            <MenuItem id="notes" className="drawer-data" onClick={this.handleColor} >
                                 <EmojiObjectsOutlinedIcon />
                                 <span className="drawer-names">Notes</span>
                             </MenuItem>
-                            <MenuItem id="notification"className="drawer-data" onClick={this.handleColor1} style={{ backgroundColor: temp2 }}>
+                            <MenuItem id="notification"className="drawer-data" onClick={this.handleColor1} >
                                 <ReminderComponent />
                                 <span className="drawer-names">Reminders</span>
                             </MenuItem>

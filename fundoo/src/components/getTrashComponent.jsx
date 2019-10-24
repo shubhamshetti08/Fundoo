@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { colorChange, updateNotes, deleteLabels, deleteReminder, getTrash,getAllNotes,deleteForever } from '../services/userService'
+import { colorChange, updateNotes, deleteLabels, deleteReminder, getTrash,getAllNotes,deleteForever,trash } from '../services/userService'
 import { Card, InputBase, Tooltip, Chip } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Dialog, DialogTitle, Button, DialogActions, DialogContent } from '@material-ui/core';
@@ -207,9 +207,19 @@ handlePermanentDelete=(noteIdList)=>{
     })
 }
 handleRestore=()=>{
-    this.setState({
+    var trashNoteId=this.props.trashProps;
+    var data={
+        noteIdList:[trashNoteId],
         isDeleted:false
-    })
+    }
+  trash(data)
+  .then((res)=>{
+      this.props.deleteUpdate(trashNoteId);
+  })
+  .catch((err)=>{
+      console.log('err in getTrashComp',err);
+      
+  })
 }
     render() {
         const list = this.props.list ? "container1" : "container";
@@ -224,9 +234,9 @@ handleRestore=()=>{
                     // (key.isArchived===false)&&(key.isDeleted===true)&&
                     <div className={list1}>
                         <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
-                           transform: (!this.props.menu) ?   "translate(80px,0)":(null),
-                           transition: (!this.props.menu) ? ("0.5s") : ("0.5s"), }} 
-                        >
+                        //    transform: (!this.props.menu) ?   "translate(80px,0)":(null),
+                        //    transition: (!this.props.menu) ? ("0.5s") : ("0.5s"), 
+                        }} >
                             <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
                                 <div className="input1">
                                     <InputBase className="get-in2"

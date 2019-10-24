@@ -15,9 +15,10 @@ import MoreComponent from './moreComponent';
 import ReminderComponent from './reminderComponent';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
-import CollaboratorComponent from "../components/collaboratorComponent"
-import Draggable from 'react-draggable';
-import Slide from '@material-ui/core/Slide';
+import CollaboratorComponent from "../components/collaboratorComponent";
+import {withRouter} from 'react-router-dom'
+// import Draggable from 'react-draggable';
+// import Slide from '@material-ui/core/Slide';
 
 // const themes = createMuiTheme({
 //     overrides: {
@@ -67,7 +68,7 @@ function titleDescSearch(searchText) {
         return val.title.includes(searchText) || val.description.includes(searchText)
     }
 }
-export default class GetAllNoteComponent extends Component {
+ class GetAllNoteComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -131,7 +132,7 @@ export default class GetAllNoteComponent extends Component {
 
     getNotes = () => {
         getAllNotes().then((res) => {
-            // console.log('response after getnote', res);
+            console.log('response after getnote', res);
             this.setState({
                 notes: res.data.data.data
             })
@@ -250,10 +251,25 @@ export default class GetAllNoteComponent extends Component {
             this.getNotes()
         }
     }
+    handleQA=(id,title,description)=>{
+            var data = [
+                id,
+                title,
+                description,
+                "editor",
+                this.props.questionAndAnswerNotes,
+                true
+            ]
+            console.log('/editor', data)
+            this.props.history.push(`/editor/${id}`,data)
+        }
+    
     render() {
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
         const list2 = this.props.list? "get-card2" : "get-card1"
+        console.log('menu-----',this.props.menu);
+        
 // var num=0;
         const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
             //  console.log('is archived',JSON.stringify(key.label));
@@ -267,9 +283,9 @@ export default class GetAllNoteComponent extends Component {
                     <div className={list1}>
 
                         <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
-                            transform: (this.props.menu) ? (null):"translate(80px,0)",
+                            transform: (this.props.menu) ? "translate(80px,0)":null,
                             transition: (this.props.menu) ? ("0.5s") : ("0.5s"),
-                            // visibility: this.state.open && this.state.noteId === key.id ? 'hidden' : (null),
+                            visibility: this.state.open && this.state.noteId === key.id ? 'hidden' : (null),
                              }}
                         >
                             <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
@@ -392,17 +408,16 @@ export default class GetAllNoteComponent extends Component {
                                 </div>
                             </MuiThemeProvider>
                             <Divider />
-                            <div>
+                          {/* {console.log('888888888----',key.questionAndAnswerNotes)} */}
+                            
+                            <div >
                                 {key.questionAndAnswerNotes.map(data => {
                                     // console.log("chip data=>", data);
-                                    console.log("33333333", data.message);
-
-
-
+                                    // console.log("33333333", data.message);
                                     return (
-                                        <div style={{padding:"2%"}}>
+                                        <div style={{padding:"2%"}} onClick={()=>this.handleQA(key.id,key.title,key.description)}>
                                             <span style={{color:"blue"}} >asked question</span>
-                                            <p>{data.message}</p>
+                                            <div dangerouslySetInnerHTML={{ __html:data.message}}></div>
                                         </div>
                                     )
 
@@ -498,3 +513,4 @@ export default class GetAllNoteComponent extends Component {
         )
     }
 }
+export default withRouter(GetAllNoteComponent);

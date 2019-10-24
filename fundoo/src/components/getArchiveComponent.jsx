@@ -209,9 +209,9 @@ class GetTrashComponent extends Component {
                 // (key.isDeleted === false) &&(key.isArchived===true)&&
                 <div className={list1}>
                     <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
-                      transform: (!this.props.menu) ?   "translate(80px,0)":(null),
-                      transition: (!this.props.menu) ? ("0.5s") : ("0.5s"), }}
-                    >
+                    //   transform: (!this.props.menu) ?   "translate(80px,0)":(null),
+                    //   transition: (!this.props.menu) ? ("0.5s") : ("0.5s"), 
+                    }}>
                         <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
                             <div className="input1">
                                 <InputBase className="get-in2"

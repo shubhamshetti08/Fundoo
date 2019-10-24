@@ -102,7 +102,7 @@ class MoreComponent extends Component {
                 >
                     <Paper className="trash-paper">
                         <MenuItem ><TrashComponent trashNoteId={this.props.noteID} deleteUpdate={this.deleteUpdate} trashToMore={this.handleDeleteNote} /></MenuItem>
-                        <MenuItem ><CreateLabelComponents noteIdToLabel={this.props.noteID} noteLabels={this.props.labels} createLabelPropsToMore={this.handleCreateLabel} /></MenuItem>
+                        <MenuItem ><CreateLabelComponents propsToCreateLabel={this.state.anchorEl} noteIdToLabel={this.props.noteID} noteLabels={this.props.labels} createLabelPropsToMore={this.handleCreateLabel} /></MenuItem>
                         {this.props.questionAndAnswerNotes!== undefined ?
                             this.props.questionAndAnswerNotes.length > 0 ?
                                 <MenuItem onClick={() => this.handleSQA(this.props.noteID)}>Show QA</MenuItem>
