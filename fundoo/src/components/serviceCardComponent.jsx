@@ -93,6 +93,7 @@ class ServiceCard extends Component {
         })
     }
     postRegId(cart) {
+        if(!this.props.cardProps){
         var data = {
             productId: cart
         }
@@ -119,6 +120,7 @@ class ServiceCard extends Component {
             }).catch((err) => {
                 console.log(err);
             })
+        }
     }
     render() {
         // const { value } = this.state;

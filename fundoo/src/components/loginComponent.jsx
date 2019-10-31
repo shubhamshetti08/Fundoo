@@ -105,7 +105,7 @@ class login extends React.Component {
                     : null
                 }
                 <Card className="loginCard">
-                    <div className='fundoo'><h1><span style={{ color: "#2196f3" }}>f</span>
+                    <div className='fundoo'><h1 style={{display:"flex",justifyContent:"center"}}><span style={{ color: "#2196f3" }}>f</span>
                         <span style={{ color: "#b71c1c" }}>u</span>
                         <span style={{ color: "#ffc107" }}>n</span>
                         <span style={{ color: "#1976d2" }}>d</span>

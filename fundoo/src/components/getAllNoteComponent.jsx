@@ -16,7 +16,7 @@ import ReminderComponent from './reminderComponent';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import CollaboratorComponent from "../components/collaboratorComponent";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 // import Draggable from 'react-draggable';
 // import Slide from '@material-ui/core/Slide';
 
@@ -68,7 +68,7 @@ function titleDescSearch(searchText) {
         return val.title.includes(searchText) || val.description.includes(searchText)
     }
 }
- class GetAllNoteComponent extends Component {
+class GetAllNoteComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -251,42 +251,43 @@ function titleDescSearch(searchText) {
             this.getNotes()
         }
     }
-    handleQA=(id,title,description)=>{
-            var data = [
-                id,
-                title,
-                description,
-                "editor",
-                this.props.questionAndAnswerNotes,
-                true
-            ]
-            console.log('/editor', data)
-            this.props.history.push(`/editor/${id}`,data)
-        }
-    
+    handleQA = (id, title, description) => {
+        var data = [
+            id,
+            title,
+            description,
+            "editor",
+            this.props.questionAndAnswerNotes,
+            true
+        ]
+        console.log('/editor', data)
+        this.props.history.push(`/editor/${id}`, data)
+    }
+
     render() {
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
-        const list2 = this.props.list? "get-card2" : "get-card1"
-        console.log('menu-----',this.props.menu);
-        
-// var num=0;
+        const list2 = this.props.list ? "get-card2" : "get-card1"
+        console.log('menu-----', this.props.menu);
+
+        var num = 0;
         const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
             //  console.log('is archived',JSON.stringify(key.label));
             console.log('is archived', key.title);
             if (key.isArchived === false && key.isDeleted === false) {
-                // num=num+1;
+                num = num + 1;
                 return (
 
                     //  <div className="get-contents">
                     // <Draggable>
                     <div className={list1}>
 
-                        <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
-                            transform: (this.props.menu) ? "translate(80px,0)":null,
+                        <Card className={list2} style={{
+                            backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
+                            transform: (this.props.menu) ? "translate(80px,0)" : null,
                             transition: (this.props.menu) ? ("0.5s") : ("0.5s"),
                             visibility: this.state.open && this.state.noteId === key.id ? 'hidden' : (null),
-                             }}
+                        }}
                         >
                             <div style={{ paddingLeft: "20px", paddingTop: "20px" }} >
                                 <div className="input1">
@@ -351,15 +352,15 @@ function titleDescSearch(searchText) {
                                     // console.log("notelabeles in gettallnotes", key.noteLabels);
                                     return (
                                         <Tooltip title={data.email}>
-                                        <Card style={{
-                                            borderRadius: "50%", display: "flex", alignItems: "center",
-                                            width: "40px", justifyContent: "center", boxShadow: "3px 3px 3px grey",
-                                            height: "40px"
-                                        }} onDelete={() => this.handleDelete(data.id, key.id)}
-                                            icon={<TagFacesIcon style={{ color: "black" }} />}
-                                        >
-                                            {data.firstName.toUpperCase().charAt(0)}
-                                        </Card>
+                                            <Card style={{
+                                                borderRadius: "50%", display: "flex", alignItems: "center",
+                                                width: "40px", justifyContent: "center", boxShadow: "3px 3px 3px grey",
+                                                height: "40px"
+                                            }} onDelete={() => this.handleDelete(data.id, key.id)}
+                                                icon={<TagFacesIcon style={{ color: "black" }} />}
+                                            >
+                                                {data.firstName.toUpperCase().charAt(0)}
+                                            </Card>
                                         </Tooltip>
                                     );
                                 })}
@@ -408,16 +409,16 @@ function titleDescSearch(searchText) {
                                 </div>
                             </MuiThemeProvider>
                             <Divider />
-                          {/* {console.log('888888888----',key.questionAndAnswerNotes)} */}
-                            
+                            {/* {console.log('888888888----',key.questionAndAnswerNotes)} */}
+
                             <div >
                                 {key.questionAndAnswerNotes.map(data => {
                                     // console.log("chip data=>", data);
                                     // console.log("33333333", data.message);
                                     return (
-                                        <div style={{padding:"2%"}} onClick={()=>this.handleQA(key.id,key.title,key.description)}>
-                                            <span style={{color:"blue"}} >asked question</span>
-                                            <div dangerouslySetInnerHTML={{ __html:data.message}}></div>
+                                        <div style={{ padding: "2%" }} onClick={() => this.handleQA(key.id, key.title, key.description)}>
+                                            <span style={{ color: "blue" }} >asked question</span>
+                                            <div dangerouslySetInnerHTML={{ __html: data.message }}></div>
                                         </div>
                                     )
 
@@ -506,9 +507,13 @@ function titleDescSearch(searchText) {
         return (
             // <Slide direction="right"  mountOnEnter unmountOnExit>
             <div className={list}>
-                {/* <div>{num}</div> */}
                 {allNotes}
+                {num===0?
+                <img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
+                :null
+                    }
             </div>
+
             // </Slide>
         )
     }

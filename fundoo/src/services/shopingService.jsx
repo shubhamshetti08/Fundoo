@@ -15,3 +15,11 @@ export function getCartDetails(cartId) {
         }
 })
 }
+exports.placeOrder=(data)=>{
+    return axios.post(baseURL + '/productcarts/placeOrder/', data,
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+}

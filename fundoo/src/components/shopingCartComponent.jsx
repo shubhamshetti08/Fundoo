@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Stepper, Divider, TextField, Step, StepLabel, IconButton, Button, Snackbar } from '@material-ui/core';
+import { Divider, TextField, IconButton, Button, Snackbar, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import { getCartDetails } from '../services/shopingService';
 import CloseIcon from '@material-ui/icons/Close';
 import MobileStepper from '@material-ui/core/MobileStepper';
+import {placeOrder} from '../services/shopingService';
+const theme = createMuiTheme({
+    overrides: {
+        MuiLinearProgress: {
+            root: {
+                height: "4px",
+                overflow: "hidden",
+                position: "absolute"
+            }
+        }
+    }
+})
 
 class ShopingCart extends Component {
     constructor(props) {
@@ -15,7 +27,8 @@ class ShopingCart extends Component {
             snackbarOpen: false,
             snackbarMsg: '',
             ok: false,
-            activateStep:0
+            activateStep: 0,
+            address:''
 
         }
     }
@@ -41,40 +54,70 @@ class ShopingCart extends Component {
             })
     }
     handleProceed = () => {
-        this.setState({ snackbarOpen: true, snackbarMsg: "really!!!!!!" ,  activateStep:this.state.activateStep+1})
+        this.setState({ snackbarOpen: true, snackbarMsg: "really!!!!!!" })
     }
 
-    handleOk =async () => {
+    handlePlaceOrder = () => {
+        if (this.state.address !== '') {
+            let data = {
+                "cartId": localStorage.getItem('cartId'),
+                "address": this.state.address,
+            }
+            placeOrder(data).then(res => {
+                console.log("res after hitting place order is ", res);
+                this.setState({
+                    // order: false,
+                    activateStep: this.state.activateStep + 1
+                })
+            }).catch(err => {
+                console.log("err in hitting place order ", err);
+
+            })
+        } else {
+            this.setState({
+                openSnackBar: 'true',
+                SnackBarMessage: 'failed!'
+            })
+        }
+    }
+    handleOk = async () => {
         await this.setState({
-             ok: true,
-             open:true,
-             snackbarOpen:false,
-         })
-         document.getElementById('adressId').focus();
-     }
-     snackbarClose = (e) => {
-      
-        this.setState({ snackbarOpen: false,  ok: false });
+            ok: true,
+            open: true,
+            snackbarOpen: false,
+            activateStep: this.state.activateStep + 1
+        })
+        document.getElementById('adressId').focus();
     }
+    snackbarClose = (e) => {
 
-    
+        this.setState({ snackbarOpen: false, ok: false });
+    }
+handleAddress=(e)=>{
+    this.setState({
+        address:e.target.value
+    });
+}
+
     render() {
         return (
-            
+
             <div className="shopping-page">
                 <div className="shopping-name-stepper">
                     <div className="shopping-fundooname">
                         FundooNotes
                     </div>
-                    <div className="shopping-stepper">
-                  
-                    </div>
+                    <MuiThemeProvider theme={theme}>
+                        <div className="shopping-stepper">
+                            <MobileStepper
+                                variant="progress"
+                                steps={3}
+                                position="fixed"
+                                activeStep={this.state.activateStep} />
+                        </div>
+                    </MuiThemeProvider>
                 </div>
-                <MobileStepper
-                      variant="progress"
-                      steps={3}
-                      position="static"
-                      activeStep={this.state.activateStep}/>
+
                 <div className="shopping-div2">
                     {this.state.place ?
                         <div className="shopping-shoppingCart">
@@ -109,10 +152,36 @@ class ShopingCart extends Component {
                             <span style={{ fontSize: "1rem", color: "#40a1e2" }}>per month</span>
                         </div>
                     </div>
+                    {/* {!this.state.ok ?
                     <div className="shopping-advance-info3">
                         <div className="shopping-subtotal"><span style={{ fontSize: "smaller", marginBottom: "5px" }}>SubTotal( 1 item ): ${this.state.cartDetails.price}</span></div>
-                        <div className="shopping-button1-div" onClick={this.handleProceed}><span className="shopping-button1">proceed to checkout</span></div>
+                        <div  className="shopping-button1-div" onClick={this.handleProceed}><span style={{cursor:"pointer"}}className="shopping-button1">proceed to checkout</span></div>
                     </div>
+                    :
+                    <div className="shopping-advance-info3">
+                    <div className="shopping-subtotal"><span style={{ fontSize: "smaller", marginBottom: "5px" }}>SubTotal( 1 item ): ${this.state.cartDetails.price}</span></div>
+                    <div className="shopping-button1-div" ><span style={{cursor:"pointer"}} className="shopping-button1">Place order</span></div>
+                </div>
+                    } */}
+
+                    {/* There’s another popular technique called iify ( IIFE — Immediately-invoked function expressions) replaces ternary */}
+                    {(() => {
+                        if (this.state.ok !== true) {
+                            return (<div className="shopping-advance-info3">
+                                <div className="shopping-subtotal"><span style={{ fontSize: "smaller", marginBottom: "5px" }}>SubTotal( 1 item ): ${this.state.cartDetails.price}</span></div>
+                                <div className="shopping-button1-div" onClick={this.handleProceed}><span style={{ cursor: "pointer" }} className="shopping-button1">proceed to checkout</span></div>
+                            </div>)
+                        }
+                        else {
+                            return (
+                                <div className="shopping-advance-info3">
+                                    <div className="shopping-subtotal"><span style={{ fontSize: "smaller", marginBottom: "5px" }}>SubTotal( 1 item ): ${this.state.cartDetails.price}</span></div>
+                                    <div className="shopping-button1-div" onClick={this.handlePlaceOrder}><span style={{ cursor: "pointer" }} className="shopping-button1">Place order</span></div>
+                                </div>
+                            )
+                        }
+                    })()
+                    }
                 </div>
                 <Divider />
                 <div className="shopping-advance-info4">
@@ -129,6 +198,8 @@ class ShopingCart extends Component {
                                     margin="normal"
                                     variant="outlined"
                                     id="adressId"
+                                    value={this.state.address}
+                                    onChange={this.handleAddress}
                                 />
                             </div>
                             <div className="shopping-div4-delivery">
@@ -136,7 +207,7 @@ class ShopingCart extends Component {
                                 <span style={{ color: "#1e8ad1", margin: "0px 15px 15px 15px" }}>Cash On Delivery</span>
                             </div>
                         </div>
-                     }
+                    }
                 </div>
                 <Snackbar
                     anchorOrigin={{
@@ -155,7 +226,7 @@ class ShopingCart extends Component {
                             onClick={this.snackbarClose}
                         > <CloseIcon />
                         </IconButton>,
-                        <Button key="ok" color="primary"  size="small" onClick={this.handleOk}>
+                        <Button key="ok" color="primary" size="small" onClick={this.handleOk}>
                             ok
                 </Button>
                     ]}

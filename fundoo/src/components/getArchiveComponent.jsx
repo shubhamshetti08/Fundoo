@@ -200,11 +200,12 @@ class GetTrashComponent extends Component {
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
         const list2 = this.props.list ? "get-card2" : "get-card1"
-
+var num=0;
         const allArchive = this.state.archive.filter(titleDescSearch(this.props.searchText)).map((key) => {
             // console.log('getArchive comp map key---',key);
             // console.log('getArchive comp allArchive---',allArchive);
             if (key.isArchived === true && key.isDeleted === false) {
+                num=num+1
             return (
                 // (key.isDeleted === false) &&(key.isArchived===true)&&
                 <div className={list1}>
@@ -367,6 +368,10 @@ class GetTrashComponent extends Component {
         return (
             <div className={list}>
                 {allArchive}
+                {num===0?
+                <img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
+                :null
+                    }
             </div>
         )
     }

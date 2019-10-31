@@ -147,7 +147,7 @@ class DashboardComponent extends Component {
         this.setState({
             show: !this.state.show
         })
-        window.location.reload();
+        window.location.reload(false);
     }
     handleGrid = async() => {
        await this.setState({
@@ -197,8 +197,8 @@ class DashboardComponent extends Component {
                                 <DrawerComponent menuSelect={this.state.menu} />
 
                                 {(this.props.location.state === undefined || this.props.location.state[3] === 'editor') ?
-                                    <img className={search} alt="" aria-hidden="true" src={require("../assets/images/keep.png")}
-                                        style={{ width: "40px", height: "40px" }}>
+                                    <img className={search} alt="" aria-hidden="true" src={require("../assets/images/f.jpg")}
+                                        style={{ width: "60px", height: "30px" }}>
                                     </img> : null}
                                 <Bounce>
                                     <span className={fundooName}>

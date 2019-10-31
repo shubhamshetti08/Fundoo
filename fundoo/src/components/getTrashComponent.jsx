@@ -225,11 +225,12 @@ handleRestore=()=>{
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
         const list2 = this.props.list ? "get-card2" : "get-card1"
-
+var num=0;
         const allTrash = this.state.trash.filter(titleDescSearch(this.props.searchText)).map((key) => {
             console.log('getTrash comp map key id---',key.id);
             // console.log('getTrash comp allTrash---',allTrash);
             if ( key.isDeleted === true) {
+                num=num+1;
                 return (
                     // (key.isArchived===false)&&(key.isDeleted===true)&&
                     <div className={list1}>
@@ -301,6 +302,10 @@ handleRestore=()=>{
         return (
             <div className={list}>
                 {allTrash}
+                {num===0?
+    <img style={{marginLeft:"13%"}} alt="" src={require('../assets/images/oops.png')}></img>   
+    :null
+                }
             </div>
         )
     }
