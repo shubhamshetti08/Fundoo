@@ -86,15 +86,15 @@
     /* float: right; */
   }
 
-  /* .login-importedcard {
+  .login-importedcard {
     margin-left: 420px; 
-    background-color: lightgrey;
-    width: 688px;
+    background-color: "#e8eaf6";
+    width: 580px;
     display: flex;
     height: 459px;
     justify-content: center;
     align-items: center;
-  } */
+  }
 
   /*----------------------------------------login---------------------------------------*/
   .head {
@@ -207,13 +207,15 @@ only screen and (min-width: 600px) {
   -ms-flex-pack: center;
   height: 196px;
   justify-content: center;
+  /* transform: scale(1.2); */
 }
 
 .upperCard {
   width: 97%;
   margin-left: -13%;
   margin-top: -22%;
-  height: 105%;
+  height: 96%;
+  /* height: 97%; */
 }
 
 .lowerCard {
@@ -259,12 +261,16 @@ only screen and (min-width: 600px) {
 
 }
 
-/* #orange:hover {
-   transition:width 1s;
+#orange:hover {
+  transform: scale(1.1);
+  transition: 0.9s ease-in-out;
+   /* transition:width 1s;
    transition: height 1s;
-   box-shadow: 15px 15px orange;
-} */
-
+   box-shadow: 15px 15px orange; */
+}
+.add-to-cart{
+  margin: 15px;
+}
 /*---------------------------------------------serviceCard--------------------------------------------------*/
 .registerPage {
   width: 100%;
@@ -749,7 +755,7 @@ only screen and (min-width: 600px) {
 .get-card1 {
   min-width: auto;
   min-height: auto;
-  /* border: 1px solid whitesmoke; */
+  border: 1px solid lightslategray;
   border-radius: 1em;
 }
 
@@ -952,6 +958,54 @@ display: none;
 /*---------------------------------------------trashComponent--------------------------------------------------*/
 @media all and (max-width:415px) {
   /* @media all and (max-width:600px) { */
+    .head{
+      margin: 10px
+    }
+    .lowerCard {
+      width: 75%;
+      height: 111%;
+    }
+    .upperCard{
+      height: 100%;
+    }
+    .loginPage {
+      display: flex;
+      width: 100%;
+      height:auto;
+      -ms-flex-pack: center;
+      justify-content: center;
+      flex-wrap: wrap-reverse;
+      -ms-flex-align: center;
+      align-items: center;
+      /* flex-direction: column; */
+  }
+  .login-importedcard {
+    /* margin-left: 420px;  */
+    background-color: "#e8eaf6";
+    width: 580px;
+    display: flex;
+    height: 0px;
+    justify-content: center;
+    align-items: center;
+  }
+    .registerPage{
+      width: auto;
+      padding-top: 19px;
+    }
+    .registerCard{
+      width: auto;
+    }
+    .register-email {
+      width: 100%;
+      margin-left:0px;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+    
+  }
+  .add-to-cart{
+    margin: 0px;
+  }
   .container {
     /* width: 70vw; */
     width: 90vw;

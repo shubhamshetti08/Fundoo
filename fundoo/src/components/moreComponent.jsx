@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tooltip, MenuItem, Popper, Paper } from '@material-ui/core';
+import { Tooltip, MenuItem, Popper, Paper, Menu } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 // import { trash } from '../services/userService';
@@ -69,6 +69,13 @@ class MoreComponent extends Component {
         console.log('/editor', data)
         this.props.history.push(`/editor/${id}`, data)
     }
+    handleClose=(isTrue)=>{
+        if(isTrue){
+        this.setState({
+            anchorEl: false
+        })
+    }
+    }
     // handleButton = () => {
 
     //     var trashNoteId = this.props.trashNoteId;
@@ -90,6 +97,15 @@ class MoreComponent extends Component {
     handleCreateLabel = (isLabel) => {
         this.props.createLabelPropsToGetNote(isLabel)
     }
+    handleMenu=async(isTrue)=>{
+        console.log('111111---',isTrue);
+        this.props.createLabelToGetNote(isTrue)
+        if(isTrue){
+       await this.setState({
+            anchorEl:false
+        })
+    }
+    }
     render() {
         // console.log("more"+this.props.labels);
         return (
@@ -98,11 +114,13 @@ class MoreComponent extends Component {
                 <Tooltip title="More">
                     <MoreVertOutlinedIcon onClick={(e) => this.handleOpenPopper(e)} />
                 </Tooltip>
-                <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl}
-                >
-                    <Paper className="trash-paper">
+                {/* <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{zIndex:"99999"}} */}
+                {/* > */}
+                <Menu open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{zIndex:"99999"}}   onClose={this.handleClose}>
+                    {/* <Paper className="trash-paper"> */}
                         <MenuItem ><TrashComponent trashNoteId={this.props.noteID} deleteUpdate={this.deleteUpdate} trashToMore={this.handleDeleteNote} /></MenuItem>
-                        <MenuItem ><CreateLabelComponents propsToCreateLabel={this.state.anchorEl} noteIdToLabel={this.props.noteID} noteLabels={this.props.labels} createLabelPropsToMore={this.handleCreateLabel} /></MenuItem>
+                        <MenuItem ><CreateLabelComponents propsToCreateLabel={this.state.anchorEl} noteIdToLabel={this.props.noteID} noteLabels={this.props.labels} 
+                        createLabelPropsToMore={this.handleCreateLabel} createLabelToMore={this.handleMenu} /></MenuItem>
                         {this.props.questionAndAnswerNotes!== undefined ?
                             this.props.questionAndAnswerNotes.length > 0 ?
                                 <MenuItem onClick={() => this.handleSQA(this.props.noteID)}>Show QA</MenuItem>
@@ -110,8 +128,8 @@ class MoreComponent extends Component {
                                 <MenuItem onClick={()=>this.handleEdit(this.props.noteID)}> Ask question </MenuItem>
                             : (null)
                         }
-                    </Paper>
-                </Popper>
+                    {/* </Paper> */}
+                    </Menu>
             </div>
             //  </ClickAwayListener>          
         )

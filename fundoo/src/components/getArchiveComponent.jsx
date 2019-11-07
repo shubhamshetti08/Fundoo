@@ -169,7 +169,7 @@ class GetTrashComponent extends Component {
             })
     }
     getNotes = () => {
-        getAllNotes().then((res) => {
+      getAllNotes().then((res) => {
             // console.log('response after getnote', res);
             this.setState({
                 notes: res.data.data.data
@@ -192,8 +192,10 @@ class GetTrashComponent extends Component {
         }
     }
     handleArchiveInGetArchive=(isArchive)=>{
-        if (isArchive) {
-            this.getNotes()
+        console.log('55555----',isArchive);
+        
+        if (isArchive===true) {
+           this.getNotes()
         }
     }
     render() {

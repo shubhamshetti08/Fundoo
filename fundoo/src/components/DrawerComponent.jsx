@@ -126,6 +126,13 @@ class DrawerComponent extends Component {
                 console.log('err in get labels', err);
             })
     }
+    handleChild=async(labelName)=>{
+        //console.log("in lallaallalalallala",labelName)
+        await this.setState({
+        appTitle: labelName
+        })
+        this.props.history.push(`/labels/${labelName}`,this.state.appTitle)
+        }
     render() {
         var temp1 = this.state.open ? this.state.color : null
         var temp2 = this.state.open1 ? this.state.color : null
@@ -136,7 +143,7 @@ class DrawerComponent extends Component {
             // console.log('create key', JSON.stringify(key.id));
             // console.log('create key----',this.props.noteLabels);
             return (
-                <div className="drawer-label" >
+                <div className="drawer-label" onClick={()=>this.handleChild(key.label)} >
                     <LabelOutlinedIcon style={{paddingRight:"30px"}} />
                     {key.label}
 

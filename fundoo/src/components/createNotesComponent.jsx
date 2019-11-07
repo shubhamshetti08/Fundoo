@@ -183,7 +183,7 @@ class CreateNotesComponent extends Component {
         return (
             <div className="createNotes-page" >
                 {this.state.takeNote ? (
-                    // <ClickAwayListener onClickAway={this.handleClickAway}>
+                    <ClickAwayListener onClickAway={this.handleClickAway}>
                         <Card className="createNotes-card2" style={{ backgroundColor: this.state.color }}>
                             <div className="createNotes-card2-div1">
                                 <div className="createNotes-card2-div2">
@@ -292,7 +292,7 @@ class CreateNotesComponent extends Component {
                                 </Button>
                             </div>
                         </Card>
-                    //  </ClickAwayListener>
+                      </ClickAwayListener>
                 )
                     : this.state.check ?
                         (
@@ -382,7 +382,7 @@ class CreateNotesComponent extends Component {
                                     </Button>
                                 </div>
                             </Card>
-                            </ClickAwayListener>
+                             </ClickAwayListener>
                         ) :
                         (
                             // <MuiThemeProvider theme={theme}>

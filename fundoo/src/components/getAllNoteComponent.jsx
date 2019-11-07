@@ -87,6 +87,7 @@ class GetAllNoteComponent extends Component {
     componentDidMount() {
         this.getNotes();
     }
+    
     handleDelete = (labelId, noteIdToLabel) => {
         var data = {
             "labelId": labelId,
@@ -101,6 +102,20 @@ class GetAllNoteComponent extends Component {
                 console.log("error in note label", err);
             })
     }
+    // handleDeleteLabel = async( noteIdToLabel) => {
+    //     var data = {
+    //         "labelId":localStorage.getItem("labelId"),
+    //         "noteId": noteIdToLabel
+    //     }
+    //    await deleteLabels(data, noteIdToLabel,localStorage.getItem("labelId"))
+    //         // this.props.noteIdToLabel
+    //         .then((response) => {
+    //             // console.log("response in note label", response);
+    //             this.getNotes();
+    //         }).catch((err) => {
+    //             console.log("error in note label", err);
+    //         })
+    // }
     handleDeleteReminder = (noteId) => {
         var data = {
             noteIdList: [noteId]
@@ -248,7 +263,7 @@ class GetAllNoteComponent extends Component {
     }
     handleColab = (isColab) => {
         if (isColab) {
-            this.getNotes()
+           this.getNotes()
         }
     }
     handleQA = (id, title, description) => {
@@ -273,7 +288,6 @@ class GetAllNoteComponent extends Component {
         var num = 0;
         const allNotes = this.state.notes.filter(titleDescSearch(this.props.searchText)).map((key) => {
             //  console.log('is archived',JSON.stringify(key.label));
-            console.log('is archived', key.title);
             if (key.isArchived === false && key.isDeleted === false) {
                 num = num + 1;
                 return (
@@ -304,7 +318,7 @@ class GetAllNoteComponent extends Component {
                                         multiline
                                         placeholder="Take a note ...."
                                         id="description"
-                                        value={key.description}
+                                        value={key.description.length>5?key.description.slice(0,3).toString()+'...':key.description}
                                         onClick={() => this.handleUpdate(key.id, key.title, key.description, key.color)}
                                     />
                                 </div>
@@ -320,6 +334,7 @@ class GetAllNoteComponent extends Component {
                                 {key.noteLabels.map(data => {
                                     // console.log("chip data.............", data.label);
                                     // console.log("notelabeles in gettallnotes", key.noteLabels);
+                                    localStorage.setItem("labelId",data.id)
                                     return (
                                         <Chip style={{ backgroundColor: "rgba(0,0,0,0.08)" }} className="chip" onDelete={() => this.handleDelete(data.id, key.id)}
                                             icon={<TagFacesIcon style={{ color: "black" }} />}
@@ -404,14 +419,15 @@ class GetAllNoteComponent extends Component {
                                             deleteUpdate={this.deleteUpdate}
                                             labels={key.noteLabels}
                                             TrashPropsToGetNote={this.handleTrashInGetnote}
-                                            createLabelPropsToGetNote={this.handleCreateLabel} />
+                                            createLabelPropsToGetNote={this.handleCreateLabel} 
+                                            createLabelToGetNote={()=>this.handleDeleteLabel( key.id)}/>
                                     </Tooltip>
                                 </div>
                             </MuiThemeProvider>
                             <Divider />
                             {/* {console.log('888888888----',key.questionAndAnswerNotes)} */}
 
-                            <div >
+                            <div style={{cursor:"pointer"}} >
                                 {key.questionAndAnswerNotes.map(data => {
                                     // console.log("chip data=>", data);
                                     // console.log("33333333", data.message);
@@ -428,7 +444,7 @@ class GetAllNoteComponent extends Component {
                         </Card>
                         <MuiThemeProvider theme={themes}>
                             <Dialog position="static"
-                                // onClose={this.handleClose}
+                                onClose={this.handleClose}
                                 open={this.state.open}
                             // aria-labelledby="alert-dialog-title"
                             // aria-describedby="alert-dialog-description"
@@ -457,13 +473,32 @@ class GetAllNoteComponent extends Component {
                                                 onChange={this.handleUpdateDescription}
                                             />
                                         </div>
+                                        <div>
+                                            {key.reminder.map(data => {
+                                                // console.log("chip data=>", data);
+                                                // console.log("reminder in gettallnotes", key.reminder);
+
+
+
+                                                return ((data.length > 0) &&
+                                                    <Chip style={{ backgroundColor: "rgba(0,0,0,0.08)" }} className="chip"
+                                                        onDelete={() => this.handleDeleteReminder(key.id)}
+                                                        icon={<AccessTimeIcon style={{ color: "black" }} />} label={data.slice(0, 21)}>
+
+                                                    </Chip>)
+
+                                            })}
+                                        </div>
                                         <DialogActions>
                                             <div className="notes-icon-div2">
                                                 <Tooltip title="Remind me">
-                                                    <AddAlertOutlinedIcon />
+                                                    < ReminderComponent notesId={key.id}
+                                                        reminderPropsToGetNotes={this.handleReminderInGetnote} />
                                                 </Tooltip>
                                                 <Tooltip title="collaborator">
-                                                    <PersonAddOutlinedIcon />
+                                                    <CollaboratorComponent noteToCollab={key.id}
+                                                        addCollab={this.handleColab}
+                                                        remCollab={this.handleColab} />
                                                 </Tooltip>
                                                 <Tooltip title="Change color">
                                                     <ColorPaletteComponent
@@ -476,14 +511,21 @@ class GetAllNoteComponent extends Component {
                                                     <ImageOutlinedIcon />
                                                 </Tooltip>
                                                 <Tooltip title="Archive">
-                                                    <ArchiveOutlinedIcon
-                                                        // getAllNotes={this.props.id}
-                                                        archiveNoteId={key.id} />
+                                                    <ArchiveComponent
+                                                        archiveNoteId={key.id}
+                                                        archivePropsToGetNotes={this.handleArchiveInGetnote} />
                                                 </Tooltip>
                                                 <Tooltip title="More">
-                                                    <MoreVertOutlinedIcon
-                                                        NoteId={key.id}
-                                                        deleteUpdate={this.deleteUpdate} />
+                                                    <MoreComponent
+                                                        noteID={key.id}
+                                                        title={key.title}
+                                                        description={key.description}
+                                                        questionAndAnswerNotes={key.questionAndAnswerNotes}
+                                                        deleteUpdate={this.deleteUpdate}
+                                                        labels={key.noteLabels}
+                                                        TrashPropsToGetNote={this.handleTrashInGetnote}
+                                                        createLabelPropsToGetNote={this.handleCreateLabel} 
+                                                        createLabelToGetNote={this.handleDeleteLabel}/>
                                                 </Tooltip>
                                                 <Button
                                                     onClick={this.handleUpdate}>
@@ -504,14 +546,19 @@ class GetAllNoteComponent extends Component {
             }
             return (null);
         })
+        // console.log('1111=-=-=',allNotes);
+        //   {allNotes.description.length > 40 ? allNotes.description.slice(0, 37).toString() + '...':{allNotes}}  
+   
         return (
+
             // <Slide direction="right"  mountOnEnter unmountOnExit>
             <div className={list}>
+                {/* {allNotes.description.length > 40 ? allNotes.description.slice(0, 37).toString() + '...':allNotes} */}
                 {allNotes}
-                {num===0?
-                <img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
-                :null
-                    }
+                {num === 0 ?
+                    <img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
+                    : null
+                }
             </div>
 
             // </Slide>

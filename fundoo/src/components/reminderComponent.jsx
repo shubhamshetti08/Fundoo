@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Tooltip, Button,createMuiTheme } from '@material-ui/core';
+import { Tooltip, Button,createMuiTheme, ClickAwayListener } from '@material-ui/core';
 import { DateTimePicker } from 'material-ui-pickers';
 import Popper from '@material-ui/core/Popper';
 import 'date-fns';
@@ -53,6 +53,11 @@ class ReminderComponent extends Component {
             // '2014-08-18T21:11:54'
         }
     }
+    handleClickAway = () => {
+        this.setState({
+            anchorEl: false
+        })
+    }
     handleChangeDate =async date => {
        await this.setState({
             selectedDate: date
@@ -93,11 +98,14 @@ class ReminderComponent extends Component {
     render() {
         return (
             <div>
+              
                 <ThemeProvider theme={theme}>
                     <Tooltip title="Remind me">
                         <AddAlertOutlinedIcon onClick={(e) => this.handleOpenPopper(e)} />
                     </Tooltip>
-                    <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} >
+               
+                    <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{zIndex:"9999"}}>
+                    {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
                         <Paper className="reminder-paper">
                             {/* Reminder:
                         <MenuItem>
@@ -116,8 +124,11 @@ class ReminderComponent extends Component {
                                 <Button onClick={this.handleReminderButton}>Set Reminder</Button>
                             </div>
                         </Paper>
+                        {/* </ClickAwayListener> */}
                     </Popper>
+                   
                 </ThemeProvider>
+                
             </div>
         )
     }

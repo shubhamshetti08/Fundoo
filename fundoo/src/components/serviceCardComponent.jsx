@@ -148,9 +148,12 @@ class ServiceCard extends Component {
                                     </ul>
                                 </p>
                             </Card>
+                            <div className="add-to-cart">
+                            {/* <div style={{margin:"15px 15px 15px 25px"}}> */}
                             {
                                 (key.id === this.props.productId) ? this.props.status : "ADD TO CART"
                             }
+                            </div>
 
                         </Card>
                     </MuiThemeProvider>
@@ -223,7 +226,7 @@ class ServiceCard extends Component {
                     <div className="serviceCard_main">
                         {serviceArr}
                     </div>
-                    <p className="serviceLogin" onClick={this.handleSignIn}>Sign in instead</p>
+                    <div className="serviceLogin" style={{ cursor: "pointer" }} onClick={this.handleSignIn}>Sign in instead</div>
                 </div>
         )
     }

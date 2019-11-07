@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tooltip, TextField, Popper, Paper, Checkbox } from '@material-ui/core';
+import { Tooltip, TextField, Popper, Paper, Checkbox, Menu } from '@material-ui/core';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import { getLabels, getAllNotes, noteLabels, createlabel } from '../services/userService';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
@@ -40,6 +40,7 @@ export default class CreateLabelComponents extends Component {
             anchorEl: this.state.anchorEl ? !this.state.anchorEl : this.props.propsToCreateLabel,
 
         })
+        this.props.createLabelToMore(true)
         console.log("creayret mnmkjkj", this.state.anchorEl, this.state.poper);
 
     }
@@ -89,7 +90,8 @@ export default class CreateLabelComponents extends Component {
     }
     handleCheck = (labelId) => {
         this.setState({
-            check: !this.state.check
+            check: !this.state.check,
+            anchorEl:false
         })
         console.log("jdkfkdj", this.props.noteIdToLabel);
         var data = {
@@ -105,6 +107,16 @@ export default class CreateLabelComponents extends Component {
             }).catch((err) => {
                 console.log("error in note label", err);
             })
+            // console.log('000000',this.state.check);
+            
+            if(this.state.check===false){
+                this.props.createLabelToMore(true)
+            }
+    }
+    handleClose=()=>{
+        this.setState({
+            anchorEl: false
+        })
     }
     render() {
         const labelMap = this.state.allLabels.map((key) => {
@@ -131,7 +143,9 @@ export default class CreateLabelComponents extends Component {
                     <LabelOutlinedIcon />
                     Add Label
                         </div>
-                <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} onKeyDown={this.handleKeyDown}>
+                {/* <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} onKeyDown={this.handleKeyDown}> */}
+                <Menu open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{zIndex:"99999"}} onKeyDown={this.handleKeyDown}  onClose={this.handleClose}>
+
                     <Paper className="label-popper">
                         <div>
                             <p>Label Note</p>
@@ -149,10 +163,11 @@ export default class CreateLabelComponents extends Component {
                                 <SearchOutlinedIcon />
                             </Tooltip>
                             <div className="trash-checkbox">{labelMap}</div>
-                            <div>{this.state.create ? (<p onClick={this.handleLabel}>+ create {this.state.labelText}</p>) : (null)}</div> 
+                            <div style={{cursor:"pointer"}}>{this.state.create ? (<p onClick={this.handleLabel}>+ create {this.state.labelText}</p>) : (null)}</div> 
                         </div>
                     </Paper>
-                </Popper>
+                    </Menu>
+                {/* </Popper> */}
             </div>
 
         )

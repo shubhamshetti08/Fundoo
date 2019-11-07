@@ -16,6 +16,7 @@ import GetTrashPage from './pages/getTrashPage';
 import GetArchivePage from './pages/getArchivePage';
 import EditorPage from './pages/editorPage';
 import shopingCartPage from './pages/shopingCartPage';
+import labelPage from './pages/labelPage'
 
 class App extends Component {
   render() {
@@ -35,6 +36,7 @@ class App extends Component {
       <Route path="/trash" component={GetTrashPage}></Route>
       <Route path="/archive" component={GetArchivePage}></Route>
       <Route path="/editor" component={EditorPage}></Route>
+      <Route path="/labels" component={labelPage}></Route>
       <Route path="/shopingCart" component={shopingCartPage}></Route>
     </Router>
     );

@@ -70,8 +70,8 @@ class login extends React.Component {
             localStorage.setItem('email', res.data.email);
             localStorage.setItem('userId', res.data.userId)
             localStorage.setItem('profileimage', Url + res.data.imageUrl);
-            localStorage.setItem('cartId', this.props.location.state.idCart);
-            console.log('9999------', localStorage.getItem('cartId'));
+            // localStorage.setItem('cartId', this.props.location.state.idCart);
+            console.log('9999------', this.props.location.state.idCart);
             
             {this.props.location.state!==undefined ? 
                 // console.log('55555------', this.props.location.state.idCart);
@@ -88,14 +88,15 @@ class login extends React.Component {
         return (
             <div className='loginPage'>
                 {(this.props.location.state !== undefined) ?
-                    <Card style={{
+                    <Card 
+                    style={{
                         backgroundColor: "#e8eaf6",
                         width: "580px",
                         display: "flex",
                         height: "459px",
                         justifyContent: "center",
-                        alignItems: "center"
-                    }} className="login-importcard">
+                        alignItems: "center" }} 
+                    className="login-importcard">
                         <ServiceCard cardProps={true}
                             productId={this.props.location.state.productId}
                             status={this.props.location.state.status}

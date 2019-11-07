@@ -177,7 +177,7 @@ class CollaboratorComponent extends Component {
                 <MuiThemeProvider theme={theme}>
                     <div>
                         <Dialog position="static"
-                            // onClose={this.handleClose}
+                            onClose={this.handleClose}
                             open={this.state.open}
                         // aria-labelledby="alert-dialog-title"
                         // aria-describedby="alert-dialog-description"

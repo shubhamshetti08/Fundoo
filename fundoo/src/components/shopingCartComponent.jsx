@@ -36,7 +36,9 @@ class ShopingCart extends Component {
         this.getDetails()
     }
     getDetails = () => {
-        var cartId = localStorage.getItem('cartId')
+        console.log("111221----",this.props.location.state);
+        
+        var cartId = this.props.location.state
 
         getCartDetails(cartId)
             .then((res) => {
@@ -60,7 +62,8 @@ class ShopingCart extends Component {
     handlePlaceOrder = () => {
         if (this.state.address !== '') {
             let data = {
-                "cartId": localStorage.getItem('cartId'),
+                // "cartId": localStorage.getItem('cartId'),
+                "cartId":this.props.location.state,
                 "address": this.state.address,
             }
             placeOrder(data).then(res => {
@@ -75,8 +78,8 @@ class ShopingCart extends Component {
             })
         } else {
             this.setState({
-                openSnackBar: 'true',
-                SnackBarMessage: 'failed!'
+                snackbarOpen:true,
+                snackbarMsg: 'address cant be empty'
             })
         }
     }
@@ -176,7 +179,11 @@ handleAddress=(e)=>{
                             return (
                                 <div className="shopping-advance-info3">
                                     <div className="shopping-subtotal"><span style={{ fontSize: "smaller", marginBottom: "5px" }}>SubTotal( 1 item ): ${this.state.cartDetails.price}</span></div>
+                                    {/* {this.state.address.length>0 ? */}
                                     <div className="shopping-button1-div" onClick={this.handlePlaceOrder}><span style={{ cursor: "pointer" }} className="shopping-button1">Place order</span></div>
+                                    {/* : */}
+                                    {/* <span>adress cant be empty</span> */}
+                                    {/* } */}
                                 </div>
                             )
                         }
@@ -193,6 +200,7 @@ handleAddress=(e)=>{
                                 <TextField
                                     label="Multiline"
                                     multiline
+                                    required
                                     rows="4"
                                     // defaultValue="Adress"
                                     margin="normal"
@@ -231,6 +239,7 @@ handleAddress=(e)=>{
                 </Button>
                     ]}
                 />
+                
             </div>
         )
     }

@@ -132,8 +132,10 @@ class AccountComponent extends Component {
                     <Paper className="account-paper" placement="bottom-end" >
                         {/* <ClickAwayListener onClickAway={this.handleToggle}> */}
                         <div>
-                            <label className="label">
+                            <div className="label">
+                          
                                 <div className="avtar-email-div">
+                                <label >
                                     <Avatar className="avatar1" alt="Remy Sharp" cursor="pointer" style={{ width: "80px", height: "80px" }} >
                                         {/* {this.state.imageSet !== "" ?
                                                 <img src={this.state.selected} alt="profile"></img>
@@ -141,8 +143,10 @@ class AccountComponent extends Component {
                                         <img src={localStorage.getItem('profileimage')} alt="profile"></img>
                                         {/* } */}
                                     </Avatar>
+                                    
                                     <input type='file' id='file' onChange={(event) => this.profile(event)}
                                         style={{ display: 'none' }} />
+                                        </label>
                                     <div className="account-name-email">
                                         <span style={{ fontWeight: "bold", margin: "-36px -58px 14px 10px" }}>{firstName} {lastName}</span>
                                         <span >{email}</span>
@@ -153,7 +157,7 @@ class AccountComponent extends Component {
                                     <Button style={{ boxShadow: "5px 5px 5px" }} onClick={this.handleAddAccount}>Add account</Button>
                                     <Button style={{ boxShadow: "5px 5px 5px" }} onClick={this.handleSignOut}>Sign out</Button>
                                 </div>
-                            </label>
+                            </div>
                         </div>
                         {/* </ClickAwayListener> */}
                     </Paper>

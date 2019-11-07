@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tooltip, IconButton, Popper,Paper,ClickAwayListener } from '@material-ui/core'
+import { Tooltip, IconButton, Popper,Paper,ClickAwayListener, Menu } from '@material-ui/core'
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 const colorPalette = [{ name: "default", colorCode: "#FDFEFE" },
 { name: "Red", colorCode: "#ef9a9a" },
@@ -40,6 +40,11 @@ export default class ColorPaletteComponent extends Component {
         } catch (err) {
             console.log("error in color palette", err);
         }
+    }
+    handleClose=()=>{    
+        this.setState({
+            anchorEl: false
+        })
     }
     // handleToggle = () => {
     //     this.setState({
@@ -88,15 +93,20 @@ export default class ColorPaletteComponent extends Component {
             // </div>
             <div className="colorpalette-div">
             <Tooltip title="change color">
-            {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
+            <ClickAwayListener onClickAway={this.handleClickAway}>
                 <ColorLensOutlinedIcon onClick={(event) => this.handleClick(event)} cursor="pointer" />
-            {/* </ClickAwayListener> */}
+            </ClickAwayListener>
             </Tooltip>
             <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl}
                 style={{
                     zIndex: "9999"
                 }}
             >
+              {/* <Menu open={this.state.anchorEl} anchorEl={this.state.anchorEl} onClose={this.handleClose}
+                style={{
+                    zIndex: "9999"
+                }}
+            > */}
                 <Paper className="color-styles">
                     {colorChange}
                 </Paper>
