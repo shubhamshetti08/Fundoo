@@ -1,0 +1,29 @@
+.login-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+height:100vh;
+}
+
+.btn {
+  border-radius: 1.25rem;
+}
+/* .dashboard-navbar{
+  display: flex;
+  flex-direction: row
+} */
+.QA-table{
+  overflow-y: auto;
+  width: 80%;
+}
+.db-ab-names{
+display: flex;
+flex-direction: row;
+}
+.navbar-navs{
+  display: flex;
+flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
