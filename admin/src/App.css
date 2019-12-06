@@ -27,3 +27,19 @@ flex-direction: row;
     margin-bottom: 0;
     list-style: none;
 }
+.plus{
+  /* color: red; */
+  
+ background-color:  linear-gradient(to bottom right, red, yellow);
+}
+.pls-btn{
+  background-color:  linear-gradient(to bottom right, red, yellow);
+}
+.fa {
+  font-size: 32px;
+  color: #9c47fc;
+  display: block;
+  background: -webkit-linear-gradient(red, #356ad2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

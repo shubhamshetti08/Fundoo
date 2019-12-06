@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
 import { MDBRow, MDBInput, MDBBtn, MDBIcon } from 'mdbreact';
-import { Card } from '@material-ui/core';
+import { Card, Fab, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { GET_ADMIN_DATA } from '../Constants/UserConstants'
 import { getAdminUsersList } from '../Services/AdminServices';
 import { withRouter } from 'react-router-dom';
+import AddIcon from '@material-ui/icons/Add';
+var theme=createMuiTheme({
+    overrides:{
+    MuiFab:{
+        root:{
+        color:"#d50000,#ffeb3b,#1b5e20,#0d47a1",
+        backgroundColor:"peach-gradient"
+        }
+    }
+    }
+})
 const dispatchToProps = dispatch => ({
     getUsersList: resData => dispatch({ type: GET_ADMIN_DATA, payload: resData })
 });
@@ -127,13 +138,23 @@ class LoginComponent extends Component {
                                 className="mb-3  peach-gradient btn"
                                 type="submit"
                                 value='submit'
-                                // onSubmit={(event) => this.handleSubmit(event)}
+                            // onSubmit={(event) => this.handleSubmit(event)}
 
                             >
                                 Login
                             </MDBBtn>
 
                         </div>
+                        <MuiThemeProvider theme={theme}>
+                        <div className="pls-btn">
+                            <Fab  aria-label="add" style={{background:'linear-gradient(to right bottom,#176BEF,#FF3E30,#F7B529,#179C52)'}}>
+                                {/* <AddIcon className="plus" /> */}
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </Fab>
+                           
+                        </div>
+                        </MuiThemeProvider>
+
                     </form>
                 </Card>
             </div>
