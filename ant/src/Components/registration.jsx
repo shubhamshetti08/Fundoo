@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { mdiMagnify } from '@mdi/js';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import {Chart} from 'mdbreact'
+import {Fab} from '@material-ui/core'
 // import { Form, Input, Icon, Tooltip, Card, Avatar } from 'antd';
 class registration extends Component {
   constructor(props) {
@@ -22,6 +24,43 @@ class registration extends Component {
     });
   };
   render() {
+//     var ctx = document.getElementById("myChart").getContext('2d');
+// var myChart = new Chart(ctx, {
+// type: 'bar',
+// data: {
+// labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+// datasets: [{
+// label: '# of Votes',
+// data: [12, 19, 3, 5, 2, 3],
+// backgroundColor: [
+// 'rgba(255, 99, 132, 0.2)',
+// 'rgba(54, 162, 235, 0.2)',
+// 'rgba(255, 206, 86, 0.2)',
+// 'rgba(75, 192, 192, 0.2)',
+// 'rgba(153, 102, 255, 0.2)',
+// 'rgba(255, 159, 64, 0.2)'
+// ],
+// borderColor: [
+// 'rgba(255,99,132,1)',
+// 'rgba(54, 162, 235, 1)',
+// 'rgba(255, 206, 86, 1)',
+// 'rgba(75, 192, 192, 1)',
+// 'rgba(153, 102, 255, 1)',
+// 'rgba(255, 159, 64, 1)'
+// ],
+// borderWidth: 1
+// }]
+// },
+// options: {
+// scales: {
+// yAxes: [{
+// ticks: {
+// beginAtZero: true
+// }
+// }]
+// }
+// }
+// });
     return (
       <div className="container-scroller">
         <nav className="navbar horizontal-layout col-lg-12 col-12 p-0 ">
@@ -117,7 +156,7 @@ class registration extends Component {
               </div>
             </div>
           </div>
-          <div className="nav-bottom">
+          <div className="nav-bottom fixed-top">
             <div className="container">
               <ul className="nav page-navigation">
                 <li className="nav-item active">
@@ -237,25 +276,25 @@ class registration extends Component {
                   <div class="card text-center">
                     <div class="card-body">
                       <img src={require("../Assets/images/pic.jpg")} class="img-lg rounded-circle mb-2" alt="profile image" />
-                      <h4>Maria Johnson</h4>
+                      <h4>SHUBHAM SHETTI</h4>
                       <p class="text-muted">Developer</p>
                       <p class="mt-4 card-text">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                        Aenean commodo ligula eget dolor. Lorem
+                        React Developer, trained in
+                          bridge labz
 									</p>
                       <button class="btn btn-primary btn-sm mt-3 mb-4">Follow</button>
                       <div class="border-top pt-3">
                         <div class="row">
                           <div class="col-4">
-                            <h6>5896</h6>
+                            <h6>896</h6>
                             <p>Post</p>
                           </div>
                           <div class="col-4">
-                            <h6>1596</h6>
+                            <h6>196</h6>
                             <p>Followers</p>
                           </div>
                           <div class="col-4">
-                            <h6>7896</h6>
+                            <h6>796</h6>
                             <p>Likes</p>
                           </div>
                         </div>
@@ -263,31 +302,44 @@ class registration extends Component {
                     </div>
                   </div>
                 </div>
-              
 
-              <div class="col-md-4 col-sm-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body pb-0">
-                  <div class="wrapper border-bottom">
-                    <h5 class="mb-0 text-gray">Top Products</h5>
-                    <h1 class="mb-0">598,486</h1>
-                    <p class="mb-4">6.5% change from today</p>
+
+                <div class="col-md-4 col-sm-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body pb-0">
+                      <div class="wrapper border-bottom">
+                        <h5 class="mb-0 text-gray">Top Products</h5>
+                        <h1 class="mb-0">598,486</h1>
+                        <p class="mb-4">6.5% change from today</p>
+                      </div>
+                      <div class="pt-4 wrapper">
+                        <h5 class="mb-0 text-gray">Support Cases</h5>
+                        <h1 class="mb-0">323,360</h1>
+                        <p>2.5% change from yesterday</p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="pt-4 wrapper">
-                    <h5 class="mb-0 text-gray">Support Cases</h5>
-                    <h1 class="mb-0">323,360</h1>
-                    <p>2.5% change from yesterday</p>
-                  </div>
                 </div>
-                </div>
-                </div>
-                </div>
-                <canvas id="lineChart"></canvas>
+              </div>
+              <div class="col-md-5">
+                <canvas id="myChart"></canvas>
+              </div>
+              <div className="pls-btn">
+                            <Fab  aria-label="add" >
+                                {/* <AddIcon className="plus" /> */}
+                                <i class="fa fa-plus" aria-hidden="true"  style={{color:'linear-gradient(to right bottom,#176BEF,#FF3E30,#F7B529,#179C52)'}}></i>
+                            </Fab>
+                           
+                        </div>
             </div>
 
           </div>
         </div>
       </div>
+
+
+
+
     )
   }
 }
