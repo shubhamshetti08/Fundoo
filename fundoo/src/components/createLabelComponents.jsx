@@ -17,7 +17,7 @@ export default class CreateLabelComponents extends Component {
             labelText: '',
             allLabels: [],
             createdLabel: [],
-            hi:this.props.hi,
+            hi: this.props.hi,
         }
     }
     componentDidMount() {
@@ -91,7 +91,7 @@ export default class CreateLabelComponents extends Component {
     handleCheck = (labelId) => {
         this.setState({
             check: !this.state.check,
-            anchorEl:false
+            anchorEl: false
         })
         console.log("jdkfkdj", this.props.noteIdToLabel);
         var data = {
@@ -107,13 +107,13 @@ export default class CreateLabelComponents extends Component {
             }).catch((err) => {
                 console.log("error in note label", err);
             })
-            // console.log('000000',this.state.check);
-            
-            if(this.state.check===false){
-                this.props.createLabelToMore(true)
-            }
+        // console.log('000000',this.state.check);
+
+        if (this.state.check === false) {
+            this.props.createLabelToMore(true)
+        }
     }
-    handleClose=()=>{
+    handleClose = () => {
         this.setState({
             anchorEl: false
         })
@@ -144,7 +144,8 @@ export default class CreateLabelComponents extends Component {
                     Add Label
                         </div>
                 {/* <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} onKeyDown={this.handleKeyDown}> */}
-                <Menu open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{zIndex:"99999"}} onKeyDown={this.handleKeyDown}  onClose={this.handleClose}>
+                <Menu open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{ zIndex: "99999" }}
+                    onKeyDown={this.handleKeyDown} onClose={this.handleClose}>
 
                     <Paper className="label-popper">
                         <div>
@@ -158,15 +159,17 @@ export default class CreateLabelComponents extends Component {
                                 placeholder="Enter label name"
                                 value={this.state.title}
                                 onChange={this.handleLabelText}
-                                />
+                            />
                             <Tooltip title="search">
                                 <SearchOutlinedIcon />
                             </Tooltip>
                             <div className="trash-checkbox">{labelMap}</div>
-                            <div style={{cursor:"pointer"}}>{this.state.create ? (<p onClick={this.handleLabel}>+ create {this.state.labelText}</p>) : (null)}</div> 
+                            <div style={{ cursor: "pointer" }}>{this.state.create ?
+                                (<p onClick={this.handleLabel}>+ create {this.state.labelText}</p>)
+                                : (null)}</div>
                         </div>
                     </Paper>
-                    </Menu>
+                </Menu>
                 {/* </Popper> */}
             </div>
 

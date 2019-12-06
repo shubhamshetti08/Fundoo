@@ -297,9 +297,9 @@ class GetAllNoteComponent extends Component {
                     <div className={list1}>
 
                         <Card className={list2} style={{
-                            backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
+                            backgroundColor: key.color,boxShadow:"#bdbbbb 2px 1px 5px 3px",
                             transform: (this.props.menu) ? "translate(80px,0)" : null,
-                            transition: (this.props.menu) ? ("0.5s") : ("0.5s"),
+                            transition: (this.props.menu) ? ("0.5s") : null,
                             visibility: this.state.open && this.state.noteId === key.id ? 'hidden' : (null),
                         }}
                         >
@@ -318,7 +318,7 @@ class GetAllNoteComponent extends Component {
                                         multiline
                                         placeholder="Take a note ...."
                                         id="description"
-                                        value={key.description.length>5?key.description.slice(0,3).toString()+'...':key.description}
+                                        value={key.description.length>30?key.description.slice(0,29).toString()+'...':key.description}
                                         onClick={() => this.handleUpdate(key.id, key.title, key.description, key.color)}
                                     />
                                 </div>
@@ -437,8 +437,6 @@ class GetAllNoteComponent extends Component {
                                             <div dangerouslySetInnerHTML={{ __html: data.message }}></div>
                                         </div>
                                     )
-
-
                                 })}
                             </div>
                         </Card>
@@ -556,7 +554,11 @@ class GetAllNoteComponent extends Component {
                 {/* {allNotes.description.length > 40 ? allNotes.description.slice(0, 37).toString() + '...':allNotes} */}
                 {allNotes}
                 {num === 0 ?
-                    <img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
+                setTimeout(function(){
+<img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
+
+                }, 500)
+                    
                     : null
                 }
             </div>

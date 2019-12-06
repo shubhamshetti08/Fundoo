@@ -35,10 +35,10 @@ describe('Login Component', () => {
                 .simulate('change', {
                     target: {
                         name: 'email',
-                        value: 'onetwothree@gmail.com'
+                        value: 'onetwo@gmail.com'
                     }
                 });
-            expect(wrapper.state('email')).toEqual('onetwothree@gmail.com');
+            expect(wrapper.state('email')).toEqual('onetwo@gmail.com');
         })
     })
     describe('Password input', () => {

@@ -133,7 +133,7 @@ class MoreComponent extends Component {
             </div>
             //  </ClickAwayListener>          
         )
-    }
+    }_
 }
 export default withRouter(MoreComponent)
 {/* <CreateLabelComponenent noteToLabel={this.props.noteId}

@@ -57,6 +57,8 @@ class AccountComponent extends Component {
     profile = async (e) => {
         let data = new FormData();
         data.append('file', e.target.files[0]);
+        console.log('888888-----',e.target.files[0]);
+        
         await profileUpload(data)
             .then((result) => {
                 // console.log('backend image result', result);

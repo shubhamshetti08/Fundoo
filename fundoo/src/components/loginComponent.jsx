@@ -71,7 +71,6 @@ class login extends React.Component {
             localStorage.setItem('userId', res.data.userId)
             localStorage.setItem('profileimage', Url + res.data.imageUrl);
             // localStorage.setItem('cartId', this.props.location.state.idCart);
-            console.log('9999------', this.props.location.state.idCart);
             
             {this.props.location.state!==undefined ? 
                 // console.log('55555------', this.props.location.state.idCart);
@@ -106,12 +105,19 @@ class login extends React.Component {
                     : null
                 }
                 <Card className="loginCard">
-                    <div className='fundoo'><h1 style={{display:"flex",justifyContent:"center"}}><span style={{ color: "#2196f3" }}>f</span>
+                    <div className='fundoo'><h1 style={{display:"flex",justifyContent:"center"}}>
+                        <span style={{ color: "#2196f3" }}>f</span>
                         <span style={{ color: "#b71c1c" }}>u</span>
                         <span style={{ color: "#ffc107" }}>n</span>
                         <span style={{ color: "#1976d2" }}>d</span>
                         <span style={{ color: "#43a047" }}>o</span>
-                        <span style={{ color: "#b71c1c" }}>o</span></h1></div>
+                        <span style={{ color: "#b71c1c" }}>o</span>
+                        <span style={{ color: "#b71c1c",paddingLeft:"10px" }}>n</span>
+                        <span style={{ color: "#ffc107" }}>o</span>
+                        <span style={{ color: "#1976d2" }}>t</span>
+                        <span style={{ color: "#43a047" }}>e</span>
+                        <span style={{ color: "#b71c1c" }}>s</span>
+                        </h1></div>
                     <div className='login-h2'><h2>Login with fundoo account</h2></div>
                     <div className='loginEmail'>
                         <TextField

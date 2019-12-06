@@ -36,11 +36,11 @@ class CollaboratorComponent extends Component {
     componentWillMount = () => {
         this.getEmails();
     }
-    handleCollabChange = (e) => {
-        this.setState({
-            searchText: e.target.value
-        })
-    }
+    // handleCollabChange = (e) => {
+    //     this.setState({
+    //         searchText: e.target.value
+    //     })
+    // }
     handleEdit = () => {
         this.setState({
             dialogOpen: !this.state.dialogOpen
@@ -157,11 +157,6 @@ class CollaboratorComponent extends Component {
             card: false
         })
         console.log("search text is ", this.state.searchText);
-    }
-    handleCollabChange = (e) => {
-        this.setState({
-            searchText: e.target.value
-        })
     }
     handleClose = () => {
         this.setState({

@@ -103,9 +103,9 @@ class ReminderComponent extends Component {
                     <Tooltip title="Remind me">
                         <AddAlertOutlinedIcon onClick={(e) => this.handleOpenPopper(e)} />
                     </Tooltip>
-               
-                    <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{zIndex:"9999"}}>
-                    {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
+             
+                    <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} style={{zIndex:"9999"}} >
+                      {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
                         <Paper className="reminder-paper">
                             {/* Reminder:
                         <MenuItem>
@@ -124,9 +124,9 @@ class ReminderComponent extends Component {
                                 <Button onClick={this.handleReminderButton}>Set Reminder</Button>
                             </div>
                         </Paper>
-                        {/* </ClickAwayListener> */}
+                       {/* </ClickAwayListener> */}
                     </Popper>
-                   
+                    
                 </ThemeProvider>
                 
             </div>

@@ -16,7 +16,7 @@ const theme = createMuiTheme({
                 toolbar: {
                     backgroundColor: "blue",
                     width: "59%",
-                    border: "2px solid grey"
+                    border: "2px solid grey",
                 }
             },
         }
@@ -251,13 +251,14 @@ class EditorComponent extends Component {
                     {!this.state.dis ?
                         <div>
                             <div>
+           
                                 <div className="editor-description" >Ask Question</div>
                                 {/* <div className="editor-page"> */}
                                 <div style={{ width: "auto", margin: "10px" }} className="editor-comp">
                                     <div>
                                             <Editor
-                                                editorStyle={{ backgroundColor: 'gray' }}
-                                                toolbarStyle={{ backgroundColor: 'gray'}}
+                                                editorStyle={{ border:"1px solid black" }}
+                                                toolbarStyle={{border:"1px solid black", backgroundColor: 'gray'}}
                                                 placeholder="Type something...."
                                                 onEditorStateChange={this.onEditorStateChange} />
                                     </div>

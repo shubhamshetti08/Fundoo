@@ -303,7 +303,11 @@ var num=0;
             <div className={list}>
                 {allTrash}
                 {num===0?
-    <img style={{marginLeft:"13%"}} alt="" src={require('../assets/images/oops.png')}></img>   
+      setTimeout(function(){
+        <img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
+        
+                        }, 500)
+                            
     :null
                 }
             </div>

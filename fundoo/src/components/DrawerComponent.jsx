@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'; import { withRouter } from 'react-router-dom';
 import { getLabels } from '../services/userService';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import EditeLabelComponent from "../components/editLabelComponent"
-import NotificationsOutlinedIcon from '@material-ui/icons/NotificationsOutlined';
 import { MenuItem, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import ReminderComponent from './reminderComponent';
 
@@ -134,8 +132,8 @@ class DrawerComponent extends Component {
         this.props.history.push(`/labels/${labelName}`,this.state.appTitle)
         }
     render() {
-        var temp1 = this.state.open ? this.state.color : null
-        var temp2 = this.state.open1 ? this.state.color : null
+        // this.state.open ? this.state.color : null
+        // this.state.open1 ? this.state.color : null
         var temp3 = this.state.open2 ? this.state.color : null
         var temp4 = this.state.open3 ? this.state.color : null
         var temp5 = this.state.open4 ? this.state.color : null

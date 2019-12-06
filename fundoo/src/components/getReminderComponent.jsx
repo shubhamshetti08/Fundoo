@@ -197,11 +197,12 @@ class GetReminderComponent extends Component {
         const list = this.props.list ? "container1" : "container";
         const list1 = this.props.list ? "get-contents1" : "get-contents"
         const list2 = this.props.list ? "get-card2" : "get-card1"
-
+        var num=0;
         const allReminder = this.state.reminder.filter(titleDescSearch(this.props.searchText)).map((key) => {
             console.log('getRem comp---',key.id);
-            
+          
             if (key.isArchived === false && key.isDeleted === false) {
+                num=num+1
                 return (
                     <div className={list1}>
                         <Card className={list2} style={{ backgroundColor: key.color, boxShadow: " 5px 5px 5px gray",
@@ -358,6 +359,14 @@ class GetReminderComponent extends Component {
         return (
             <div className={list}>
                 {allReminder}
+                {num===0?
+      setTimeout(function(){
+        <img style={{ marginLeft: "13%" }} alt="" src={require('../assets/images/oops.png')}></img>
+        
+                        }, 500)
+                            
+    :null
+                }
             </div>
         )
     }

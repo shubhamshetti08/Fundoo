@@ -1198,6 +1198,19 @@ flex-direction: column;
   /* min-width: 37%; */
   margin: 15px 15px 15px 15px;
 }
+.editorPage {
+  /* width: 82%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: distribute;
+  justify-content: space-around; */
+  margin-top:60px;
+}
+.shopping-stepper-names{
+  display:none;
+}
 }
 /* @media all and (max-width:568px ) and (min-width:320px) {
 
@@ -1526,5 +1539,11 @@ outline: none;
   margin: 15px 15px 15px 15px;
   justify-content: center;
 
+}
+.shopping-stepper-names{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 616px;
 }
 /*---------------------------------------------------shopping-----------------------------------------------------*/

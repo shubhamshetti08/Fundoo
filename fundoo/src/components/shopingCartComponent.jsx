@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Divider, TextField, IconButton, Button, Snackbar, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { Divider, TextField, IconButton, Button, Snackbar, createMuiTheme, MuiThemeProvider, Step, StepLabel } from '@material-ui/core';
 import { getCartDetails } from '../services/shopingService';
 import CloseIcon from '@material-ui/icons/Close';
 import MobileStepper from '@material-ui/core/MobileStepper';
-import {placeOrder} from '../services/shopingService';
+import { placeOrder } from '../services/shopingService';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 const theme = createMuiTheme({
     overrides: {
         MuiLinearProgress: {
@@ -28,16 +29,20 @@ class ShopingCart extends Component {
             snackbarMsg: '',
             ok: false,
             activateStep: 0,
-            address:''
+            address: '',
+            msg: false
 
         }
     }
     componentDidMount() {
         this.getDetails()
     }
+    getInitialState() {
+        return { address: '' }
+    }
     getDetails = () => {
-        console.log("111221----",this.props.location.state);
-        
+        console.log("111221----", this.props.location.state);
+
         var cartId = this.props.location.state
 
         getCartDetails(cartId)
@@ -60,10 +65,13 @@ class ShopingCart extends Component {
     }
 
     handlePlaceOrder = () => {
+        this.setState({
+            msg: true
+        })
         if (this.state.address !== '') {
             let data = {
                 // "cartId": localStorage.getItem('cartId'),
-                "cartId":this.props.location.state,
+                "cartId": this.props.location.state,
                 "address": this.state.address,
             }
             placeOrder(data).then(res => {
@@ -78,7 +86,7 @@ class ShopingCart extends Component {
             })
         } else {
             this.setState({
-                snackbarOpen:true,
+                snackbarOpen: true,
                 snackbarMsg: 'address cant be empty'
             })
         }
@@ -96,11 +104,11 @@ class ShopingCart extends Component {
 
         this.setState({ snackbarOpen: false, ok: false });
     }
-handleAddress=(e)=>{
-    this.setState({
-        address:e.target.value
-    });
-}
+    handleAddress = (e) => {
+        this.setState({
+            address: e.target.value
+        });
+    }
 
     render() {
         return (
@@ -116,7 +124,23 @@ handleAddress=(e)=>{
                                 variant="progress"
                                 steps={3}
                                 position="fixed"
-                                activeStep={this.state.activateStep} />
+                                activeStep={this.state.activateStep}
+                            >
+                            </MobileStepper>
+                            {/* <div className="shopping-stepper-names">
+                                <div style={{color:"#fb0"}}><b>sign in</b></div>
+                                {this.state.activateStep>=1?
+                                <div style={{color:"#fb0"}}><b>review</b></div>
+                            
+                                :
+                                <div>review</div>
+                                }
+                                {this.state.activateStep>1?
+                                <div style={{color:"#fb0"}}><b>complete</b></div>
+                                :
+                                <div>complete</div>
+                                }
+                            </div> */}
                         </div>
                     </MuiThemeProvider>
                 </div>
@@ -179,11 +203,14 @@ handleAddress=(e)=>{
                             return (
                                 <div className="shopping-advance-info3">
                                     <div className="shopping-subtotal"><span style={{ fontSize: "smaller", marginBottom: "5px" }}>SubTotal( 1 item ): ${this.state.cartDetails.price}</span></div>
-                                    {/* {this.state.address.length>0 ? */}
-                                    <div className="shopping-button1-div" onClick={this.handlePlaceOrder}><span style={{ cursor: "pointer" }} className="shopping-button1">Place order</span></div>
-                                    {/* : */}
-                                    {/* <span>adress cant be empty</span> */}
-                                    {/* } */}
+                                    {this.state.msg === false ?
+                                        <div className="shopping-button1-div" onClick={this.handlePlaceOrder}><Button variant="contained" color="primary" disabled={!this.state.address} style={{ cursor: "pointer" }} className="shopping-button1">Place order</Button></div>
+                                        :
+                                        <span style={{
+                                            color: "green", display: "flex",
+                                            justifyContent: 'center'
+                                        }}>You ordered successfully...</span>
+                                    }
                                 </div>
                             )
                         }
@@ -239,7 +266,7 @@ handleAddress=(e)=>{
                 </Button>
                     ]}
                 />
-                
+
             </div>
         )
     }

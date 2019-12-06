@@ -197,14 +197,15 @@ class DashboardComponent extends Component {
                                 <DrawerComponent menuSelect={this.state.menu} />
 
                                 {(this.props.location.state === undefined || this.props.location.state[3] === 'editor') ?
-                                    <img className={search} alt="" aria-hidden="true" src={require("../assets/images/f.jpg")}
-                                        style={{ width: "60px", height: "30px" }}>
+                                    <img className={search} alt="" aria-hidden="true" src={require("../assets/images/keep.png")}
+                                        style={{ width: "50px", height: "50px" }}>
                                     </img> : null}
                                 <Bounce>
                                     <span className={fundooName}>
                                         {console.log('name-----', this.props.location.state)}
 
-                                        {(this.props.location.state !== undefined && this.props.location.state[3] !== 'editor') ? this.props.location.state : "Fundoo"}
+                                        {(this.props.location.state !== undefined && this.props.location.state[3] !== 'editor'
+                                        && this.props.location.state !=="5dc6b78a1e7ac90022c187e8") ? this.props.location.state : "Fundoo"}
                                     </span>
                                 </Bounce>
                                 {/* <ClickAwayListener onClickAway={this.handleClickAway}> */}
@@ -280,16 +281,16 @@ class DashboardComponent extends Component {
                                             <ShoppingCartOutlinedIcon/>
                                         </div>
                                         {!this.state.view ?
-                                            <div className='grid-view' style={{ width: "34px", height: "34px" }}>
+                                            <div className='grid-view' style={{ width: "28px", height: "28px" }}>
                                                 <Tooltip title="Grid view">
-                                                    <DashboardOutlinedIcon style={{fontSize:"1.875rem"}}
+                                                    <DashboardOutlinedIcon style={{fontSize:"1.475rem"}}
                                                         onClick={this.handleGrid} />
                                                 </Tooltip>
                                             </div>
                                             :
-                                            <div className='list-view' style={{ width: "34px", height: "34px" }}>
+                                            <div className='list-view' style={{ width: "28px", height: "28px" }}>
                                                 <Tooltip title="List view">
-                                                    <DnsTwoToneIcon style={{fontSize:"1.875rem"}}
+                                                    <DnsTwoToneIcon style={{fontSize:"1.475rem"}}
                                                         onClick={this.handleList} />
                                                 </Tooltip>
                                             </div>
